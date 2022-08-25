@@ -1,0 +1,58 @@
+<div class="mx-auto text-center">
+    <p> {{ section.settings.preheading }} </p>
+    <h2> {{ section.settings.heading }} </h2>
+    <div class="flex gap-s8">
+        {% for block in section.blocks %}
+            <div class="flex-1">
+                <img class="h-[360px]" src="{{ block.settings.image | image_url }}"/>
+                <a class="mt-s6" href="{{ block.settings.linkDest.url }}">{{ block.settings.linkLabel }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% schema %}
+    {
+        "name": "featured-categories",
+        "class": "p-s13",
+        "max_blocks": 2,
+        "blocks": [
+            {
+            "name": "Category",
+            "type": "category",
+            "settings": [
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+                {
+                "type": "text",
+                "id": "linkLabel",
+                "label": "Link Label"
+                },
+                {
+                "type": "page",
+                "id": "linkDest",
+                "label": "Link Destination"
+                }
+            ]
+            }
+        ],
+        "settings": [
+            {
+                "type": "text",
+                "id": "preheading",
+                "label": "Preheading",
+                "default": "Duis ligula efficitur nam"
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Bring home something from The Wharf to help you remember the life that happens here."
+            }
+        ]
+    }
+{% endschema %}

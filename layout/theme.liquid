@@ -43,6 +43,28 @@
         box-sizing: border-box;
         font-size: 16px;
         height: 100%;
+
+        --primary-50: #e7f1f9;
+        --primary-100: #cfe3f2;
+        --primary-200: #9ec7e5;
+        --primary-300: #6eaad9;
+        --primary-400: #3d8ecc;
+        --primary-500: #0d72bf;
+        --primary-600: #0a5a97;
+        --primary-700: #084370;
+        --primary-800: #002B49;
+        --primary-900: #031c30;
+
+        --secondary-50: #e5f5f9;
+        --secondary-100: #ccecf4;
+        --secondary-200: #b2e2ee;
+        --secondary-300: #77d0e1;
+        --secondary-400: #3bbdd4;
+        --secondary-500: #00abc8;
+        --secondary-600: #008ba2;
+        --secondary-700: #006b7d;
+        --secondary-800: #004b57;
+        --secondary-900: #002b32;
       }
     {% endstyle %}
 
@@ -56,7 +78,7 @@
     </script>
   </head>
 
-  <body class="gradient">
+  <body id="app" class="gradient">
     <a class="skip-to-content-link button hidden" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>
@@ -71,7 +93,12 @@
       {{ content_for_layout }}
     </main>
 
-    {% section 'footer' %}
+    <footer>
+      {% unless page_title == "404 Not Found" %}
+        {% section "sale-cta" %}
+      {% endunless %}
+      {% render 'footer-main' %}
+    </footer>
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

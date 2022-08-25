@@ -1,57 +1,58 @@
 exports.colors = {
-	white: '#ffffff',
-	black: '#000000',
-	primary: {
-		50: 'var(--primary-50)',
-		75: 'var(--primary-75)',
-		100: 'var(--primary-100)',
-		200: 'var(--primary-200)',
-		300: 'var(--primary-300)',
-		400: 'var(--primary-400)',
-		500: 'var(--primary-500)', //*
-		600: 'var(--primary-600)',
-		700: 'var(--primary-700)',
-		800: 'var(--primary-800)',
-		900: 'var(--primary-900)',
-	},
-	//gray/black
-	black: {
-        900: "#1a1a1a",
-		800: "#333333", //*
-		700: "#4d4d4d",
-		600: "#666666",
-		500: "#808080",
-		400: "#999999",
-		300: "#b3b3b3",
-		200: "#cccccc",
-		100: "#e6e6e6",
-		50: "#f2f2f2"
-    },
-	secondary: {
-		"900": "#a5762b",
-		"800": "#b4802a",
-		"700": "#c38c29",
-		"600": "#d29a27",
-		"500": "#e5a824", //*
-		"400": "#e9b446",
-		"300": "#ecc169",
-		"200": "#efce87",
-		"100": "#f3dba6",
-		"50": "#f6e9c7"
-	},
-	tertiary: {
-		"900": "#0f2644",
-		"800": "#183661",
-		"700": "#2d456a",
-		"600": "#415472",
-		"500": "#506178", //*
-		"400": "#5f7187",
-		"300": "#8791a0",
-		"200": "#aeb4be",
-		"100": "#c5ccd4",
-		"50": "#ffffff"
-	}
-}
+  white: "#ffffff",
+  black: "#000000",
+  primary: {
+    50: "var(--primary-50)",
+    75: "var(--primary-75)",
+    100: "var(--primary-100)",
+    200: "var(--primary-200)",
+    300: "var(--primary-300)",
+    400: "var(--primary-400)",
+    500: "var(--primary-500)", //*
+    600: "var(--primary-600)",
+    700: "var(--primary-700)",
+    800: "var(--primary-800)",
+    900: "var(--primary-900)",
+  },
+  //gray/black
+  black: {
+    900: "#1a1a1a",
+    800: "#333333", //*
+    700: "#4d4d4d",
+    600: "#666666",
+    500: "#808080",
+    400: "#999999",
+    300: "#b3b3b3",
+    200: "#cccccc",
+    100: "#e6e6e6",
+    50: "#f2f2f2",
+  },
+  secondary: {
+    50: "var(--secondary-50)",
+    75: "var(--secondary-75)",
+    100: "var(--secondary-100)",
+    200: "var(--secondary-200)",
+    300: "var(--secondary-300)",
+    400: "var(--secondary-400)",
+    500: "var(--secondary-500)", //*
+    600: "var(--secondary-600)",
+    700: "var(--secondary-700)",
+    800: "var(--secondary-800)",
+    900: "var(--secondary-900)",
+  },
+  tertiary: {
+    900: "#0f2644",
+    800: "#183661",
+    700: "#2d456a",
+    600: "#415472",
+    500: "#506178", //*
+    400: "#5f7187",
+    300: "#8791a0",
+    200: "#aeb4be",
+    100: "#c5ccd4",
+    50: "#ffffff",
+  },
+};
 
 exports.icons = {
 	12: { abbr: '12', size: '12px', folder: '12' },

@@ -40,7 +40,10 @@ module.exports = {
 		extend: {
 			borderWidth: {
 				'3': '3px',
-			  }
+			},
+			maxWidth: {
+				"content": "1120px"
+			}
 		},
 		screens: {
 			...generateScreens({

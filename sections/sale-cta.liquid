@@ -1,0 +1,40 @@
+<div class="w-full max-w-[813px] mx-auto flex gap-s9">
+    <h2 class="w-[223px] text-secondary-100"> {{ section.settings.heading }} </h2>
+    <div class="w-[2px] h-auto bg-secondary-500"></div>
+    <div class="flex-1">
+        <p class="text-white">{{ section.settings.text }}</p>
+        <a class="mt-s6" href="{{ block.settings.buttonDest.url }}">{{ section.settings.buttonLabel }} </a>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "sale-cta",
+        "class": "bg-primary-800 py-s9 px-s13",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Our Summer Sale is Shining!"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "Main Text",
+                "default": "Take 50% off our end of season sale. All sales final — ends soon!"
+            },
+            {
+                "type": "text",
+                "id": "buttonLabel",
+                "label": "Button Label",
+                "default": "Shop Sale"
+            },
+            {
+                "type": "page",
+                "id": "buttonDest",
+                "label": "Button Destination"
+            }
+        ]
+    }
+{% endschema %}

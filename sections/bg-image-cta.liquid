@@ -1,0 +1,80 @@
+{% liquid
+    assign positionClasses = ""
+    if section.settings.position == "left"
+        assign positionClasses = positionClasses | append: "max-w-[450px]"
+    elsif section.settings.position == "right"
+        assign positionClasses = positionClasses | append: "max-w-[450px] ml-auto"
+    elsif section.settings.position == "middle" 
+        assign positionClasses = positionClasses | append: "text-center max-w-[740px] mx-auto"
+    endif
+%}
+
+
+<div class="relative w-full bg-white px-s10 py-s11 {{ positionClasses }}">
+    <h2 class="">{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.text }}</p>
+    <a href="{{ section.settings.buttonDest }}">{{ section.settings.buttonLabel }}</a>
+</div>
+
+<!-- keep classes to use for section and with liquid variable -->
+<div class="hidden h-[800px] max-w-[740px] max-w-[450px] justify-self-end text-center"></div>
+
+{% style %}
+    .h-800{
+        height:800px;
+    }
+{% endstyle %}
+
+
+{% schema %}
+    {
+        "name": "bg-image-cta",
+        "class": "bg-primary-300 p-s13 h-800 flex items-center",
+        "settings": [
+            {
+                "type": "select",
+                "id": "position",
+                "label": "Position",
+                "options": [
+                    {
+                    "value": "left",
+                    "label": "Left"
+                    },
+                    {
+                    "value": "middle",
+                    "label": "Middle"
+                    },
+                    {
+                    "value": "right",
+                    "label": "Right"
+                    }
+                ],
+                "default": "middle"
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Gifts for Dad"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "Main Text",
+                "default": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis."
+            },
+            {
+                "type": "text",
+                "id": "buttonLabel",
+                "label": "Button Label",
+                "default": "Shop Mens"
+            },
+            {
+                "type": "page",
+                "id": "buttonDest",
+                "label": "Button Destination"
+            }
+        ]
+
+    }
+{% endschema %}

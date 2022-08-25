@@ -1,0 +1,29 @@
+<div class="py-s13 px-s9">
+    <h2 class="text-center">{{ section.settings.heading }}</h2>
+    <div class="flex">
+        {% assign test = "copy-of-test-product,test-product" | split: "," %}
+        {% for handle in test %}
+            {% assign product = all_products[handle] %}
+            <div class="mt-s8 flex-1">
+                <h3 class="faux-p-lg font-bold">{{ product.title }}</h3>
+                <p>Brand</p>
+                <p class="">${{ product.price | money_without_currency }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% schema %}
+    {
+        "name": "featured-products",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Featured Products"
+            }
+        ]
+    }
+{% endschema %}

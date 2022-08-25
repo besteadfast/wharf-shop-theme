@@ -1,0 +1,42 @@
+<div class="w-full max-w-content mx-auto py-s8">
+    <div class="bg-secondary-100">
+        <div class="max-w-[510px] p-s11">
+            <h2>{{ section.settings.heading }}</h2>
+            <p class="mt-s8">{{ section.settings.text }}</p>
+            <a class="mt-s8" href="{{ section.settings.buttonDest.url }}">{{ section.settings.buttonLabel }}</a>
+        </div>
+    </div>
+
+</div>
+
+{% schema %}
+    {
+        "name": "floating-cta",
+        "class": "p-s13 pb-s14",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Headline about the Kids Collection"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "Main Text",
+                "default": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis sed tempor nisl, senectus."
+            },
+            {
+                "type": "text",
+                "id": "buttonLabel",
+                "label": "Button Label",
+                "default": "Shop the Kids collection"
+            },
+            {
+                "type": "page",
+                "id": "buttonDest",
+                "label": "Button Destination"
+            }
+        ]
+    }
+{% endschema %}

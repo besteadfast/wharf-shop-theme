@@ -1,50 +1,53 @@
 {
   "sections": {
     "hero": {
-      "type": "home-hero",
-      "settings": {
-        "heading": {
-          "type": "text",
-          "id": "heading",
-          "label": "heading",
-          "default": "Life Happens Here"
-        }
-      }
+      "type": "home-hero"
     },
     "new_products": {
-      "type": "featured-collection"
+      "type": "featured-products"
     },
     "category_products":{
-      "type": "featured-collection"
+      "type": "featured-products"
     },
     "three_pane_callout": {
       "type": "three-pane-callout"
     },
+    "featured_categories": {
+      "type": "featured-categories"
+    },
     "sale_cta": {
-      "type": "sale-cta"
+      "type": "sale-cta",
+      "settings": {
+        "heading": "test"
+      }
     },
     "floating_cta": {
       "type": "floating_cta"
     },
     "bg_image_center_cta": {
-      "type": "bg-image-cta"
+      "type": "bg-image-cta",
+      "settings": {
+        "position": "middle"
+      }
     },
     "bg_image_right_cta": {
-      "type": "bg-image-cta"
-    },
-    "footer": {
-      "type": "footer"
+      "type": "bg-image-cta",
+      "settings": {
+        "position": "right",
+        "heading": "About",
+        "buttonLabel": "Visit Us"
+      }
     }
   },
   "order": [
     "hero",
     "new_products",
     "three_pane_callout",
+    "featured_categories",
     "sale_cta",
     "floating_cta",
     "bg_image_center_cta",
     "category_products",
-    "bg_image_right_cta",
-    "footer"
+    "bg_image_right_cta"
   ]
 }

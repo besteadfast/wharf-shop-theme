@@ -1,0 +1,50 @@
+<div class="relative bg-primary-800 max-w-[1020px] mx-auto text-white text-center">
+    <h2> {{ section.settings.heading }} </h2>
+    <h3 > {{ section.settings.subheading }} </h3>
+    <div class="flex relative w-full h-[620px] -bottom-s13 -mt-s7 gap-s6">
+        {% for block in section.blocks %}
+        <div class="flex-1 bg-primary-100 flex justify-center items-center"> {{ block.settings.label }} </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% schema %}
+    {
+        "name": "three-pane-callout",
+        "class": "bg-primary-800 pt-s13 mb-s13",
+        "max_blocks": 3,
+        "blocks": [
+            {
+            "name": "Pane",
+            "type": "pane",
+            "settings": [
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+                {
+                "type": "text",
+                "id": "label",
+                "label": "Label"
+                }
+            ]
+            }
+        ],
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Shop By Activity"
+            },
+            {
+                "type": "text",
+                "id": "subheading",
+                "label": "Subheading",
+                "default": "Made for everyday memories. We have something for everyone."
+            }
+        ]
+    }
+{% endschema %}
