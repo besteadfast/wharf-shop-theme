@@ -15,3 +15,24 @@ nav{
 .menu__dropdown{
     display:none;
 }
+
+.dropdown__list-item--level-1:not(:first-child){
+    @apply mt-s4;
+}
+
+.dropdown__list--level-2{
+    @apply mt-s5;
+}
+
+.dropdown__link--level-1{
+    @apply text-primary-800 uppercase;
+}
+
+
+.dropdown__list-item--level-2:not(:first-child){
+    @apply mt-s2;
+}
+
+.dropdown__link--level-2{
+    @apply text-black-600 capitalize;
+}
