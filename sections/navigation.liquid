@@ -6,7 +6,7 @@
             <li class="menu__item level--1 text-black-600 ui-base has-dropdown h-full">
                 <a class="menu__link h-full flex items-center">{{ menuItem | capitalize }}</a>
                 <ul class="menu__dropdown list-none absolute top-full left-0 w-full pb-s10 px-s13 bg-white gap-s8 z-10">
-                    {% for column in settings.blocks %}
+                    {% for column in section.blocks %}
                         {% if column.settings.menu == menuItem %}
                             {% if column.type == "link-list" %}
                                 <li class="menu-column flex-1">
