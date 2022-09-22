@@ -70,23 +70,23 @@ exports.shadows = {
 
 exports.typography = {
 	fonts: {
-		atkinson: {
-			family: [ 'Atkinson Hyperlegible', 'sans-serif'],
+		pn: {
+			family: [ 'proxima-nova', 'sans-serif'],
 			offset: { cap: 0.16, midCap: 0.19, baseline: 0.17 }
 		},
-		dm: {
-			family: [ 'DM Sans', 'sans-serif'],
+		ns: {
+			family: [ 'new-spirit', 'sans-serif'],
 			offset: { cap: 0.14, midCap: 0.17, baseline: 0.16 }
 		}
 	},
 
 	styles: {
 		'sh': {
-			fontFamily: 'dm',
+			fontFamily: 'pn',
 			fontWeight: 'medium',
-			fontSize: { base: '18', md: '20' },
+			fontSize: { base: '16', md: '18' },
 			lineHeight: { base: '120' },
-			letterSpacing: '20',
+			letterSpacing: '15',
 			uppercase: true,
 			spacing: {
 				'sh':         { base: 's5', md: 's5' },
@@ -105,9 +105,9 @@ exports.typography = {
 			}
 		},
 		'h1': {
-			fontFamily: 'dm',
-			fontWeight: 'bold',
-			fontSize: { base: '44', md: '72' },
+			fontFamily: 'ns',
+			fontWeight: 'normal',
+			fontSize: { base: '54', md: '94' },
 			lineHeight: { base: '120' },
 			uppercase: false,
 			spacing: {
@@ -127,9 +127,9 @@ exports.typography = {
 			}
 		},
 		'h2': {
-			fontFamily: 'dm',
-			fontWeight: 'bold',
-			fontSize: { base: '28', md: '36' },
+			fontFamily: 'ns',
+			fontWeight: 'normal',
+			fontSize: { base: '40', md: '50' },
 			lineHeight: { base: '120' },
 			spacing: {
 				'sh':         { base: 's7',  md: 's7' },
@@ -148,9 +148,9 @@ exports.typography = {
 			}
 		},
 		'h3': {
-			fontFamily: 'dm',
-			fontWeight: 'bold',
-			fontSize: { base: '22', md: '28' },
+			fontFamily: 'ns',
+			fontWeight: 'light',
+			fontSize: { base: '30', md: '38' },
 			lineHeight: { base: '120' },
 			spacing: {
 				'sh':         { base: 's7',  md: 's7' },
@@ -169,12 +169,10 @@ exports.typography = {
 			}
 		},
 		'h4': {
-			fontFamily: 'dm',
-			fontWeight: 'medium',
-			fontSize: { base: '15', md: '20' },
+			fontFamily: 'ns',
+			fontWeight: 'light',
+			fontSize: { base: '25', md: '32' },
 			lineHeight: { base: '120' },
-			letterSpacing: '20',
-			uppercase: true,
 			spacing: {
 				'sh':         { base: 's8', md: 's8' },
 				'h1':         { base: 's9', md: 's11' },
@@ -192,9 +190,9 @@ exports.typography = {
 			}
 		},
 		'h5': {
-			fontFamily: 'dm',
-			fontWeight: 'medium',
-			fontSize: { base: '18', md: '22' },
+			fontFamily: 'ns',
+			fontWeight: 'light',
+			fontSize: { base: '22', md: '28' },
 			lineHeight: { base: '120' },
 			uppercase: false,
 			spacing: {
@@ -214,7 +212,7 @@ exports.typography = {
 			}
 		},
 		'h6': {
-			fontFamily: 'dm',
+			fontFamily: 'pn',
 			fontWeight: 'medium',
 			fontSize: { base: '12', md: '14' },
 			lineHeight: { base: '120' },
@@ -237,10 +235,10 @@ exports.typography = {
 			}
 		},
 		'p-lg': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
-			fontSize: { base: '18', md: '28' },
-			lineHeight: { base: '140' },
+			fontSize: { base: '20', md: '22' },
+			lineHeight: { base: '140', md:'150' },
 			spacing: {
 				'sh':         { base: 's6', md: 's7' },
 				'h1':         { base: 's9', md: 's9' },
@@ -258,10 +256,10 @@ exports.typography = {
 			}
 		},
 		'p': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
-			fontSize: { base: '16', md: '20' },
-			lineHeight: { base: '140' },
+			fontSize: { base: '16', md: '18' },
+			lineHeight: { base: '140', md: '150' },
 			spacing: {
 				'sh':         { base: 's6', md: 's7' },
 				'h1':         { base: 's9', md: 's9' },
@@ -279,10 +277,10 @@ exports.typography = {
 			}
 		},
 		'p-sm': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
-			fontSize: { base: '15', md: '18' },
-			lineHeight: { base: '140' },
+			fontSize: { base: '14', md: '16' },
+			lineHeight: { base: '140', md:'150' },
 			spacing: {
 				'sh':         { base: 's6', md: 's7' },
 				'h1':         { base: 's8', md: 's9' },
@@ -300,10 +298,10 @@ exports.typography = {
 			}
 		},
 		'p-xs': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
-			fontSize: { base: '14', md: '16' },
-			lineHeight: { base: '120', md: '140' },
+			fontSize: { base: '13', md: '14' },
+			lineHeight: { base: '140', md: '150' },
 			spacing: {
 				'sh':         { base: 's6', md: 's7' },
 				'h1':         { base: 's8', md: 's9' },
@@ -338,19 +336,19 @@ exports.typography = {
 			}
 		},
 		'list-1': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
 			fontSize: { base: '17', md: '20' },
 			lineHeight: { base: '140' },
 		},
 		'list-2': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
 			fontSize: { base: '17', md: '20' },
 			lineHeight: { base: '140' },
 		},
 		'blockquote': {
-			fontFamily: 'atkinson',
+			fontFamily: 'pn',
 			fontWeight: 'normal',
 			fontSize: { base: '17', md: '20' },
 			lineHeight: { base: '140' },

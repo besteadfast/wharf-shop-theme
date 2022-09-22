@@ -4,7 +4,10 @@
       "type": "home-hero"
     },
     "new_products": {
-      "type": "featured-products"
+      "type": "featured-products",
+        "settings":{
+        "heading": "New to the Shop"
+      }
     },
     "category_products":{
       "type": "featured-products"

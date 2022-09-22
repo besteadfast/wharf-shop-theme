@@ -61,6 +61,7 @@
         --secondary-300: #77d0e1;
         --secondary-400: #3bbdd4;
         --secondary-500: #00abc8;
+
         --secondary-600: #008ba2;
         --secondary-700: #006b7d;
         --secondary-800: #004b57;
@@ -68,7 +69,21 @@
       }
     {% endstyle %}
 
+    <link data-n-head="ssr" data-hid="tk-prefetch" rel="dns-prefetch" href="https://use.typekit.net">
+    <link data-n-head="ssr" data-hid="tk-style" rel="preload" as="style" href="https://use.typekit.net/ina3qzo.css">
+    <link data-n-head="ssr" data-hid="tk-preconnect" rel="preconnect" href="https://use.typekit.net" crossorigin="">
+    <script data-n-head="ssr" data-hid="tk-script">
+        (function() {
+          const tk_link = document.createElement('link');
+          tk_link.rel = "stylesheet";
+          tk_link.href = "https://use.typekit.net/ina3qzo.css";
+          document.querySelector("head").appendChild(tk_link);
+        })();
+    </script>
+    <link rel="stylesheet" href="https://use.typekit.net/ina3qzo.css">
+
     {{ "application.css" | asset_url | stylesheet_tag }}
+    {{ "main.css" | asset_url | stylesheet_tag }}
 
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -83,9 +98,7 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
-    {%- if settings.cart_type == 'drawer' -%}
-      {%- render 'cart-drawer' -%}
-    {%- endif -%}
+    {%- render 'cart-drawer' -%}
 
     {% section 'banner' %}
     {% section 'navigation' %}
@@ -145,7 +158,7 @@
           account: "PUBLIC_API_KEY",
           platform: "shopify"
         });
-        klaviyo.enable("backinstock",{ 
+        klaviyo.enable("backinstock",{
         trigger: {
           product_page_text: "Notify Me When Available",
           product_page_class: "btn",

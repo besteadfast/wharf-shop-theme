@@ -1,0 +1,88 @@
+/* buttons */
+.btn{
+    /*----------------------------
+        default settings
+    ----------------------------*/
+
+    /* -------------------------------------------------------- */
+    /** text colors **/
+    --btn-text: theme('colors.primary.800');
+    --btn-text-hover: theme('colors.white');
+    --btn-text-disabled: theme('colors.white');
+
+    /** background colors **/
+    --btn-bg: theme('colors.secondary.100');
+    --btn-bg-hover: theme('colors.secondary.200');
+    --btn-bg-disabled: theme('colors.white');
+    /* -------------------------------------------------------- */
+
+    @apply
+        inline-block
+        relative
+        overflow-hidden
+        inline-flex justify-center items-center
+        px-s6
+        py-s3
+        ui-base
+        uppercase
+        tracking-[.15em]
+        transition-all duration-500 ease-in-out;
+    z-index: 1;
+    color: var(--btn-text);
+    background: var(--btn-bg);
+}
+
+
+
+/*----------------------------
+	size
+----------------------------*/
+.btn--lg{
+	@apply
+		md:px-s7
+		md:py-s4
+		ui-lg;
+}
+.btn--sm{
+	@apply
+        ui-sm
+        px-s5
+        py-s2;
+}
+
+/* types */
+
+/** inverse **/
+.btn--inverse{
+	/* -------------------------------------------------------- */
+	/** text colors **/
+	--btn-text: theme('colors.white');
+	--btn-text-hover: theme('colors.white');
+	--btn-text-disabled: theme('colors.primary.900');
+
+	/** background colors **/
+	--btn-bg: theme('colors.primary.800');
+	--btn-bg-hover: theme('colors.primary.500');
+	--btn-bg-disabled: theme('colors.primary.700');
+	/* -------------------------------------------------------- */
+}
+
+/** borderless/no background **/
+.btn--borderless{
+	@apply
+		bg-transparent
+		px-0
+        py-0
+        pb-s2;
+
+    background-image: radial-gradient(theme('colors.secondary.300') 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom left;
+    background-size: 6px 6px;
+    background-repeat: repeat-x;
+
+
+	&:focus,
+	&:hover{
+		@apply bg-transparent;
+	}
+}

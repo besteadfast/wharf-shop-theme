@@ -1,0 +1,17 @@
+html {
+    --nav-height-desktop: 104px;
+    --nav-height-mobile: 0px;
+}
+
+nav{
+    height: var(--nav-height-desktop);
+    @apply px-s5 lg:px-72 flex items-center relative;
+}
+
+.menu__link:hover+.menu__dropdown, .menu__dropdown:hover{
+    display:flex;
+}
+
+.menu__dropdown{
+    display:none;
+}

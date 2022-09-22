@@ -1,5 +1,5 @@
 
-   
+
 const plugin = require('tailwindcss/plugin');
 const { colors, typography } = require('../stallion');
 
@@ -170,7 +170,6 @@ exports.plugin = plugin(function({ addBase, theme }) {
 		}
 	}), {})
 
-	
 	let typographyRuleSets = {
 		...ruleSetsByScreen.base,
 		...mediaRuleSets,

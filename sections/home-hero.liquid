@@ -1,11 +1,16 @@
-<div class="w-full p-s13">
-    <h1>{{ section.settings.heading }}</h1>
-    <a> {{ section.settings.buttonLabel }}</a>
+<img src="{{ 'header-family.png' | asset_url }}" class="w-full max-h-[800px] object-cover" style="height:calc(100vh - 148px);" width="1520" height="1014" loading="lazy"/>
+<div class="absolute top-0 left-0 right-0 flex items-center w-full h-full max-w-[1440px] mx-auto py-s8">
+    <div class="w-[720px] py-s13 px-s14">
+        <h1>{{ section.settings.heading }}</h1>
+        <a class="inline-block btn btn--inverse mt-s10 capitalize tracking-0 ui-caps" href="/products"> {{ section.settings.buttonLabel }}</a>
+    </div>
 </div>
+
 
 {% schema %}
 {
     "name":"Hero",
+    "class":"relative",
     "settings": [
         {
             "type": "text",

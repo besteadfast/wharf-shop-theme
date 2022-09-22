@@ -4,16 +4,16 @@
         assign positionClasses = positionClasses | append: "max-w-[450px]"
     elsif section.settings.position == "right"
         assign positionClasses = positionClasses | append: "max-w-[450px] ml-auto"
-    elsif section.settings.position == "middle" 
+    elsif section.settings.position == "middle"
         assign positionClasses = positionClasses | append: "text-center max-w-[740px] mx-auto"
     endif
 %}
 
 
-<div class="relative w-full bg-white px-s10 py-s11 {{ positionClasses }}">
-    <h2 class="">{{ section.settings.heading }}</h2>
-    <p>{{ section.settings.text }}</p>
-    <a href="{{ section.settings.buttonDest }}">{{ section.settings.buttonLabel }}</a>
+<div class="relative w-full bg-white p-s11 {{ positionClasses }}">
+    <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
+    <p class="max-w-[548px] mx-auto">{{ section.settings.text }}</p>
+    <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
 </div>
 
 <!-- keep classes to use for section and with liquid variable -->

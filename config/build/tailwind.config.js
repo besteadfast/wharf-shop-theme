@@ -39,10 +39,12 @@ module.exports = {
 	theme: {
 		extend: {
 			borderWidth: {
-				'3': '3px',
+                '1': '1px',
+				'3': '3px'
 			},
 			maxWidth: {
-				"content": "1120px"
+				"content": "1120px",
+                "content-lg":"1296"
 			}
 		},
 		screens: {
@@ -70,7 +72,7 @@ module.exports = {
 			...acc,
 			[font]: typography.fonts[font].family
 		}), {}),
-		fontSize: generateSteps(8, 72, 1, (val) => {
+		fontSize: generateSteps(8, 94, 1, (val) => {
 			return convertToRem(val);
 		}),
 		lineHeight:{
@@ -116,7 +118,9 @@ module.exports = {
 			's12': '96px',
 			's13': '120px',
 			's14': '160px',
-			'30': '30px'
+			'30': '30px',
+            '54': '54px',
+            '72': '72px',
 		}),
 	},
 	corePlugins: {

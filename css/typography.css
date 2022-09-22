@@ -1,0 +1,33 @@
+@layer base {
+	*,
+	::before,
+	::after {
+		@apply antialiased;
+	}
+}
+
+/*
+	UI TEXT
+*/
+
+@layer utilities {
+	.ui-text {
+		@apply font-pn font-normal;
+	}
+
+	.ui-lg {
+		@apply ui-text text-20;
+	}
+
+	.ui-base {
+		@apply ui-text text-18;
+	}
+
+	.ui-sm {
+		@apply ui-text text-14;
+	}
+
+    .ui-caps{
+        @apply font-medium tracking-0 capitalize;
+    }
+}

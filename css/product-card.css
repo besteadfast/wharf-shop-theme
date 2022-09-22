@@ -1,0 +1,49 @@
+.badge{
+    @apply
+    w-[54px] lg:w-[60px]
+    h-[54px] lg:w-[60px]
+    text-white
+    rounded-full;
+}
+
+.product-variant--page{
+    @apply
+    w-[36px] h-[36px]
+    relative;
+}
+
+.product-variant--tile{
+    @apply
+    w-s3 h-s3
+    relative;
+}
+
+.product-variant--page *, .product-variant--tile *{
+    @apply
+    absolute
+    top-0 bottom-0 left-0 right-0
+    m-auto;
+}
+
+.product-variant--page .dot{
+    @apply
+    w-[26px] h-[26px]
+    rounded-full;
+}
+
+.product-variant--tile .dot{
+    @apply
+    w-s2 h-s2
+    rounded-full;
+}
+
+.product-variant--page .disc, .product-variant--tile .disc{
+    @apply
+    w-full h-full
+    rounded-full
+    hover:border-black-400 hover:border-1 hover:border-solid;
+}
+
+.product-variant--page.active .disc, .product-variant--tile.active .disc{
+    @apply border-black-900 border-1 border-solid;
+}
