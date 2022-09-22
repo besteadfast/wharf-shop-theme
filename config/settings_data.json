@@ -164,14 +164,49 @@
         "blocks": {
           "45754394-8475-49a7-8e91-d9b9375a58bf": {
             "type": "link-list",
+            "disabled": true,
             "settings": {
               "menu": "apparel",
               "linkList": "main-menu"
             }
+          },
+          "08e7ce49-d43a-4fba-9686-4598a3e252cd": {
+            "type": "link-list",
+            "settings": {
+              "menu": "apparel",
+              "linkList": "men"
+            }
+          },
+          "ff7893d6-63f2-488f-8591-3283db7642a5": {
+            "type": "link-list",
+            "settings": {
+              "menu": "apparel",
+              "linkList": "women"
+            }
+          },
+          "7f3cce06-15bd-4cb5-9864-0bf9a6039c0c": {
+            "type": "link-list",
+            "settings": {
+              "menu": "apparel",
+              "linkList": "kids"
+            }
+          },
+          "fb40f7ab-f225-4d88-9e4f-57bf0910eca6": {
+            "type": "feature-column",
+            "settings": {
+              "menu": "apparel",
+              "label": "Logo Series",
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
+            }
           }
         },
         "block_order": [
-          "45754394-8475-49a7-8e91-d9b9375a58bf"
+          "45754394-8475-49a7-8e91-d9b9375a58bf",
+          "08e7ce49-d43a-4fba-9686-4598a3e252cd",
+          "ff7893d6-63f2-488f-8591-3283db7642a5",
+          "7f3cce06-15bd-4cb5-9864-0bf9a6039c0c",
+          "fb40f7ab-f225-4d88-9e4f-57bf0910eca6"
         ],
         "settings": {
         }
