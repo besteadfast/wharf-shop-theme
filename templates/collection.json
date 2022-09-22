@@ -9,7 +9,9 @@
       }
     },
     "hero": {
-      "type": "hero"
+      "type": "hero",
+      "settings": {
+      }
     },
     "product-grid": {
       "type": "main-collection-product-grid",

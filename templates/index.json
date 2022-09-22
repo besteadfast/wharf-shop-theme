@@ -1,22 +1,30 @@
 {
   "sections": {
     "hero": {
-      "type": "home-hero"
+      "type": "home-hero",
+      "settings": {
+      }
     },
     "new_products": {
       "type": "featured-products",
-        "settings":{
+      "settings": {
         "heading": "New to the Shop"
       }
     },
-    "category_products":{
-      "type": "featured-products"
+    "category_products": {
+      "type": "featured-products",
+      "settings": {
+      }
     },
     "three_pane_callout": {
-      "type": "three-pane-callout"
+      "type": "three-pane-callout",
+      "settings": {
+      }
     },
     "featured_categories": {
-      "type": "featured-categories"
+      "type": "featured-categories",
+      "settings": {
+      }
     },
     "sale_cta": {
       "type": "sale-cta",
@@ -25,7 +33,9 @@
       }
     },
     "floating_cta": {
-      "type": "floating_cta"
+      "type": "floating_cta",
+      "settings": {
+      }
     },
     "bg_image_center_cta": {
       "type": "bg-image-cta",
