@@ -5,7 +5,7 @@ html {
 
 nav{
     height: var(--nav-height-desktop);
-    @apply px-s5 lg:px-72 flex items-center relative;
+    @apply px-s5 lg:px-72 flex items-center relative max-w-content-lg mx-auto;
 }
 
 .menu__link:hover+.menu__dropdown, .menu__dropdown:hover{
@@ -35,4 +35,36 @@ nav{
 
 .dropdown__link--level-2{
     @apply text-black-600 capitalize;
+}
+
+/* search animation */
+
+nav .search-hide{
+    transition: opacity .5s;
+}
+
+nav.search-mode .search-hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+nav .search{
+    transition: width .8s;
+    width:40px;
+}
+
+nav.search-mode .search{
+    position: absolute;
+    width: calc(100% - 72px);
+    padding-left:72px !important;
+    padding-right: 72px !important;
+}
+
+nav .search input{
+    width:0px;
+    flex-grow: 1;
+    @apply border-black-500 border-b-2;
+}
+
+nav.search-mode .search input{
 }

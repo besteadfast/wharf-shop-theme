@@ -44,7 +44,7 @@ module.exports = {
 			},
 			maxWidth: {
 				"content": "1120px",
-                "content-lg":"1296"
+                "content-lg":"1296px"
 			}
 		},
 		screens: {

@@ -1,6 +1,6 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 <nav>
-    <ul class="nav-primary list-none flex-1 flex gap-[24px] h-full">
+    <ul class="nav-primary search-hide list-none flex-1 flex gap-[24px] h-full">
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
             <li class="menu__item level--1 text-black-600 ui-base has-dropdown h-full">
@@ -40,16 +40,20 @@
             </li>
         {% endfor %}
     </ul>
-    <img src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
+    <img src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" class="search-hide" loading="lazy"/>
     <div class="flex-1 flex justify-end items-center">
-        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="p-s2">
-            <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
-        </a>
-        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="p-s2 ml-s5">
+
+        <div class="p-s2 search flex">
+            <button id="searchButton" onclick="document.querySelector('nav').classList.toggle('search-mode');">
+                <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
+            </button>
+            <input/>
+        </div>
+        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide p-s2 ml-s5">
             <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
         </a>
-        <a class="btn btn--sm ml-[36px]" href="/checkout">
-            Checkout
+        <a class="btn btn--sm search-hide ml-[36px]" href="/checkout">
+        Checkout
         </a>
     </div>
 </nav>

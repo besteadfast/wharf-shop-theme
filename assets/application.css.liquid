@@ -180,7 +180,10 @@ html {
 nav{
   height: var(--nav-height-desktop);
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
+  max-width: 1296px;
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
@@ -222,6 +225,40 @@ nav{
   text-transform: capitalize;
   --tw-text-opacity: 1;
   color: rgb(102 102 102 / var(--tw-text-opacity));
+}
+
+/* search animation */
+
+nav .search-hide{
+  transition: opacity .5s;
+}
+
+nav.search-mode .search-hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+nav .search{
+  transition: width .8s;
+  width:40px;
+}
+
+nav.search-mode .search{
+  position: absolute;
+  width: calc(100% - 72px);
+  padding-left:72px !important;
+  padding-right: 72px !important;
+}
+
+nav .search input{
+  width:0px;
+  flex-grow: 1;
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(128 128 128 / var(--tw-border-opacity));
+}
+
+nav.search-mode .search input{
 }
 
 /* purgecss start ignore */
@@ -2879,7 +2916,7 @@ video {
 }
 
 #app .max-w-content-lg{
-  max-width: 1296;
+  max-width: 1296px;
 }
 
 #app .max-w-\[450px\]{
@@ -2920,6 +2957,14 @@ video {
 
 #app .flex-1{
   flex: 1 1 0%;
+}
+
+#app .flex-shrink{
+  flex-shrink: 1;
+}
+
+#app .flex-grow{
+  flex-grow: 1;
 }
 
 #app .border-collapse{
@@ -3272,6 +3317,14 @@ video {
 
 #app .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+#app .transition{
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 #app  .ui-base{
