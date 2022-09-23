@@ -93,7 +93,9 @@
         "heading": "Headline about the Kids Collection",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis sed tempor nisl, senectus.",
         "buttonLabel": "Shop the Kids collection",
-        "buttonDest": ""
+        "buttonDest": "",
+        "productImage": "shopify:\/\/shop_images\/feature-product-shot-tee-coral_1.png",
+        "mainImage": "shopify:\/\/shop_images\/feature-lifestyle-boy-fishing.png"
       }
     },
     "bg_image_center_cta": {
