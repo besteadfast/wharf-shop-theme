@@ -95,7 +95,8 @@
         "buttonLabel": "Shop the Kids collection",
         "buttonDest": "",
         "productImage": "shopify:\/\/shop_images\/feature-product-shot-tee-coral_1.png",
-        "mainImage": "shopify:\/\/shop_images\/feature-lifestyle-boy-fishing.png"
+        "mainImage": "shopify:\/\/shop_images\/feature-lifestyle-boy-fishing.png",
+        "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
       }
     },
     "bg_image_center_cta": {
