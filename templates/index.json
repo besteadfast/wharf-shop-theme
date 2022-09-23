@@ -3,6 +3,9 @@
     "hero": {
       "type": "home-hero",
       "settings": {
+        "heading": "Life Happens Here",
+        "buttonLabel": "Shop Best Sellers",
+        "buttonUrl": ""
       }
     },
     "new_products": {
@@ -11,36 +14,80 @@
         "heading": "New to the Shop"
       }
     },
-    "category_products": {
-      "type": "featured-products",
-      "settings": {
-      }
-    },
     "three_pane_callout": {
       "type": "three-pane-callout",
+      "blocks": {
+        "649dac3a-726f-41c9-810c-511864ea510f": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-boat.png",
+            "label": "Boat"
+          }
+        },
+        "dac62742-03d3-4093-86b2-455335088373": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-swim.png",
+            "label": "Swim"
+          }
+        },
+        "20035cd3-43fe-4fd4-a4d4-e35ccc638858": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection-play.png",
+            "label": "Play"
+          }
+        }
+      },
+      "block_order": [
+        "649dac3a-726f-41c9-810c-511864ea510f",
+        "dac62742-03d3-4093-86b2-455335088373",
+        "20035cd3-43fe-4fd4-a4d4-e35ccc638858"
+      ],
       "settings": {
+        "heading": "Shop By Activity",
+        "subheading": "Made for everyday memories. We have something for everyone."
       }
     },
     "featured_categories": {
       "type": "featured-categories",
       "settings": {
+        "preheading": "Duis ligula efficitur nam",
+        "heading": "Bring home something from The Wharf to help you remember the life that happens here."
       }
     },
     "sale_cta": {
       "type": "sale-cta",
       "settings": {
-        "heading": "test"
+        "heading": "test",
+        "text": "Take 50% off our end of season sale. All sales final — ends soon!",
+        "buttonLabel": "Shop Sale",
+        "buttonDest": ""
       }
     },
     "floating_cta": {
       "type": "floating_cta",
       "settings": {
+        "heading": "Headline about the Kids Collection",
+        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis sed tempor nisl, senectus.",
+        "buttonLabel": "Shop the Kids collection",
+        "buttonDest": ""
       }
     },
     "bg_image_center_cta": {
       "type": "bg-image-cta",
       "settings": {
-        "position": "middle"
+        "position": "middle",
+        "heading": "Gifts for Dad",
+        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
+        "buttonLabel": "Shop Mens",
+        "buttonDest": ""
+      }
+    },
+    "category_products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "Featured Products"
       }
     },
     "bg_image_right_cta": {
@@ -48,7 +95,9 @@
       "settings": {
         "position": "right",
         "heading": "About",
-        "buttonLabel": "Visit Us"
+        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
+        "buttonLabel": "Visit Us",
+        "buttonDest": ""
       }
     }
   },
