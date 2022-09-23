@@ -8,13 +8,15 @@
         assign positionClasses = positionClasses | append: "text-center max-w-[740px] mx-auto"
     endif
 %}
-
-
-<div class="relative w-full bg-white p-s11 {{ positionClasses }}">
-    <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
-    <p class="max-w-[548px] mx-auto">{{ section.settings.text }}</p>
-    <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
+<div class="relative w-full max-w-[790px] mx-auto">
+    <div class="relative w-full bg-white p-s11 {{ positionClasses }}">
+        <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
+        <p class="max-w-[548px] mx-auto">{{ section.settings.text }}</p>
+        <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
+    </div>
 </div>
+<img src="{{ section.settings.bgImage | image_url }}" class="w-full h-full absolute top-0 left-0 object-cover"/>
+
 
 <!-- keep classes to use for section and with liquid variable -->
 <div class="hidden h-[800px] max-w-[740px] max-w-[450px] justify-self-end text-center"></div>
@@ -29,7 +31,7 @@
 {% schema %}
     {
         "name": "bg-image-cta",
-        "class": "bg-primary-300 p-s13 h-800 flex items-center",
+        "class": "relative p-s13 h-800 flex items-center",
         "settings": [
             {
                 "type": "select",
@@ -73,6 +75,11 @@
                 "type": "page",
                 "id": "buttonDest",
                 "label": "Button Destination"
+            },
+            {
+                "type": "image_picker",
+                "id": "bgImage",
+                "label": "Background Image"
             }
         ]
 
