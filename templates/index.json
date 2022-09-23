@@ -106,7 +106,8 @@
         "heading": "Gifts for Dad",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Shop Mens",
-        "buttonDest": ""
+        "buttonDest": "",
+        "bgImage": "shopify:\/\/shop_images\/highlight-fathers-day-collection.png"
       }
     },
     "category_products": {
@@ -122,7 +123,8 @@
         "heading": "About",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Visit Us",
-        "buttonDest": ""
+        "buttonDest": "",
+        "bgImage": "shopify:\/\/shop_images\/highlight-boat.png"
       }
     }
   },
