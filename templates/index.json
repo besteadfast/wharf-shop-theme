@@ -51,6 +51,28 @@
     },
     "featured_categories": {
       "type": "featured-categories",
+      "blocks": {
+        "82e517ab-1e4f-4461-91e8-bc546a014a9b": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/category-women.png",
+            "linkLabel": "Shop Womens",
+            "linkDest": ""
+          }
+        },
+        "fb33c416-427a-4e74-b9a3-4bd4125fa1dd": {
+          "type": "category",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/category-men.png",
+            "linkLabel": "Shop Mens",
+            "linkDest": ""
+          }
+        }
+      },
+      "block_order": [
+        "82e517ab-1e4f-4461-91e8-bc546a014a9b",
+        "fb33c416-427a-4e74-b9a3-4bd4125fa1dd"
+      ],
       "settings": {
         "preheading": "Duis ligula efficitur nam",
         "heading": "Bring home something from The Wharf to help you remember the life that happens here."
