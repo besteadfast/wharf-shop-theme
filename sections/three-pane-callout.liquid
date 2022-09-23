@@ -1,11 +1,11 @@
 <div class="relative bg-primary-800 max-w-[1020px] mx-auto text-white text-center">
     <h2> {{ section.settings.heading }} </h2>
     <h3 class="faux-p text-secondary-100 mt-[28px]"> {{ section.settings.subheading }} </h3>
-    <div class="flex relative w-full h-[620px] -bottom-s13 -mt-s7 gap-s6">
+    <div class="flex relative w-full h-[620px] -bottom-s13 -mt-s9 gap-s6">
         {% for block in section.blocks %}
-            <div class="flex-1 bg-primary-100 flex justify-center items-center">
-                <img src="{{ section.settings.image | image_url }}" class="object-cover w-full h-full object-cover"/>
-                <span>{{ block.settings.label }}</span>
+            <div class="flex-1 bg-primary-100 flex justify-center items-center relative">
+                <img src="{{ block.settings.image | image_url }}" class="object-cover absolute w-full h-full object-cover"/>
+                <span class="faux-h3 z-10">{{ block.settings.label }}</span>
             </div>
         {% endfor %}
     </div>
@@ -15,7 +15,7 @@
 {% schema %}
     {
         "name": "three-pane-callout",
-        "class": "bg-primary-800 pt-s13 mb-s13",
+        "class": "bg-primary-800 px-s13 pt-s13 mb-s13",
         "max_blocks": 3,
         "blocks": [
             {
