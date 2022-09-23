@@ -67,10 +67,12 @@
 	/* -------------------------------------------------------- */
 }
 
-/** borderless/no background **/
+/**
+/no background **/
 .btn--borderless{
 	@apply
 		bg-transparent
+        capitalize
 		px-0
         py-0
         pb-s2;

@@ -1,11 +1,11 @@
-<div class="mx-auto text-center">
-    <p class="faux-h6 text-black-400"> {{ section.settings.preheading }} </p>
-    <h2 class="faux-h4 max-w-[800px] mx-auto mt-s6"> {{ section.settings.heading }} </h2>
-    <div class="flex gap-s8">
+<div class="mx-auto">
+    <p class="faux-h6 text-black-400  text-center"> {{ section.settings.preheading }} </p>
+    <h2 class="faux-h4 text-primary-800 text-center max-w-[800px] mx-auto mt-s6"> {{ section.settings.heading }} </h2>
+    <div class="flex gap-s8 mt-s10">
         {% for block in section.blocks %}
             <div class="flex-1">
-                <img class="h-[360px]" src="{{ block.settings.image | image_url }}"/>
-                <a class="mt-s6" href="{{ block.settings.linkDest.url }}">{{ block.settings.linkLabel }}</a>
+                <img class="h-[360px] w-full object-cover" src="{{ block.settings.image | image_url }}"/>
+                <a class="mt-s6 btn btn--borderless" href="{{ block.settings.linkDest.url }}">{{ block.settings.linkLabel }}</a>
             </div>
         {% endfor %}
     </div>
