@@ -1,4 +1,4 @@
-<div class="w-full max-w-content mx-auto py-s8">
+<div class="w-full max-w-content mx-auto py-s8 relative">
     <div class="bg-secondary-50">
         <div class="max-w-[510px] p-s11">
             <h2 class="faux-h4 text-primary-800">{{ section.settings.heading }}</h2>
@@ -6,7 +6,11 @@
             <a class="mt-s8 btn btn--sm" href="{{ section.settings.buttonDest.url }}">{{ section.settings.buttonLabel }}</a>
         </div>
     </div>
-
+    <div class="absolute right-0 top-0 w-[45%] h-full flex items-center">
+        <img src="{{ section.settings.backgroundTexture | image_url }}" class="absolute right-0 py-s8 w-s8 h-full object-cover" />
+        <img src="{{ section.settings.productImage | image_url }}" class="w-1/2 aspect-square absolute -left-[25%] object-cover"/>
+        <img src="{{ section.settings.mainImage | image_url }}" class="w-full h-full pr-s8"/>
+    </div>
 </div>
 
 {% schema %}
@@ -36,6 +40,21 @@
                 "type": "page",
                 "id": "buttonDest",
                 "label": "Button Destination"
+            },
+            {
+                "type": "image_picker",
+                "id": "productImage",
+                "label": "Product Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mainImage",
+                "label": "Main Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "backgroundTexture",
+                "label": "Background Texture"
             }
         ]
     }
