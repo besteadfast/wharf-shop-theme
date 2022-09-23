@@ -1,18 +1,18 @@
-<div class="py-s13 px-s9 max-w-content mx-auto">
-    <h2 class="text-center">{{ section.settings.heading }}</h2>
-    <div class="flex gap-24 mt-s8">
+<div class="py-s13 max-w-content-lg mx-auto">
+    <h2 class="faux-h3 text-center">{{ section.settings.heading }}</h2>
+    <div class="flex gap-s6 mt-s8">
         {% assign test = "copy-of-test-product,test-product,test-product,test-product" | split: "," %}
         {% for handle in test %}
             {% assign product = all_products[handle] %}
             <div class="flex-1">
                 <div>
-                <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" />
+                <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" class="aspect-[4/5] object-contain"/>
             </div>
                 <div class="mt-s6">
                     <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
-                    <p class="mt-s4 text-black-400">Brand</p>
-                    <p class="mt-s4">${{ product.price | money_without_currency }}</p>
-                    <div class="h-s6 flex items-center gap-s1 mt-s2">
+                    <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
+                    <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+                    <div class="h-s6 flex items-center gap-s1 mt-s3">
                         <div class="product-variant--tile">
                             <div class="dot bg-black-600"></div>
                             <div class="disc"></div>
@@ -33,6 +33,7 @@
 {% schema %}
     {
         "name": "featured-products",
+        "class": "px-54 lg:px-72",
         "settings": [
             {
                 "type": "text",

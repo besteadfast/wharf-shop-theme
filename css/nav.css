@@ -5,11 +5,13 @@ html {
 
 nav{
     height: var(--nav-height-desktop);
-    @apply px-s5 lg:px-72 flex items-center relative max-w-content-lg mx-auto;
+    @apply flex items-center max-w-content-lg mx-auto;
 }
 
-.menu__link:hover+.menu__dropdown, .menu__dropdown:hover{
-    display:flex;
+
+.menu__link:hover+.menu__dropdown,
+.menu__dropdown:hover{
+    display:block;
 }
 
 .menu__dropdown{
