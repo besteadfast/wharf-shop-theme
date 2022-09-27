@@ -1,6 +1,10 @@
 <div class="w-full max-w-content mx-auto flex gap-s9">
     <div class="w-[366px] flex justify-end">
-        <h2 class="faux-h4 w-[230px] text-right text-secondary-100"> {{ section.settings.heading }} </h2>
+        {% if section.settings.headingImage %}
+            <img src="{{ section.settings.headingImage | image_url }}" class="w-[360px]"/>
+        {% else %}
+            <h2 class="faux-h4 w-[230px] text-right text-secondary-100"> {{ section.settings.heading }} </h2>
+        {% endif %}
     </div>
     <div class="w-[2px] h-auto bg-secondary-500"></div>
     <div class="flex-1">
@@ -19,6 +23,12 @@
                 "id": "heading",
                 "label": "Heading",
                 "default": "Our Summer Sale is Shining!"
+            },
+            {
+                "type": "image",
+                "id": "headingImage",
+                "label": "Heading Image",
+                "info": "Optional. This field will replace the heading if used."
             },
             {
                 "type": "text",

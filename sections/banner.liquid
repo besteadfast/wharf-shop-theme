@@ -1,9 +1,22 @@
 <div class="py-s4 px-[36px] flex justify-between items-center bg-primary-800 text-secondary-100">
-    <div></div>
-    <div class="flex items-center">
-        <p class="mr-s4 opacity-25"><</p>
-        <p class="mt-0 faux-p-sm">Banner announcement or ad with potential discount <b>CODENAME</b></p>
-        <p class="mt-0 ml-s4 opacity-25">></p>
+    <div class="flex-1 flex gap-s3 items-center text-secondary-600">
+        {% render '16-logo-facebook-simple' %}
+        {% render '16-logo-linkedin-simple' %}
+        {% render '16-logo-twitter' %}
     </div>
-    <div></div>
+    <div class="flex items-center">
+        <div class="mr-s4 text-secondary-600">
+            {% render 'left-arrow' %}
+        </div>
+        <p class="mt-0 faux-p-sm">Banner announcement or ad with potential discount <b>CODENAME</b></p>
+        <div class="mt-0 ml-s4 rotate-180 text-secondary-600">
+            {% render 'left-arrow' %}
+        </div>
+    </div>
+    <div class="flex-1 flex justify-end items-center gap-s6 text-secondary-600">
+        <a class="">Help + FAQs</a>
+        <button class="faux-p-sm w-s3 h-s3">
+            {% render "12-close" %}
+        </button>
+    </div>
 </div>
