@@ -1,9 +1,14 @@
 <div class="py-s13 max-w-content-lg mx-auto">
-    <h2 class="faux-h3 text-center">{{ section.settings.heading }}</h2>
+    <h2 class="faux-h3 text-center">
+        {% if section.settings.customHeading %}
+            {{ section.settings.customHeading }}
+        {% else %}
+            {{ section.settings.collection.title }}
+        {% endif %}
+    </h2>
     <div class="flex gap-s6 mt-s8">
-        {% assign test = "copy-of-test-product,test-product,test-product,test-product" | split: "," %}
-        {% for handle in test %}
-            {% assign product = all_products[handle] %}
+        {% assign products = section.settings.collection.products %}
+        {% for product in products %}
             <div class="flex-1">
                 <div>
                 <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" class="aspect-[4/5] object-contain"/>
@@ -37,9 +42,15 @@
         "settings": [
             {
                 "type": "text",
-                "id": "heading",
-                "label": "Heading",
-                "default": "Featured Products"
+                "id": "customHeading",
+                "label": "Custom Heading",
+                "default": "Featured Products",
+                "info": "Override collection name as section heading"
+            },
+            {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
             }
         ]
     }
