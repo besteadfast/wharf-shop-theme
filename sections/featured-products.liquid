@@ -1,44 +1,45 @@
-<div class="py-s13 max-w-content-lg mx-auto">
-    <h2 class="faux-h3 text-center">
-        {% if section.settings.customHeading %}
-            {{ section.settings.customHeading }}
-        {% else %}
-            {{ section.settings.collection.title }}
-        {% endif %}
-    </h2>
-    <div class="flex gap-s6 mt-s8">
-        {% assign products = section.settings.collection.products %}
-        {% for product in products %}
-            <div class="flex-1">
-                <div>
-                <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" class="aspect-[4/5] object-contain"/>
-            </div>
-                <div class="mt-s6">
-                    <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
-                    <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
-                    <p class="mt-s5">${{ product.price | money_without_currency }}</p>
-                    <div class="h-s6 flex items-center gap-s1 mt-s3">
-                        <div class="product-variant--tile">
-                            <div class="dot bg-black-600"></div>
-                            <div class="disc"></div>
+<div class="px-54 lg:px-72">
+    <div class="py-s13 max-w-content-lg mx-auto">
+        <h2 class="faux-h3 text-center">
+            {% if section.settings.customHeading %}
+                {{ section.settings.customHeading }}
+            {% else %}
+                {{ section.settings.collection.title }}
+            {% endif %}
+        </h2>
+        <div class="flex gap-s6 mt-s8">
+            {% assign products = section.settings.collection.products %}
+            {% for product in products %}
+                <div class="flex-1">
+                    <div>
+                    <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" class="aspect-[4/5] object-contain"/>
+                </div>
+                    <div class="mt-s6">
+                        <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
+                        <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
+                        <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+                        <div class="h-s6 flex items-center gap-s1 mt-s3">
+                            <div class="product-variant--tile">
+                                <div class="dot bg-black-600"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <div class="product-variant--tile">
+                                <div class="dot bg-black-600"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <p class="faux-p-xs text-black-400">+5</p>
                         </div>
-                        <div class="product-variant--tile">
-                            <div class="dot bg-black-600"></div>
-                            <div class="disc"></div>
-                        </div>
-                        <p class="faux-p-xs text-black-400">+5</p>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
 
+    </div>
 </div>
 
 {% schema %}
     {
         "name": "featured-products",
-        "class": "px-54 lg:px-72",
         "settings": [
             {
                 "type": "text",
@@ -48,9 +49,9 @@
                 "info": "Override collection name as section heading"
             },
             {
-            "type": "collection",
-            "id": "collection",
-            "label": "Collection"
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
             }
         ]
     }
