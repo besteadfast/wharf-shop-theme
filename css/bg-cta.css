@@ -1,0 +1,49 @@
+.bg-image-cta.middle{
+    @apply
+    h-[800px]
+    px-54;
+}
+
+.bg-image-cta:not(.middle){
+    @apply
+    h-auto md:h-[800px]
+    to-md:flex-col;
+}
+
+.bg-image-cta .bg-image{
+    @apply
+    w-full h-full
+    top-0 left-0
+    object-cover;
+}
+
+.bg-image-cta.middle .bg-image{
+    @apply absolute;
+}
+
+.bg-image-cta:not(.middle) .bg-image{
+    @apply
+    to-md:h-[500px]
+    relative md:absolute;
+}
+
+
+.bg-image-cta.middle .cta{
+    @apply
+    text-center
+    max-w-[620px] lg:max-w-[740px] mx-auto
+    px-s8 py-s10 md:px-72 lg:p-s12;
+}
+
+
+.bg-image-cta.left .cta{
+    @apply
+    max-w-[450px]
+    px-s8 py-s10 md:p-s11;
+}
+
+.bg-image-cta.right .cta{
+    @apply
+    max-w-[450px] md:ml-auto
+    px-s8 py-s10 md:p-s11;
+}

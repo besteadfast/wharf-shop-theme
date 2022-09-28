@@ -1,37 +1,17 @@
-{% liquid
-    assign positionClasses = ""
-    if section.settings.position == "left"
-        assign positionClasses = positionClasses | append: "max-w-[450px]"
-    elsif section.settings.position == "right"
-        assign positionClasses = positionClasses | append: "max-w-[450px] ml-auto"
-    elsif section.settings.position == "middle"
-        assign positionClasses = positionClasses | append: "text-center max-w-[740px] mx-auto"
-    endif
-%}
-
-<img src="{{ section.settings.bgImage | image_url }}" class="w-full h-full absolute top-0 left-0 object-cover"/>
-<div class="relative w-full max-w-content mx-auto">
-    <div class="relative w-full bg-white p-s11 {{ positionClasses }}">
-        <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
-        <p class="max-w-[548px] mx-auto">{{ section.settings.text }}</p>
-        <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
+<div class="bg-image-cta relative flex items-center  md:p-72 lg:p-s13 {{section.settings.position}}">
+    <img src="{{ section.settings.bgImage | image_url }}" class="bg-image"/>
+    <div class="relative w-full max-w-content mx-auto">
+        <div class="cta relative w-full bg-white">
+            <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
+            <p class="max-w-[548px] mx-auto text-black-600">{{ section.settings.text }}</p>
+            <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
+        </div>
     </div>
 </div>
-
-<!-- keep classes to use for section and with liquid variable -->
-<div class="hidden h-[800px] max-w-[740px] max-w-[450px] justify-self-end text-center"></div>
-
-{% style %}
-    .h-800{
-        height:800px;
-    }
-{% endstyle %}
-
 
 {% schema %}
     {
         "name": "bg-image-cta",
-        "class": "relative p-s13 h-800 flex items-center",
         "settings": [
             {
                 "type": "select",

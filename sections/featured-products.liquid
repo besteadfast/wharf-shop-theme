@@ -1,19 +1,20 @@
-<div class="px-54 lg:px-72">
-    <div class="py-s13 max-w-content-lg mx-auto">
-        <h2 class="faux-h3 text-center">
-            {% if section.settings.customHeading %}
+<div class="px-54 md:px-72">
+    <div class="py-s12 md:py-s13 max-w-content-lg mx-auto">
+        <h2 class="faux-h3 text-center text-primary-900">
+            {% assign customHeadingLength = section.settings.customHeading | size %}
+            {% if customHeadingLength > 0 %}
                 {{ section.settings.customHeading }}
             {% else %}
                 {{ section.settings.collection.title }}
             {% endif %}
         </h2>
-        <div class="flex gap-s6 mt-s8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-s8 lg:gap-s6 mt-s9 md:mt-s8">
             {% assign products = section.settings.collection.products %}
-            {% for product in products %}
+            {% for product in products limit: 4 %}
                 <div class="flex-1">
                     <div>
-                    <img src="{{ 'feature-product-shot-tee-coral.png' | asset_url }}" class="aspect-[4/5] object-contain"/>
-                </div>
+                        {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
+                    </div>
                     <div class="mt-s6">
                         <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
                         <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>

@@ -1,13 +1,13 @@
-<div class="w-full max-w-content mx-auto flex gap-s9">
-    <div class="w-[366px] flex justify-end">
+<div class="w-full max-w-content mx-auto flex to-md:flex-col gap-s7 lg:gap-s9">
+    <div class="md:w-[366px] shrink flex justify-end">
         {% if section.settings.headingImage %}
             <img src="{{ section.settings.headingImage | image_url }}" class="w-[360px]"/>
         {% else %}
-            <h2 class="faux-h4 w-[230px] text-right text-secondary-100"> {{ section.settings.heading }} </h2>
+            <h2 class="faux-h4 md:w-[230px] text-right text-secondary-100"> {{ section.settings.heading }} </h2>
         {% endif %}
     </div>
-    <div class="w-[2px] h-auto bg-secondary-500"></div>
-    <div class="flex-1">
+    <div class="md:w-[2px] h-[2px] md:h-auto bg-secondary-500"></div>
+    <div class="flex-none">
         <p class="text-white">{{ section.settings.text }}</p>
         <a class="mt-s6 btn btn--sm" href="{{ block.settings.buttonDest.url }}">{{ section.settings.buttonLabel }} </a>
     </div>
@@ -25,7 +25,7 @@
                 "default": "Our Summer Sale is Shining!"
             },
             {
-                "type": "image",
+                "type": "image_picker",
                 "id": "headingImage",
                 "label": "Heading Image",
                 "info": "Optional. This field will replace the heading if used."

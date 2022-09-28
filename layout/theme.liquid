@@ -113,6 +113,10 @@
       {% render 'footer-main' %}
     </footer>
 
+    <!-- keep tailwind classes to use in liquid dynamic rendering -->
+    <div class="hidden h-[800px] max-w-[740px] max-w-[450px] justify-self-end text-center aspect-ratio-[4/5]"></div>
+
+
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>

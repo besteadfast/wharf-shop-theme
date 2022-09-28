@@ -2,6 +2,7 @@
 @import "./buttons.css";
 @import "./product-card.css";
 @import "./nav.css";
+@import "./bg-cta";
 /* purgecss start ignore */
 @tailwind base;
 /* purgecss end ignore */
