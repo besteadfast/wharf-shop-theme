@@ -441,6 +441,27 @@ class ModalDialog extends HTMLElement {
       'click',
       this.hide.bind(this, false)
     );
+    this.querySelectorAll('.carousel-control').forEach((elt) => {
+        elt.addEventListener(
+            'click',
+            () => {
+                const carousel = this.querySelector(".carousel");
+                const images = this.querySelectorAll(".carousel-img");
+                switch (elt.dataset.action) {
+                case "prev":
+                    carousel.dataset.curr = parseInt(carousel.dataset.curr) - 1;
+                    break;
+                case "next":
+                    carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
+                }
+                images.forEach((img) => {
+                    console.log(img.style.left);
+                    img.style.left = `${100 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}%`;
+                });
+            }
+        )
+
+    })
     this.addEventListener('keyup', (event) => {
       if (event.code.toUpperCase() === 'ESCAPE') this.hide();
     });

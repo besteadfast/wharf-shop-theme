@@ -1,48 +1,50 @@
 <div class="max-w-[1440px] mx-auto">
     <div class="pt-s10">
-        <div class="flex justify-between items-center px-72">
+        <div class="flex justify-between items-center px-36 lg:px-72">
             <p class="faux-h6 text-black-500 ">Tag us in your photos!</p>
-            <a class="btn btn--sm btn--borderless">Follow us on instagram</a>
+            <a class="btn btn--sm btn--borderless to-md:hidden">Follow us on instagram</a>
         </div>
         <style> .tagembed-container iframe{min-height:unset !important;}</style>
-        <div class="tagembed-container px-72 mt-s6 !h-auto" style=" width:100%;height:100%;overflow: auto;"><div class="tagembed-socialwall !h-auto" data-wall-id="65720" view-url="https://widget.tagembed.com/65720"></div><script src="https://widget.tagembed.com/embed.min.js" type="text/javascript" defer></script></div>
+        <div class="tagembed-container px-36 lg:px-72 mt-s6 !h-auto" style=" width:100%;height:100%;overflow: auto;"><div class="tagembed-socialwall !h-auto" data-wall-id="65720" view-url="https://widget.tagembed.com/65720"></div><script src="https://widget.tagembed.com/embed.min.js" type="text/javascript" defer></script></div>
+        <div class="text-right px-36 mt-s5 md:hidden">
+            <a class="btn btn--sm btn--borderless">Follow us on instagram</a>
+        </div>
     </div>
-    <div class="px-[36px]">
-        <div class="px-[36px] py-s10 flex gap-s14 justify-between items-center">
-            <div class="max-w-[600px]">
-                <p class="faux-h4 text-primary-800">Be the first to know about promotions and new products—plus, get 15% off your first purchase!</p>
-                <input class="mt-s7 w-full" placeholder="Enter your email to get our newsletter"></input>
+    <div class="px-36 lg:px-72 pt-s12 pb-s9 md:py-s10 flex to-md:flex-col gap-s11 md:gap-s8 lg:gap-s14 justify-between">
+        <div class="max-w-[600px]">
+            <p class="faux-h4 text-primary-800">Be the first to know about promotions and new products—plus, get 15% off your first purchase!</p>
+            <input class="mt-s7 w-full" placeholder="Enter your email to get our newsletter"></input>
+        </div>
+        <div class="flex gap-s8 lg:gap-s10">
+            <div>
+                <h3 class="ui-sm uppercase text-primary-800">Contact</h3>
+                <p class="faux-p-sm text-black-600 mt-s7">hello@shopthewharf.com</p>
+                <p class="faux-p-sm text-black-600 mt-s6">123.456.7890</p>
+                <p class="faux-p-sm text-black-600 mt-s6">23101 Canal Road</br>Orange Beach, AL 36561</p>
             </div>
-            <div class="flex gap-s10">
-                <div>
-                    <h3 class="ui-sm uppercase text-primary-800">Contact</h3>
-                    <p class="faux-p-sm text-black-600 mt-s7">hello@shopthewharf.com</p>
-                    <p class="faux-p-sm text-black-600 mt-s6">123.456.7890</p>
-                    <p class="faux-p-sm text-black-600 mt-s6">23101 Canal Road</br>Orange Beach, AL 36561</p>
-                </div>
-                <div class="w-max">
-                    <h3 class="ui-sm uppercase text-primary-800">Customer Service</h3>
-                    <a class="block faux-p-sm text-black-600 mt-s7">Customer Service</a>
-                    <a class="block faux-p-sm text-black-600 mt-s6">Help / FAQ</a>
-                    <a class="block faux-p-sm text-black-600 mt-s6">Returns & Exchanges</a>
-                    <a class="block faux-p-sm text-black-600 mt-s6">Gift Cards</a>
-                </div>
+            <div class="w-max">
+                <h3 class="ui-sm uppercase text-primary-800">Customer Service</h3>
+                <a class="block faux-p-sm text-black-600 mt-s7">Customer Service</a>
+                <a class="block faux-p-sm text-black-600 mt-s6">Help / FAQ</a>
+                <a class="block faux-p-sm text-black-600 mt-s6">Returns & Exchanges</a>
+                <a class="block faux-p-sm text-black-600 mt-s6">Gift Cards</a>
             </div>
         </div>
-        <div class="py-s6 flex items-center" style="border-top: 1px solid rgba(178, 178, 177, .2);">
-            <div class="flex-1 flex items-center gap-s4">
-                <p>© 2022 Shop the Wharf. All Rights Reserved.</p>
-                <div class="h-s5 w-[2px] bg-primary-50"></div>
-                <a>Privacy Policy</a>
-            </div>
-            <div class="h-s6 flex gap-s4 text-primary-800">
-                {% render '24-logo-facebook-simple' %}
-                {% render '24-logo-linkedin-simple' %}
-                {% render '24-logo-twitter' %}
-            </div>
-            <div class="flex-1 flex justify-end ">
-                <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store">
-            </div>
+    </div>
+    <div class="mx-36" style="border-top: 1px solid rgba(178, 178, 177, .2);"></div>
+    <div class="px-s5 md:px-s6 lg:px-36 pt-s8 pb-s6 md:py-s6 flex to-md:flex-col-reverse items-center gap-s8 md:gap-s10" >
+        <div class="flex-1 flex items-center gap-s4">
+            <p class="text-black-500 faux-p-xs">© 2022 Shop the Wharf. All Rights Reserved.</p>
+            <div class="h-s5 w-[2px] bg-primary-50"></div>
+            <a class="text-black-500 faux-p-xs shrink-0">Privacy Policy</a>
+        </div>
+        <div class="h-s6 flex gap-s4 text-primary-800">
+            {% render '24-logo-facebook-simple' %}
+            {% render '24-logo-linkedin-simple' %}
+            {% render '24-logo-twitter' %}
+        </div>
+        <div class="flex-1 flex justify-end ">
+            <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store">
         </div>
     </div>
 </div>

@@ -1,11 +1,113 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
-{%- if section.settings.enable_quick_add -%}
-  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
+{% render 'collection-filter' %}
 
+{% liquid
+    assign sidebar_menus = 'apparel,objects,featured' | split: ','
+    for linklist in linklists
+        if sidebar_menus contains linklist.handle
+            for topLevelLink in linklist.links
+                if topLevelLink.handle == collection.handle
+                    assign menu = linklist.handle
+                endif
+            endfor
+            if menu
+                break
+            endif
+        endif
+    endfor
+%}
+
+
+<div class="hero">
+    {% if collection.image %}
+        <div>
+            <img/>
+            <h1>{{ collection.description }}</h1>
+        </div>
+    {% else %}
+    <div class="flex justify-between w-full py-s10 px-72">
+        {% unless collection.image %}
+            <h1 class="faux-h3">{{ collection.description }}</h1>
+        {% endunless %}
+        <div class="flex gap-s6">
+            <select class="w-[150px] filter" data-filter="Color">
+                <option selected disabled value="Color">Color</option>
+            </select>
+            <select class="w-[150px] filter" data-filter="Size">
+                <option selected disabled value="size">Size</option>
+            </select>
+            <select class="w-[150px]">
+                <option selected disabled value="sort">Sort</option>
+            </select>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="products">
+    <div class="px-72 pb-s13 flex gap-s10">
+        {% if menu %}
+        <div class="w-s13 flex-none">
+            <ul>
+                {% for topLevelLink in linklists[menu].links %}
+                    <li class="sidebar-link top-level">
+                        {% if current_tags == blank and collection.handle == topLevelLink.handle %}
+                            <a href="{{ topLevelLink.url }}" class="faux-p-sm font-bold">{{ topLevelLink.title }}</a>
+                        {% else %}
+                            <a href="{{ topLevelLink.url }}" class="faux-p-sm font-light">{{ topLevelLink.title }}</a>
+                        {% endif %}
+                        {% if topLevelLink.links != blank and collection.handle == topLevelLink.handle %}
+                            <ul class="mt-0">
+                                {% for secondLevelLink in topLevelLink.links %}
+                                    <li class="pl-s4 sidebar-link second-level">
+                                        {% if current_tags != blank and current_tags[0] == secondLevelLink.title %}
+                                            <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-bold">{{ secondLevelLink.title }}</a>
+                                        {% else %}
+                                            <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-light">{{ secondLevelLink.title }}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="grid grid-cols-3 gap-s10 flex-1">
+            {% for product in collection.products %}
+                <div class="flex-1">
+                    <div>
+                        {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
+                    </div>
+                    <div class="mt-s6">
+                        <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
+                        <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
+                        <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+                        <div class="h-s6 flex items-center gap-s1 mt-s3">
+                            <div class="product-variant--tile">
+                                <div class="dot bg-black-600"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <div class="product-variant--tile">
+                                <div class="dot bg-black-600"></div>
+                                <div class="disc"></div>
+                            </div>
+                            <p class="faux-p-xs text-black-400">+5</p>
+                        </div>
+                    </div>
+                    {% render 'quick-shop-modal', product: product %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% comment %}
 <div class="section-{{ section.id }}-padding">
+    {% endcomment %}
   {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
+  {% comment %}
   {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
     <facet-filters-form class="facets facets-vertical-sort page-width small-hide no-js-hidden">
       <form class="facets-vertical-form" id="FacetSortForm">
@@ -46,7 +148,7 @@
               <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
             </svg>
           </div>
-        </div>  
+        </div>
       </form>
     </facet-filters-form>
   {%- endif -%}
@@ -74,7 +176,7 @@
         {%- else -%}
           <div class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}">
             <div class="loading-overlay gradient"></div>
-    
+
             <ul id="product-grid" data-id="{{ section.id }}" class="
               grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
               grid--{{ section.settings.columns_desktop }}-col-desktop">
@@ -98,7 +200,7 @@
                 </li>
               {%- endfor -%}
             </ul>
-    
+
             {%- if paginate.pages > 1 -%}
               {% render 'pagination', paginate: paginate, anchor: '' %}
             {%- endif -%}
@@ -108,7 +210,7 @@
     </div>
   </div>
 </div>
-
+{% endcomment %}
 
 {% schema %}
 {

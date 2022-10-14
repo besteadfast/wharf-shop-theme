@@ -1,22 +1,12 @@
 @import "product-card.css";
 
-/* sections */
-.section{
-    @apply
-    py-s12 lg:py-s13
-    px-54 lg:px-s13;;
-}
-[class^="content"]{
-    @apply
-    max-w-content
-
-}
-.content--wide{
-    @apply
-    max-w-content-lg
-    lg:px-72;
-}
 /* cart drawer */
+
+body.overflow-hidden{
+    overflow:hidden;
+}
+
+
 .drawer{
     position: fixed;
     z-index: 1000;
@@ -53,4 +43,22 @@
 
 .drawer.active .drawer__inner {
     transform: translate(0);
+}
+
+/* modal */
+
+modal-dialog{
+    position:fixed;
+    inset:0;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-color:rgba(34,34,34,.4);
+    visibility: hidden;
+}
+
+modal-dialog[open] {
+    opacity: 1;
+    visibility: visible;
+    z-index: 20;
 }

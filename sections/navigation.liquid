@@ -1,21 +1,25 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
-<nav>
-    <ul class="nav-primary search-hide list-none flex-1 flex gap-[24px] h-full">
+
+<nav class="px-s5 lg:px-72">
+    <button class="mobile-toggle flex-1 lg:hidden" onclick="document.querySelector('.nav-primary').classList.toggle('active')">
+        {% render '24-menu-8' %}
+    </button>
+    <ul class="nav-primary container list-none">
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
-            <li class="menu__item level--1 text-black-600 ui-base has-dropdown h-full">
-                <a class="menu__link h-full flex items-center">{{ menuItem | capitalize }}</a>
-                <div class="menu__dropdown w-screen bg-white absolute top-full left-0 py-s10 px-s13">
-                    <div class="flex max-w-[1200px] mx-auto bg-white gap-s8 z-10">
+            <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base">
+                <a class="menu__link ">{{ menuItem | capitalize }}</a>
+                <div class="menu__dropdown">
+                    <div class="menu__columns">
                         {% for column in section.blocks %}
                             {% if column.settings.menu == menuItem %}
                                 {% if column.type == "link-list" %}
-                                    <div class="menu-column flex-1">
-                                        <ul class="dropdown_list--level-1 list-none ui-base">
+                                    <div class="menu-column link-list">
+                                        <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
                                             {% for link in column.settings.linkList.links %}
-                                                <li class="dropdown__list-item--level-1">
+                                                {% assign totalSublinks = link.links | size %}
+                                                <li class="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
                                                     <a href="{{ link.url }}" class="dropdown__link--level-1">{{ link.title }}</a>
-                                                    {% assign totalSublinks = link.links | size %}
                                                     {% if totalSublinks > 0 %}
                                                         <ul class="dropdown__list--level-2 list-none">
                                                             {% for link in link.links %}
@@ -30,7 +34,7 @@
                                         </ul>
                                     </div>
                                 {% elsif column.type == "feature-column" %}
-                                    <div class="menu-column flex-1">
+                                    <div class="menu-column feature to-lg:hidden">
                                         <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover"/>
                                         <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
                                     </div>
@@ -42,21 +46,22 @@
             </li>
         {% endfor %}
     </ul>
-    <img src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" class="search-hide" loading="lazy"/>
+    <img class="w-[300px] xl:w-[350px] to-md:hidden" src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
+    <img class="w-[150px] md:hidden" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80"loading="lazy"/>
     <div class="flex-1 flex justify-end items-center">
-
-        <div class="p-s2 search flex">
+        <div class="p-s2 search flex to-lg:hidden">
             <button id="searchButton" onclick="document.querySelector('nav').classList.toggle('search-mode');">
                 <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
             </button>
             <input/>
         </div>
-        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide p-s2 ml-s5">
+        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="p-s2 ml-s5 cart-notification">
             <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
         </a>
-        <a class="btn btn--sm search-hide ml-[36px]" href="/checkout">
+        <a class="btn btn--sm search-hide ml-[36px] to-xl:hidden" href="/checkout">
         Checkout
         </a>
+
     </div>
 </nav>
 
@@ -64,7 +69,7 @@
 {% schema %}
     {
         "name": "nav",
-        "class": "z-10 relative px-s5 lg:px-72",
+        "class": "z-10 relative border-b-1 border-black-50",
         "max_blocks": 12,
         "blocks": [
             {

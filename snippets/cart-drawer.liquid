@@ -15,19 +15,18 @@
        <div class="bg-secondary-50 py-s5 flex justify-center">
         <p>You get free shipping!</p>
        </div>
+       <div class="drawer-inner flex flex-col justify-between h-full">
         {%- if cart == empty -%}
-        <div class="drawer__inner-empty">
-            <div class="drawer__header px-s7 py-s9 mx-auto flex justify-between items-center">
-                <h2 class="faux-h4 text-primary-800">Shopping Cart is Empty</h2>
-                <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">x</button>
-            </div>
+        <div class="drawer__header w-full px-s7 py-s9 mx-auto flex justify-between items-center">
+            <h2 class="faux-h4 text-primary-800">Shopping Cart is Empty</h2>
+            <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">x</button>
         </div>
       {%- else -%}
       <div class="drawer__header px-s7 py-s9 mx-auto flex justify-between items-center">
-            <h2 class="faux-h4 text-primary-800">Shopping Cart is Empty</h2>
+            <h2 class="faux-h4 text-primary-800">Shopping Cart</h2>
             <button class="drawer__close" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">x</button>
       </div>
-      <cart-drawer-items {% if cart == empty %}class=" is-empty"{% endif %}>
+      <cart-drawer-items class=" {% if cart == empty %}is-empty{% endif %}">
         <form action="{{ routes.cart_url }}" id="CartDrawer-Form" class="cart__contents cart-drawer__form" method="post">
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
             {%- if cart != empty -%}
@@ -202,57 +201,19 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
-      <div class="drawer__footer">
-        <!-- Start blocks-->
-        <!-- Subtotals-->
-
+    {% endif %}
+      <div class="drawer__footer py-s10 px-s8">
         <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
-          <div class="totals" role="status">
-            <h2 class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h2>
-            <p class="totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
+          <div class="totals flex justify-between items-center" role="status">
+            <h2 class="faux-h5 totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h2>
+            <p class="faux-p-lg mt-0 totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
-
-          <div>
-            {%- if cart.cart_level_discount_applications.size > 0 -%}
-              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                {%- for discount in cart.cart_level_discount_applications -%}
-                  <li class="discounts__discount discounts__discount--end">
-                    {%- render 'icon-discount' -%}
-                    {{ discount.title }}
-                    (-{{ discount.total_allocated_amount | money }})
-                  </li>
-                {%- endfor -%}
-              </ul>
-            {%- endif -%}
-          </div>
-
-          <small class="tax-note caption-large rte">
-            {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-            {%- elsif cart.taxes_included -%}
-              {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-            {%- elsif shop.shipping_policy.body != blank -%}
-              {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-            {%- else -%}
-              {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-            {%- endif -%}
-          </small>
-        </div>
-
-        <!-- CTAs -->
-
-        <div class="cart__ctas" {{ block.shopify_attributes }}>
-          <noscript>
-            <button type="submit" class="cart__update-button button button--secondary" form="CartDrawer-Form">
-              {{ 'sections.cart.update' | t }}
-            </button>
-          </noscript>
-
-          <button type="submit" id="CartDrawer-Checkout" class="cart__checkout-button button" name="checkout" form="CartDrawer-Form"{% if cart == empty %} disabled{% endif %}>
-            {{ 'sections.cart.checkout' | t }}
+            <button type="submit" id="CartDrawer-Checkout" class="cart__checkout-button btn w-full mt-s8" name="checkout" form="CartDrawer-Form"{% if cart == empty %} disabled{% endif %}>
+                Checkout
           </button>
+          <p class="text-center faux-p-sm text-secondary-500 mt-s4">Free US Shipping on orders $75+</p>
         </div>
-        {% endif %}
+      </div>
       </div>
     </div>
   </div>
