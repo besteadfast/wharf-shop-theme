@@ -441,26 +441,41 @@ class ModalDialog extends HTMLElement {
       'click',
       this.hide.bind(this, false)
     );
+    const carousel = this.querySelector(".carousel");
+    const images = this.querySelectorAll(".carousel-img");
+    carousel.dataset.total = carousel.querySelectorAll("img").length;
+    carousel.dataset.curr = 0
     this.querySelectorAll('.carousel-control').forEach((elt) => {
+        if (elt.dataset.action == "prev") {elt.disabled = true;}
         elt.addEventListener(
             'click',
             () => {
-                const carousel = this.querySelector(".carousel");
-                const images = this.querySelectorAll(".carousel-img");
+                //shift carousel if not already first/last
                 switch (elt.dataset.action) {
-                case "prev":
-                    carousel.dataset.curr = parseInt(carousel.dataset.curr) - 1;
-                    break;
-                case "next":
-                    carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
+                    case "prev":
+                        if (carousel.dataset.curr == 0) {break;}
+                        carousel.dataset.curr = parseInt(carousel.dataset.curr) - 1;
+                        break;
+                    case "next":
+                        if (carousel.dataset.curr >= (carousel.dataset.total - 1)) {break;}
+                        carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
                 }
                 images.forEach((img) => {
-                    console.log(img.style.left);
                     img.style.left = `${100 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}%`;
                 });
+
+                //toggle disabling buttons if first/last element
+                this.querySelectorAll("button.carousel-control").forEach((btn) => {
+                    switch (btn.dataset.action) {
+                        case "prev":
+                            btn.disabled = (carousel.dataset.curr == 0);
+                            break;
+                        case "next":
+                            btn.disabled = (carousel.dataset.curr >= (carousel.dataset.total - 1));
+                    }
+                })
             }
         )
-
     })
     this.addEventListener('keyup', (event) => {
       if (event.code.toUpperCase() === 'ESCAPE') this.hide();
@@ -796,7 +811,7 @@ class VariantSelects extends HTMLElement {
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
       return !variant.options.map((option, index) => {
-        return this.options[index] === option;
+        return this.options.includes(option);
       }).includes(false);
     });
   }
@@ -805,13 +820,8 @@ class VariantSelects extends HTMLElement {
     if (!this.currentVariant) return;
     if (!this.currentVariant.featured_media) return;
 
-    const mediaGalleries = document.querySelectorAll(`[id^="MediaGallery-${this.dataset.section}"]`);
-    mediaGalleries.forEach(mediaGallery => mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.id}`, true));
-
-    const modalContent = document.querySelector(`#ProductModal-${this.dataset.section} .product-media-modal__content`);
-    if (!modalContent) return;
-    const newMediaModal = modalContent.querySelector( `[data-media-id="${this.currentVariant.featured_media.id}"]`);
-    modalContent.prepend(newMediaModal);
+    //get featured media for variant (if it exists) and insert into first gallery item
+    //otherwise remove featured media gallery item (if it exists)
   }
 
   updateURL() {
@@ -866,11 +876,11 @@ class VariantSelects extends HTMLElement {
         const price = document.getElementById(`price-${this.dataset.section}`);
 
         if (price) price.classList.remove('visibility-hidden');
-        this.toggleAddButton(!this.currentVariant.available, window.variantStrings.soldOut);
+        this.toggleAddButton(!this.currentVariant.available, "Sold Out", !this.currentVariant.available);
       });
   }
 
-  toggleAddButton(disable = true, text, modifyClass = true) {
+  toggleAddButton(disable = true, text, hide = false) {
     const productForm = document.getElementById(`product-form-${this.dataset.section}`);
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
@@ -885,7 +895,15 @@ class VariantSelects extends HTMLElement {
       addButtonText.textContent = window.variantStrings.addToCart;
     }
 
-    if (!modifyClass) return;
+    if (hide) {
+        productForm.parentElement.classList.add("hidden");
+    } else {
+        productForm.parentElement.classList.remove("hidden");
+    }
+
+
+
+
   }
 
   setUnavailable() {
@@ -894,8 +912,8 @@ class VariantSelects extends HTMLElement {
     const addButtonText = button.querySelector('[name="add"] > span');
     const price = document.getElementById(`price-${this.dataset.section}`);
     if (!addButton) return;
-    addButtonText.textContent = window.variantStrings.unavailable;
-    if (price) price.classList.add('visibility-hidden');
+    addButtonText.textContent = "Unavailable";
+    if (price) price.classList.add('hidden');
   }
 
   getVariantData() {

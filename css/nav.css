@@ -3,7 +3,7 @@ html {
     --nav-height-mobile: 0px;
 }
 
-nav{
+.nav-wrapper{
     height: var(--nav-height-desktop);
     @apply flex items-center max-w-content-lg mx-auto;
 }
@@ -34,14 +34,18 @@ nav{
 
 @media screen and (min-width: 1024px){
     .nav-primary.container{
-        @apply flex-1 flex gap-[24px] h-full;
+        @apply flex-1 flex h-full;
     }
     .menu__item.level--1{
         @apply text-black-600 h-full;
     }
     .menu__link{
-        @apply h-full flex items-center;
+        @apply h-full flex px-s2 xl:px-s3 items-center;
     }
+    .menu__item.level--1:first-child .menu__link{
+        @apply pl-0;
+    }
+
     .menu__dropdown{
         @apply w-screen bg-white absolute left-0 py-s10 px-s13 hidden;
         top: calc(100% + 1px);

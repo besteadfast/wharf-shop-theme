@@ -1,6 +1,9 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'collection-filter.js' | asset_url }}" defer="defer"></script>
 
-{% render 'collection-filter' %}
+
+{% assign badgeTags = "new,best seller,sale" | split:"," %}
+
 
 {% liquid
     assign sidebar_menus = 'apparel,objects,featured' | split: ','
@@ -30,16 +33,27 @@
         {% unless collection.image %}
             <h1 class="faux-h3">{{ collection.description }}</h1>
         {% endunless %}
-        <div class="flex gap-s6">
-            <select class="w-[150px] filter" data-filter="Color">
-                <option selected disabled value="Color">Color</option>
-            </select>
-            <select class="w-[150px] filter" data-filter="Size">
-                <option selected disabled value="size">Size</option>
-            </select>
-            <select class="w-[150px]">
-                <option selected disabled value="sort">Sort</option>
-            </select>
+        <div id="filtered-collection-filters" class="flex gap-s6">
+            <label for="color" class="relative flex items-center text-black-800">
+                <select class="filter" name="color" data-filter="Color">
+                    <option selected disabled value="color">Color</option>
+                    <option value="">All</option>
+                </select>
+                {% render '8-down', class: 'text-black-200 absolute right-0' %}
+            </label>
+            <label for="size" class="relative flex items-center text-black-800">
+                <select class="filter" name="size" data-filter="Size">
+                    <option selected disabled value="size">Size</option>
+                    <option value="">All</option>
+                </select>
+                {% render '8-down', class: 'text-black-200 absolute right-0' %}
+            </label>
+            <label for="sort" class="relative flex items-center text-black-800">
+                <select class="sort" name="sort">
+                    <option selected disabled value="sort">Sort</option>
+                </select>
+                {% render '8-down', class: 'text-black-200 absolute right-0' %}
+            </label>
         </div>
     </div>
     {% endif %}
@@ -74,32 +88,51 @@
             </ul>
         </div>
         {% endif %}
-        <div class="grid grid-cols-3 gap-s10 flex-1">
-            {% for product in collection.products %}
-                <div class="flex-1">
-                    <div>
-                        {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
-                    </div>
-                    <div class="mt-s6">
-                        <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
-                        <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
-                        <p class="mt-s5">${{ product.price | money_without_currency }}</p>
-                        <div class="h-s6 flex items-center gap-s1 mt-s3">
-                            <div class="product-variant--tile">
-                                <div class="dot bg-black-600"></div>
-                                <div class="disc"></div>
+            <div id="filtered-collection-grid" data-url="{{ collection.url }}" data-section="{{ section.id }}" class="grid grid-cols-3 gap-s10 flex-1">
+                {% for product in collection.products %}
+                    <div id="product-{{ product.id }}" class="flex-1 relative">
+                        {% assign productBadgeType = null %}
+                        {% for tag in product.tags %}
+                            {% if badgeTags contains tag %}
+                                {% assign productBadgeType = tag %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if productBadgeType %}
+                            <div class="badge {{ productBadgeType | split: " " | join: "" }}">
+                                {% if productBadgeType == "best seller" %}
+                                    {% render "best-seller-star" %}
+                                {% endif %}
+                                <p class="faux-h6 mr-[-2px]">
+                                    {{ productBadgeType | uppercase }}
+                                </p>
                             </div>
-                            <div class="product-variant--tile">
-                                <div class="dot bg-black-600"></div>
-                                <div class="disc"></div>
-                            </div>
-                            <p class="faux-p-xs text-black-400">+5</p>
+                        {% endif %}
+                        <div>
+                            {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
                         </div>
+                        <div class="mt-s6">
+                            <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
+                            {% comment %} <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p> {% endcomment %}
+                            <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+                            <div class="h-s6 flex items-center gap-s1 mt-s3">
+                                <div class="product-variant--tile">
+                                    <div class="dot bg-black-600"></div>
+                                    <div class="disc"></div>
+                                </div>
+                                <div class="product-variant--tile">
+                                    <div class="dot bg-black-600"></div>
+                                    <div class="disc"></div>
+                                </div>
+                                <p class="faux-p-xs text-black-400">+5</p>
+                            </div>
+                        </div>
+                        {% render 'quick-shop-modal', product: product %}
                     </div>
-                    {% render 'quick-shop-modal', product: product %}
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+            <script id="collection-data" type="application/json">
+                {{ collection.products | json }}
+            </script>
     </div>
 </div>
 

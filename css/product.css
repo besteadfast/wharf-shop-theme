@@ -1,0 +1,50 @@
+/* Option Selection Inputs */
+
+input[type="radio"]{
+    appearance:none;
+    background-color: #fff;
+
+}
+
+input.color-selector{
+    @apply w-36 h-36 rounded-full flex justify-center items-center;
+}
+
+input.color-selector.sm{
+    @apply w-s5 h-s5;
+}
+
+input.color-selector + label, input.color-selector + * label{
+    display:none;
+}
+
+input.color-selector:checked{
+    @apply border-1 border-black-900;
+}
+
+input.color-selector:checked + label, input.color-selector:checked + * label{
+    display:inline-block;
+}
+input.color-selector::before{
+    content:"";
+    @apply w-[26px] h-[26px] rounded-full bg-black-900;
+}
+
+input.color-selector.sm::before{
+    @apply w-[14px] h-[14px];
+}
+
+input.size-selector + label{
+    @apply border-black-200 text-black-600;
+}
+input.size-selector:checked + label{
+    @apply border-primary-800 text-primary-800;
+}
+
+/* End Option Selection Inputs */
+
+/* Carousel Buttons */
+
+button.carousel-control:disabled{
+
+}

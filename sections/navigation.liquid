@@ -1,67 +1,73 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
-<nav class="px-s5 lg:px-72">
-    <button class="mobile-toggle flex-1 lg:hidden" onclick="document.querySelector('.nav-primary').classList.toggle('active')">
-        {% render '24-menu-8' %}
-    </button>
-    <ul class="nav-primary container list-none">
-        {% assign menuItems = "apparel,objects,featured" | split: ',' %}
-        {% for menuItem in menuItems %}
-            <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base">
-                <a class="menu__link ">{{ menuItem | capitalize }}</a>
-                <div class="menu__dropdown">
-                    <div class="menu__columns">
-                        {% for column in section.blocks %}
-                            {% if column.settings.menu == menuItem %}
-                                {% if column.type == "link-list" %}
-                                    <div class="menu-column link-list">
-                                        <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
-                                            {% for link in column.settings.linkList.links %}
-                                                {% assign totalSublinks = link.links | size %}
-                                                <li class="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
-                                                    <a href="{{ link.url }}" class="dropdown__link--level-1">{{ link.title }}</a>
-                                                    {% if totalSublinks > 0 %}
-                                                        <ul class="dropdown__list--level-2 list-none">
-                                                            {% for link in link.links %}
-                                                                <li class="dropdown__list-item--level-2">
-                                                                    <a href="{{ link.url }}" class="dropdown__link--level-2">{{ link.title }}</a>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    {% endif %}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% elsif column.type == "feature-column" %}
-                                    <div class="menu-column feature to-lg:hidden">
-                                        <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover"/>
-                                        <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
-                                    </div>
+<nav class="px-s5 px-36 xl:px-72">
+    <div class="nav-wrapper">
+        <button class="mobile-toggle flex-1 lg:hidden" onclick="document.querySelector('.nav-primary').classList.toggle('active')">
+            {% render '24-menu-8' %}
+        </button>
+        <ul class="nav-primary container list-none">
+            {% assign menuItems = "apparel,objects,featured" | split: ',' %}
+            {% for menuItem in menuItems %}
+                <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base">
+                    <a class="menu__link ">
+                        {{ menuItem | capitalize }}
+                    {% render '12-down', class: "text-primary-100 ml-s2" %}
+                    </a>
+                    <div class="menu__dropdown">
+                        <div class="menu__columns">
+                            {% for column in section.blocks %}
+                                {% if column.settings.menu == menuItem %}
+                                    {% if column.type == "link-list" %}
+                                        <div class="menu-column link-list">
+                                            <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
+                                                {% for link in column.settings.linkList.links %}
+                                                    {% assign totalSublinks = link.links | size %}
+                                                    <li class="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
+                                                        <a href="{{ link.url }}" class="dropdown__link--level-1">{{ link.title }}</a>
+                                                        {% if totalSublinks > 0 %}
+                                                            <ul class="dropdown__list--level-2 list-none">
+                                                                {% for link in link.links %}
+                                                                    <li class="dropdown__list-item--level-2">
+                                                                        <a href="{{ link.url }}" class="dropdown__link--level-2">{{ link.title }}</a>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% elsif column.type == "feature-column" %}
+                                        <div class="menu-column feature to-lg:hidden">
+                                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover"/>
+                                            <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
+                                        </div>
+                                    {% endif %}
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <img class="w-[300px] xl:w-[350px] to-md:hidden" src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
-    <img class="w-[150px] md:hidden" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80"loading="lazy"/>
-    <div class="flex-1 flex justify-end items-center">
-        <div class="p-s2 search flex to-lg:hidden">
-            <button id="searchButton" onclick="document.querySelector('nav').classList.toggle('search-mode');">
-                <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
-            </button>
-            <input/>
-        </div>
-        <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="p-s2 ml-s5 cart-notification">
-            <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
-        </a>
-        <a class="btn btn--sm search-hide ml-[36px] to-xl:hidden" href="/checkout">
-        Checkout
-        </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <img class="w-[300px] xl:w-[350px] to-md:hidden" src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
+        <img class="w-[150px] md:hidden" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80"loading="lazy"/>
+        <div class="flex-1 flex justify-end items-center">
+            <div class="p-s2 search flex to-lg:hidden">
+                <button id="searchButton" onclick="document.querySelector('nav').classList.toggle('search-mode');">
+                    <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
+                </button>
+                <input/>
+            </div>
+            <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="relative p-s2 ml-s5 cart-notification">
+                <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
+                <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full"><span id="cart-quantity-bubble" class="faux-p-xs text-white">{{ cart.items | size }}</span></div>
+            </a>
+            <a class="btn btn--sm search-hide ml-[36px] to-xl:hidden" href="/checkout">
+            Checkout
+            </a>
 
+        </div>
     </div>
 </nav>
 

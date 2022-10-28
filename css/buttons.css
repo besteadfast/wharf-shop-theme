@@ -1,5 +1,5 @@
 /* buttons */
-.btn{
+#app .btn{
     /*----------------------------
         default settings
     ----------------------------*/
@@ -38,13 +38,13 @@
 /*----------------------------
 	size
 ----------------------------*/
-.btn--lg{
+#app .btn--lg{
 	@apply
 		md:px-s7
 		md:py-s4
 		ui-lg;
 }
-.btn--sm{
+#app .btn--sm{
 	@apply
         ui-sm
         px-s5
@@ -54,7 +54,7 @@
 /* types */
 
 /** inverse **/
-.btn--inverse{
+#app .btn--inverse{
 	/* -------------------------------------------------------- */
 	/** text colors **/
 	--btn-text: theme('colors.white');
@@ -70,7 +70,7 @@
 
 /**
 /no background **/
-.btn--borderless{
+#app .btn--borderless{
 	@apply
 		bg-transparent
         capitalize

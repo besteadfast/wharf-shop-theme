@@ -64,6 +64,8 @@ class CartDrawer extends HTMLElement {
     this.querySelector('.drawer__inner').classList.contains('is-empty') && this.querySelector('.drawer__inner').classList.remove('is-empty');
     this.productId = parsedState.id;
     this.getSectionsToRender().forEach((section => {
+      console.log(section)
+      console.log(document.querySelector(section.selector))
       const sectionElement = section.selector ? document.querySelector(section.selector) : document.getElementById(section.id);
       sectionElement.innerHTML =
           this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
@@ -84,12 +86,13 @@ class CartDrawer extends HTMLElement {
   getSectionsToRender() {
     return [
       {
-        id: 'cart-drawer',
-        selector: '#CartDrawer'
+        id: "cart-drawer",
+        selector: "#CartDrawer",
       },
       {
-        id: 'cart-icon-bubble'
-      }
+        id: "navigation",
+        selector: "#cart-quantity-bubble",
+      },
     ];
   }
 
@@ -116,11 +119,41 @@ class CartDrawerItems extends CartItems {
       },
       {
         id: 'cart-icon-bubble',
-        section: 'cart-icon-bubble',
-        selector: '.shopify-section'
+        section: 'navigation',
+        selector: '.cart-quantity-bubble'
       }
     ];
   }
 }
 
 customElements.define('cart-drawer-items', CartDrawerItems);
+
+const calcFreeShippingProgress = (cartJSON) => {
+    const cart = JSON.parse(cartJSON);
+    console.log(document.querySelector("#cart-icon-bubble div span"));
+    document.querySelector("#cart-icon-bubble div span").innerHTML = cart.item_count
+}
+
+
+// // Modify open prototype to listen for cart updates
+// const open = window.XMLHttpRequest.prototype.open;
+
+// function openReplacement() {
+//   //listen for load event (triggers when complete)
+//   this.addEventListener("load", function () {
+//     // calc free shipping progress if the cart has been changed
+//     if (
+//       [
+//         "/cart/add.js",
+//         "/cart/update.js",
+//         "/cart/change.js",
+//         "/cart/clear.js",
+//       ].includes(this._url)
+//     ) {
+//       calcFreeShippingProgress(this.response);
+//     }
+//   });
+//   return open.apply(this, arguments);
+// }
+
+// window.XMLHttpRequest.prototype.open = openReplacement;

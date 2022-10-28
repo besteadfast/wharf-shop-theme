@@ -52,6 +52,9 @@ exports.colors = {
     100: "#c5ccd4",
     50: "#ffffff",
   },
+  red: {
+    500: "#CA003D",
+  },
 };
 
 exports.icons = {
@@ -190,7 +193,7 @@ exports.typography = {
 			}
 		},
 		'h5': {
-			fontFamily: 'ns',
+			fontFamily: 'pn',
 			fontWeight: 'light',
 			fontSize: { base: '22', md: '28' },
 			lineHeight: { base: '120' },

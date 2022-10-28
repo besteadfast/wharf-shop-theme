@@ -18,16 +18,16 @@
         <div class="flex gap-s8 lg:gap-s10">
             <div>
                 <h3 class="ui-sm uppercase text-primary-800">Contact</h3>
-                <p class="faux-p-sm text-black-600 mt-s7">hello@shopthewharf.com</p>
-                <p class="faux-p-sm text-black-600 mt-s6">123.456.7890</p>
-                <p class="faux-p-sm text-black-600 mt-s6">23101 Canal Road</br>Orange Beach, AL 36561</p>
+                <a href="mailto:{{ settings.email }}" class="block faux-p-sm text-black-600 mt-s7">{{ settings.email }}</a>
+                <a href="tel:{{ settings.phone_number | remove: "-" | remove: "." | remove: "(" | remove: ")" | remove: " " }}" class="block faux-p-sm text-black-600 mt-s6">{{ settings.phone_number}}</a>
+                <p class="faux-p-sm text-black-600 mt-s6">{{ settings.address | newline_to_br }}</p>
             </div>
             <div class="w-max">
                 <h3 class="ui-sm uppercase text-primary-800">Customer Service</h3>
-                <a class="block faux-p-sm text-black-600 mt-s7">Customer Service</a>
-                <a class="block faux-p-sm text-black-600 mt-s6">Help / FAQ</a>
-                <a class="block faux-p-sm text-black-600 mt-s6">Returns & Exchanges</a>
-                <a class="block faux-p-sm text-black-600 mt-s6">Gift Cards</a>
+                <a href="/pages/customer-service" class="block faux-p-sm text-black-600 mt-s7">Customer Service</a>
+                <a href="/pages/help-and-faqs" class="block faux-p-sm text-black-600 mt-s6">Help / FAQ</a>
+                <a href="/pages/help-and-faqs#returnsAndExchanges" class="block faux-p-sm text-black-600 mt-s6">Returns & Exchanges</a>
+                <a href="/pages/help-and-faqs#giftCards" class="block faux-p-sm text-black-600 mt-s6">Gift Cards</a>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
         <div class="flex-1 flex items-center gap-s4">
             <p class="text-black-500 faux-p-xs">© 2022 Shop the Wharf. All Rights Reserved.</p>
             <div class="h-s5 w-[2px] bg-primary-50"></div>
-            <a class="text-black-500 faux-p-xs shrink-0">Privacy Policy</a>
+            <a href="/pages/privacy-policy" class="text-black-500 faux-p-xs shrink-0">Privacy Policy</a>
         </div>
         <div class="h-s6 flex gap-s4 text-primary-800">
             {% render '24-logo-facebook-simple' %}

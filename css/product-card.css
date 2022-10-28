@@ -1,9 +1,27 @@
 .badge{
     @apply
-    w-[54px] lg:w-[60px]
-    h-[54px] lg:w-[60px]
-    text-white
-    rounded-full;
+    absolute top-s3 right-s3
+    flex items-center justify-center
+    w-max md:w-[54px] lg:w-[60px]
+    md:h-[54px] lg:h-[60px]
+    to-md:py-s2 to-md:px-s3
+    text-white bg-secondary-500
+    rounded-[12px] md:rounded-full;
+}
+
+.badge.new{
+    @apply bg-red-500;
+}
+
+.badge.bestseller{
+    @apply bg-primary-800;
+}
+
+.badge.bestseller p{
+    @apply md:hidden;
+}
+.badge.bestseller svg{
+    @apply to-md:hidden;
 }
 
 .product-variant--page{
