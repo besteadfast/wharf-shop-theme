@@ -48,12 +48,12 @@
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
                             <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
-                            <img class="cart-item__image"
-                              src="{{ item.image | image_url: width: 90 }}"
+                            <img class="cart-item__image object-contain h-[106px]"
+                              src="{{ item.image | image_url: width: 92 }}"
                               alt="{{ item.image.alt | escape }}"
                               loading="lazy"
-                              width="90"
-                              height="{{ 90 | divided_by: item.image.aspect_ratio | ceil }}"
+                              width="92"
+                              height="106"
                             >
                           {% endif %}
                         </div>
@@ -109,28 +109,25 @@
                               </div>
                               {% endcomment %}
                               <div class="cart-item__quantity-wrapper">
-                                <quantity-input class="quantity">
-                                  {% comment %}
-                                   <button class="quantity__button no-js-hidden" name="minus" type="button">
-                                    <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
-                                    {% render 'icon-minus' %}
+                                <quantity-input class="flex justify-between">
+                                   <button class="px-s3 py-s2 bg-white border-black-100 border-[1px] hover:bg-secondary-50" name="minus" type="button">
+                                    {% render '8-minus', class: "text-primary-900" %}
                                   </button>
-                                  {% endcomment %}
-                                  <input class="quantity__input py-s3 px-s2 w-[60px]"
+                                  <input class="py-s1 px-s1 shrink bg-white rounded-none text-center faux-p-sm border-t-[1px] border-b-[1px] border-black-100"
                                     type="number"
                                     name="updates[]"
                                     value="{{ item.quantity }}"
                                     min="0"
+                                    max="10"
+                                    size="2"
                                     aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                                     id="Drawer-quantity-{{ item.index | plus: 1 }}"
                                     data-index="{{ item.index | plus: 1 }}"
+                                    disabled
                                   >
-                                  {% comment %}
-                                  <button class="quantity__button no-js-hidden" name="plus" type="button">
-                                    <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
-                                    {% render 'icon-plus' %}
+                                  <button class="px-s3 py-s2 bg-white border-black-100 border-[1px] hover:bg-secondary-50" name="plus" type="button">
+                                    {% render '8-plus', class: "text-primary-900" %}
                                   </button>
-                                  {% endcomment %}
                                 </quantity-input>
                                 {% comment %}
                                  <cart-remove-button id="CartDrawer-Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">

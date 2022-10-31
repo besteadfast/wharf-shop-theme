@@ -1,0 +1,35 @@
+{% assign colorDefKeys = "" %}
+{% assign colorDefValues = "" %}
+{% for collection in product.collections %}
+    {% if collection.metafields.custom.color %}
+        {% assign colorDefKeys = colorDefKeys | append: collection.title | append: "," %}
+        {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color | append: "," %}
+    {% endif %}
+{% endfor %}
+{% assign colorDefKeys = colorDefKeys | split: "," %}
+{% assign colorDefValues = colorDefValues | split: "," %}
+{% assign totalColors = 0 %}
+{% for option in product.options_with_values %}
+    {% if option.name == "Color" %}
+        {% assign colorDef = "" %}
+        {% for colorOption in option.values %}
+            {% for key in colorDefKeys %}
+                {% if key == colorOption %}
+                    {% assign colorDef = colorDefValues[forloop.index0] %}
+                {% endif %}
+            {% endfor %}
+            {% if preview == true and totalColors < 3 %}
+                <div class="product-variant--tile">
+                    <div class="dot" style="background-color:{{ colorDef }};"></div>
+                </div>
+            {% elsif preview == false %}
+                <input type="radio" name="color-{{ product.id }}" value="{{ colorOption | escape }}" id="color-radio-{{ product.id }}-{{ forloop.index }}" class="color-selector {{ size }}" style="--color-selector-bg:{{ colorDef }};" {% if forloop.first %}checked{% endif %}/>
+                <p class="absolute top-0 left-0 faux-p-xs text-black-700">Color:<label class="form-control pl-s2" for="color-radio-{{ product.id }}-{{ forloop.index }}">{{ colorOption }}</label></p>
+            {% endif %}
+            {% assign totalColors = totalColors | plus: 1 %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+{% if totalColors > 3 and preview == true %}
+    <p class="faux-p-xs text-black-400">+{{ totalColors | minus: 3 }}</p>
+{% endif %}

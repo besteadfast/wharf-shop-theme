@@ -1,9 +1,6 @@
-
-<modal-opener data-modal="#ProductModal-{{ product.id }}">
-    <button>Open</button>
-</modal-opener>
+{% assign currentVariant = product.selected_or_first_available_variant %}
 <modal-dialog id="ProductModal-{{ product.id }}">
-    <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-white relative" role="dialog">
+    <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
             {% for image in product.images %}
                 <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-all carousel-img" style="left:calc(100% * {{ forloop.index0 }});" data-index="{{ forloop.index0 }}" width="300" height="450" loading="lazy" />
@@ -17,34 +14,42 @@
         </div>
         <div class="w-[236px]">
             <p class="faux-p-lg text-black-900 mt-s7">{{ product.title }}</p>
-            <p class="faux-p-sm text-black-900 mt-s5">{{ product.price | money }}</p>
+            <p id="price-{{ section.id }}-{{ product.id}}" class="faux-p-sm text-black-900 mt-s5">
+                {% if currentVariant.compare_at_price and currentVariant.compare_at_price > currentVariant.price %}
+                    <span class="text-black-400 line-through">{{ currentVariant.compare_at_price | money }}</span>
+                    <span class="text-red-500 ml-s2">{{ currentVariant.price | money }}</span>
+                {% else %}
+                    {{ currentVariant.price | money }}
+                {% endif %}
+                {% unless currentVariant.available %}
+                    <span class="text-red-500 ml-s2">Out of Stock</span>
+                {% endunless %}
+            </p>
             <div class="w-full h-[1px] mt-s7" style="background-color:#DDDDDD;"></div>
-            <div class="relative mt-s7">
-                <div class="flex gap-s1 pt-s5 pb-[2px]">
-                    {% for option in product.options_with_values %}
-                        {% if option.name == "Color" %}
-                            {% for optionValue in option.values %}
-                                <input type="radio" name="color" id="color-radio-{{ product.id }}-{{ forloop.index }}" class="color-selector sm" {% if forloop.first %}checked{% endif %}/>
-                                <p class="absolute top-0 left-0 faux-p-xs text-black-700">Color:<label class="form-control pl-s2" for="color-radio-{{ product.id }}-{{ forloop.index }}">{{ optionValue }}</label></p>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
+            <variant-radios data-section="{{ section.id }}" data-product="{{ product.id }}" data-url="{{ product.url }}">
+                <div class="relative mt-s7">
+                    <fieldset class="flex gap-s1 pt-s5 pb-[2px]">
+                        {% render 'product-colors', product: product, size: 'sm', preview: false %}
+                    </fieldset>
                 </div>
-            </div>
-            <div class="mt-s5">
-                <p class="faux-p-xs block">Size</p>
-                <div class="flex justify-start gap-s2 mt-s2">
-                    {% for option in product.options_with_values %}
-                        {% if option.name == "Size" %}
-                            {% for optionValue in option.values %}
-                                <input type="radio" name="size" id="size-radio-{{ forloop.index }}" class="absolute size-selector " {% if forloop.first %}checked{% endif %}/>
-                                <label class="form-control faux-p-sm py-s3 px-s4 border-1" for="size-radio-{{ forloop.index }}">{{ optionValue | slice: 0 }}</label>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
+                <div class="mt-s5">
+                    <p class="faux-p-xs block">Size</p>
+                    <fieldset class="flex justify-start gap-s2 mt-s2">
+                        {% for option in product.options_with_values %}
+                            {% if option.name == "Size" %}
+                                {% for optionValue in option.values %}
+                                    <input type="radio" name="size-{{ product.id }}" value="{{ optionValue | escape }}" id="size-radio-{{ product.id }}-{{ forloop.index }}" class="absolute size-selector " {% if forloop.first %}checked{% endif %}/>
+                                    <label class="form-control faux-p-sm py-s3 px-s4 border-1" for="size-radio-{{ product.id }}-{{ forloop.index }}">{{ optionValue | slice: 0 }}</label>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </fieldset>
                 </div>
-            </div>
-            {%- assign product_form_id = 'product-' | append: product.id -%}
+                <script type="application/json">
+                    {{ product.variants | json }}
+                </script>
+            </variant-radios>
+            {%- assign product_form_id = 'product-form-' | append: section.id | append: "-" | append: product.id -%}
             <product-form>
                 {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                   <input

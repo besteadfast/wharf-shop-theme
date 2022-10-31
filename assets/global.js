@@ -461,6 +461,7 @@ class ModalDialog extends HTMLElement {
                         carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
                 }
                 images.forEach((img) => {
+                    console.log(img.style.left);
                     img.style.left = `${100 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}%`;
                 });
 
@@ -865,22 +866,24 @@ class VariantSelects extends HTMLElement {
   }
 
   renderProductInfo() {
-    fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`)
-      .then((response) => response.text())
-      .then((responseText) => {
-        const html = new DOMParser().parseFromString(responseText, 'text/html')
-        const destination = document.getElementById(`price-${this.dataset.section}`);
-        const source = html.getElementById(`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-        if (source && destination) destination.innerHTML = source.innerHTML;
+    if(this.dataset.productPage){
+        fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`)
+        .then((response) => response.text())
+        .then((responseText) => {
+            const html = new DOMParser().parseFromString(responseText, 'text/html')
+            const destination = document.getElementById(`price-${this.dataset.section}`);
+            const source = html.getElementById(`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
+            if (source && destination) destination.innerHTML = source.innerHTML;
 
-        const price = document.getElementById(`price-${this.dataset.section}`);
+            const price = document.getElementById(`price-${this.dataset.section}`);
 
-        if (price) price.classList.remove('visibility-hidden');
-        this.toggleAddButton(!this.currentVariant.available, "Sold Out", !this.currentVariant.available);
-      });
-  }
+            if (price) price.classList.remove('visibility-hidden');
+            this.toggleAddButton(!this.currentVariant.available, "Sold Out", !this.currentVariant.available);
+        });
+    }
+}
 
-  toggleAddButton(disable = true, text, hide = false) {
+toggleAddButton(disable = true, text, hide = false) {
     const productForm = document.getElementById(`product-form-${this.dataset.section}`);
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
@@ -896,9 +899,9 @@ class VariantSelects extends HTMLElement {
     }
 
     if (hide) {
-        productForm.parentElement.classList.add("hidden");
+        productForm.classList.add("hidden");
     } else {
-        productForm.parentElement.classList.remove("hidden");
+        productForm.classList.remove("hidden");
     }
 
 
@@ -930,6 +933,7 @@ class VariantRadios extends VariantSelects {
   }
 
   updateOptions() {
+    console.log('here')
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
     this.options = fieldsets.map((fieldset) => {
       return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;

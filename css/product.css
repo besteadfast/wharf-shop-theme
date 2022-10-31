@@ -7,6 +7,7 @@ input[type="radio"]{
 }
 
 input.color-selector{
+    background-color:transparent;
     @apply w-36 h-36 rounded-full flex justify-center items-center;
 }
 
@@ -19,15 +20,16 @@ input.color-selector + label, input.color-selector + * label{
 }
 
 input.color-selector:checked{
-    @apply border-1 border-black-900;
-}
+    @apply border-1 border-black-300;
+}z
 
 input.color-selector:checked + label, input.color-selector:checked + * label{
     display:inline-block;
 }
 input.color-selector::before{
     content:"";
-    @apply w-[26px] h-[26px] rounded-full bg-black-900;
+    background-color: var(--color-selector-bg);
+    @apply w-[26px] h-[26px] rounded-full;
 }
 
 input.color-selector.sm::before{

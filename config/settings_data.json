@@ -105,6 +105,9 @@
     "sale_badge_color_scheme": "accent-2",
     "sold_out_badge_color_scheme": "inverse",
     "accent_icons": "text",
+    "email": "hello@shopthewharf.com",
+    "phone_number": "123.456.7890",
+    "address": "23101 Canal Road\n Orange Beach, AL 36561",
     "social_twitter_link": "",
     "social_facebook_link": "",
     "social_pinterest_link": "",
@@ -174,7 +177,7 @@
             "type": "link-list",
             "settings": {
               "menu": "apparel",
-              "linkList": "men"
+              "linkList": ""
             }
           },
           "ff7893d6-63f2-488f-8591-3283db7642a5": {

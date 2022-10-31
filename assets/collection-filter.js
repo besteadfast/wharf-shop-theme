@@ -41,6 +41,7 @@ window.addEventListener('DOMContentLoaded', function(){
 function applyFilters() {
   if (window.shopifyData.filters) {
     for (filter in window.shopifyData.filters) {
+      if (window.shopifyData.filters[filter] == "all") continue;
       window.shopifyData.collection = window.shopifyData.collection.filter(
         (product) => {
           return product.variants.some((variant) =>
@@ -78,7 +79,7 @@ function populateFilterSelects(){
     document.querySelectorAll("select.filter").forEach((filterSelectElt) => {
         const filter = filterSelectElt.dataset.filter;
         //remove any existing filters
-        while (filterSelectElt.children.length > 1) {
+        while (filterSelectElt.children.length > 2) {
             filterSelectElt.removeChild(filterSelectElt.lastChild);
         }
         //(re)populate with updated filters
