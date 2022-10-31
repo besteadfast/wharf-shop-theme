@@ -177,7 +177,7 @@
             "type": "link-list",
             "settings": {
               "menu": "apparel",
-              "linkList": ""
+              "linkList": "mens"
             }
           },
           "ff7893d6-63f2-488f-8591-3283db7642a5": {
@@ -202,6 +202,13 @@
               "linkDest": "test-page",
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
             }
+          },
+          "1f478b93-3a60-4601-a628-4a1b20b4470d": {
+            "type": "link-list",
+            "settings": {
+              "menu": "featured",
+              "linkList": ""
+            }
           }
         },
         "block_order": [
@@ -209,7 +216,8 @@
           "08e7ce49-d43a-4fba-9686-4598a3e252cd",
           "ff7893d6-63f2-488f-8591-3283db7642a5",
           "7f3cce06-15bd-4cb5-9864-0bf9a6039c0c",
-          "fb40f7ab-f225-4d88-9e4f-57bf0910eca6"
+          "fb40f7ab-f225-4d88-9e4f-57bf0910eca6",
+          "1f478b93-3a60-4601-a628-4a1b20b4470d"
         ],
         "settings": {
         }
