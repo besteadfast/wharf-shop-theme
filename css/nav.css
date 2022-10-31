@@ -51,7 +51,7 @@ html {
         top: calc(100% + 1px);
     }
     .menu__columns{
-        @apply flex max-w-[1200px] mx-auto bg-white gap-s8 z-10;
+        @apply flex max-w-[1200px] h-[300px] mx-auto bg-white gap-s8 z-10;
     }
     .menu-column{
         @apply flex-1;
@@ -72,6 +72,10 @@ html {
 
     .dropdown__link--level-1{
         @apply text-primary-800 uppercase;
+    }
+
+    .dropdown__list-item--level-1:not(:first-child){
+        @apply mt-s4;
     }
 
 
