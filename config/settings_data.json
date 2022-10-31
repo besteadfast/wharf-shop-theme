@@ -228,11 +228,25 @@
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-event.jpg"
             }
           },
+          "8761a945-e978-4df3-ad92-ea7dce583774": {
+            "type": "link-list",
+            "settings": {
+              "menu": "objects",
+              "linkList": "home"
+            }
+          },
           "b7da8d35-d182-4c72-93d3-027102cbf8a3": {
             "type": "link-list",
             "settings": {
               "menu": "objects",
-              "linkList": ""
+              "linkList": "outside"
+            }
+          },
+          "cea5c224-03a0-4344-b8ce-6eb343cabe59": {
+            "type": "link-list",
+            "settings": {
+              "menu": "objects",
+              "linkList": "swim"
             }
           }
         },
@@ -245,7 +259,9 @@
           "1f478b93-3a60-4601-a628-4a1b20b4470d",
           "0b1e1db1-e814-4d65-a544-8b1d201a1965",
           "56d83dad-4faf-49d1-a89f-23d02659f676",
-          "b7da8d35-d182-4c72-93d3-027102cbf8a3"
+          "8761a945-e978-4df3-ad92-ea7dce583774",
+          "b7da8d35-d182-4c72-93d3-027102cbf8a3",
+          "cea5c224-03a0-4344-b8ce-6eb343cabe59"
         ],
         "settings": {
         }
