@@ -22,7 +22,7 @@
                                             <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
                                                 {% for link in column.settings.linkList.links %}
                                                     {% assign totalSublinks = link.links | size %}
-                                                    <li class="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
+                                                    <li id="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
                                                         <a href="{{ link.url }}" class="dropdown__link--level-1">{{ link.title }}</a>
                                                         {% if totalSublinks > 0 %}
                                                             <ul class="dropdown__list--level-2 list-none">
@@ -39,7 +39,7 @@
                                         </div>
                                     {% elsif column.type == "feature-column" %}
                                         <div class="menu-column feature to-lg:hidden">
-                                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover"/>
+                                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px]"/>
                                             <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
                                         </div>
                                     {% endif %}
