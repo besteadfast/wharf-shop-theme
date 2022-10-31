@@ -89,13 +89,13 @@
   {
     "name": "Variant Colors",
     "settings": [
-        {
-            "type": "textarea",
-            "id": "variant_colors",
-            "default": "black:#000000",
-            "label": "Product Variant Colors",
-            "info": "This field must be formatted 'color_name:hex_code' with each color on a new line. Color names must match color options for products."
-        }
+      {
+        "type": "textarea",
+        "id": "variant_colors",
+        "default": "black:#000000",
+        "label": "Product Variant Colors",
+        "info": "This field must be formatted 'color_name:hex_code' with each color on a new line. Color names must match color options for products."
+      }
     ]
   },
   {
@@ -1355,21 +1355,21 @@
   {
     "name": "Contact Info",
     "settings": [
-        {
-          "type": "text",
-          "id": "email",
-          "label": "Email"
-        },
-        {
-          "type": "text",
-          "id": "phone_number",
-          "label": "Phone Number"
-        },
-        {
-          "type": "textarea",
-          "id": "address",
-          "label": "Address"
-        }
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email"
+      },
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "Phone Number"
+      },
+      {
+        "type": "textarea",
+        "id": "address",
+        "label": "Address"
+      }
     ]
   },
   {
@@ -1395,7 +1395,7 @@
         "type": "text",
         "id": "social_linkedin_link",
         "label": "LinkedIn",
-        "info": "https://www.linkedin.com/company/shopify"
+        "info": "https:\/\/www.linkedin.com\/company\/shopify"
       },
       {
         "type": "text",
