@@ -248,6 +248,15 @@
               "menu": "objects",
               "linkList": "swim"
             }
+          },
+          "555a8331-f6b8-4c6b-af38-b7673b1fc788": {
+            "type": "feature-column",
+            "settings": {
+              "menu": "objects",
+              "label": "Picnic",
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-picnic.jpg"
+            }
           }
         },
         "block_order": [
@@ -261,7 +270,8 @@
           "56d83dad-4faf-49d1-a89f-23d02659f676",
           "8761a945-e978-4df3-ad92-ea7dce583774",
           "b7da8d35-d182-4c72-93d3-027102cbf8a3",
-          "cea5c224-03a0-4344-b8ce-6eb343cabe59"
+          "cea5c224-03a0-4344-b8ce-6eb343cabe59",
+          "555a8331-f6b8-4c6b-af38-b7673b1fc788"
         ],
         "settings": {
         }
