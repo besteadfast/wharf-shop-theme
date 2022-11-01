@@ -58,7 +58,7 @@
                           {% endif %}
                         </div>
 
-                        <div class="flex-1">
+                        <div class="flex-1 flex flex-col justify-end">
                             <div class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
                               <a href="{{ item.url }}" class="cart-item__name faux-p font-bold break">{{ item.product.title | escape }}</a>
                               {%- if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil -%}
@@ -98,7 +98,7 @@
                               </ul>
                               {% endcomment %}
                             </div>
-                            <div class="cart-item__totals right flex justify-between items-center mt-s4" role="cell" headers="CartDrawer-ColumnTotal">
+                            <div class="cart-item__totals right flex justify-between items-center mt-s5" role="cell" headers="CartDrawer-ColumnTotal">
                               {% comment %}
                               <div class="loading-overlay hidden">
                                 <div class="loading-overlay__spinner">

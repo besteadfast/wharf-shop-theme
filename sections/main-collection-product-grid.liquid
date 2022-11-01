@@ -4,15 +4,25 @@
 
 {% assign badgeTags = "new,best seller,sale" | split: "," %}
 
-
 {% liquid
     assign sidebar_menus = 'apparel,objects,featured' | split: ','
     for linklist in linklists
         if sidebar_menus contains linklist.handle
             for topLevelLink in linklist.links
-                if topLevelLink.handle == collection.handle
+                if topLevelLink.current
                     assign menu = linklist.handle
+                    assign topLevel = topLevelLink.handle
+                    assign current = topLevelLink.handle
+                    assign currentTitle = topLevelLink.title
                 endif
+                for secondLevelLink in topLevelLink.links
+                    if secondLevelLink.current
+                        assign menu = linklist.handle
+                        assign topLevel = topLevelLink.handle
+                        assign current = secondLevelLink.handle
+                        assign currentTitle = secondLevelLink.title
+                    endif
+                endfor
             endfor
             if menu
                 break
@@ -21,269 +31,252 @@
     endfor
 %}
 
-
 <div class="hero">
-    {% if collection.image %}
-        <div>
-            <img/>
-            <h1>{{ collection.description }}</h1>
-        </div>
-    {% else %}
-    <div class="flex justify-between w-full py-s10 px-72">
-        {% unless collection.image %}
-            <h1 class="faux-h3">{{ collection.description }}</h1>
-        {% endunless %}
-        <div id="filtered-collection-filters" class="flex gap-s6">
-            <label for="color" class="relative flex items-center text-black-800">
-                <select class="filter" name="color" data-filter="Color">
-                    <option selected disabled value="color">Color</option>
-                    <option value="all">All Colors</option>
-                </select>
-                {% render '8-down', class: 'text-black-200 absolute right-0' %}
-            </label>
-            <label for="size" class="relative flex items-center text-black-800">
-                <select class="filter" name="size" data-filter="Size">
-                    <option selected disabled value="size">Size</option>
-                    <option value="all">All Sizes</option>
-                </select>
-                {% render '8-down', class: 'text-black-200 absolute right-0' %}
-            </label>
-            <label for="sort" class="relative flex items-center text-black-800">
-                <select class="sort" name="sort">
-                    <option selected disabled value="sort">Sort</option>
-                </select>
-                {% render '8-down', class: 'text-black-200 absolute right-0' %}
-            </label>
-        </div>
+  {% if collection.image %}
+    <div class="relative flex justify-center">
+      <img src="{{ collection.image | image_url }}" class="h-[526px] w-full object-cover"/>
+      <h1 class="absolute bottom-s11 w-full px-s10 max-w-[1416px] text-white">{{ currentTitle }}</h1>
     </div>
-    {% endif %}
+  {% endif %}
+  <div class="flex {% if collection.image %}justify-end{% else %}justify-between{% endif %} w-full py-s10 px-72">
+    {% unless collection.image %}
+      <h1 class="faux-h3 pt-[6px]">{{ currentTitle }}</h1>
+    {% endunless %}
+    <div id="filtered-collection-filters" class="flex gap-s6">
+      <label for="color" class="relative flex items-center text-black-800">
+        <select class="filter" name="color" data-filter="Color">
+          <option selected disabled value="color">Color</option>
+          <option value="all">All Colors</option>
+        </select>
+        {% render '8-down', class: 'text-black-200 absolute right-0' %}
+      </label>
+      <label for="size" class="relative flex items-center text-black-800">
+        <select class="filter" name="size" data-filter="Size">
+          <option selected disabled value="size">Size</option>
+          <option value="all">All Sizes</option>
+        </select>
+        {% render '8-down', class: 'text-black-200 absolute right-0' %}
+      </label>
+      <label for="sort" class="relative flex items-center text-black-800">
+        <select class="sort" name="sort">
+          <option selected disabled value="sort">Sort</option>
+        </select>
+        {% render '8-down', class: 'text-black-200 absolute right-0' %}
+      </label>
+    </div>
+  </div>
 </div>
 <div class="products">
-    <div class="px-72 pb-s13 flex gap-s10">
-        {% if menu %}
-        <div class="w-s13 flex-none">
-            <ul>
-                {% for topLevelLink in linklists[menu].links %}
-                    <li class="sidebar-link top-level">
-                        {% if current_tags == blank and collection.handle == topLevelLink.handle %}
-                            <a href="{{ topLevelLink.url }}" class="faux-p-sm font-bold">{{ topLevelLink.title }}</a>
-                        {% else %}
-                            <a href="{{ topLevelLink.url }}" class="faux-p-sm font-light">{{ topLevelLink.title }}</a>
-                        {% endif %}
-                        {% if topLevelLink.links != blank and collection.handle == topLevelLink.handle %}
-                            <ul class="mt-0">
-                                {% for secondLevelLink in topLevelLink.links %}
-                                    <li class="pl-s4 sidebar-link second-level">
-                                        {% if current_tags != blank and current_tags[0] == secondLevelLink.title %}
-                                            <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-bold">{{ secondLevelLink.title }}</a>
-                                        {% else %}
-                                            <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-light">{{ secondLevelLink.title }}</a>
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+  <div class="px-72 pb-s13 flex gap-s10">
+    {% if menu %}
+      <div class="w-s13 flex-none">
+        <ul>
+          {% for topLevelLink in linklists[menu].links %}
+            <li class="sidebar-link top-level">
+              {% if current == topLevelLink.handle %}
+                <a href="{{ topLevelLink.url }}" class="faux-p-sm font-bold">{{ topLevelLink.title }}</a>
+              {% else %}
+                <a href="{{ topLevelLink.url }}" class="faux-p-sm font-light">{{ topLevelLink.title }}</a>
+              {% endif %}
+              {% if topLevelLink.links != blank and topLevel == topLevelLink.handle %}
+                <ul class="mt-0">
+                  {% for secondLevelLink in topLevelLink.links %}
+                    <li class="pl-s4 sidebar-link second-level">
+                      {% if current == secondLevelLink.handle %}
+                        <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-bold">{{ secondLevelLink.title }}</a>
+                      {% else %}
+                        <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-light">{{ secondLevelLink.title }}</a>
+                      {% endif %}
                     </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-            <div id="filtered-collection-grid" data-url="{{ collection.url }}" data-section="{{ section.id }}" class="grid grid-cols-3 gap-s10 flex-1">
-                {% for product in collection.products %}
-                    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}">
-                        <button class="flex-1 w-full relative text-left">
-                            {% assign productBadgeType = null %}
-                            {% for tag in product.tags %}
-                                {% if badgeTags contains tag %}
-                                    {% assign productBadgeType = tag %}
-                                {% endif %}
-                            {% endfor %}
-                            {% if productBadgeType %}
-                                <div class="badge {{ productBadgeType | split: " " | join: "" }}">
-                                    {% if productBadgeType == "best seller" %}
-                                        {% render "best-seller-star" %}
-                                    {% endif %}
-                                    <p class="faux-h6 mr-[-2px]">
-                                        {{ productBadgeType | uppercase }}
-                                    </p>
-                                </div>
-                            {% endif %}
-                            <div>
-                                {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
-                            </div>
-                            <div class="mt-s6">
-                                <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
-                                {% comment %} <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p> {% endcomment %}
-                                <p class="mt-s5">${{ product.price | money_without_currency }}</p>
-                                <div class="h-s6 flex items-center gap-s1 mt-s3">
-                                    {% render 'product-colors', product: product, size: 'sm', preview: true %}
-                                </div>
-                            </div>
-                        </button>
-                    </modal-opener>
-                    {% render 'quick-shop-modal', product: product %}
-                {% endfor %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <div id="filtered-collection-grid" data-url="{{ collection.url }}" data-section="{{ section.id }}" class="grid grid-cols-3 gap-s10 flex-1">
+      {% for product in collection.products %}
+        <a class="product-tile flex-1 w-full relative text-left" href="{{ product.url }}" id="product-{{ product.id }}">
+          {% assign productBadgeType = null %}
+          {% for tag in product.tags %}
+            {% if badgeTags contains tag %}
+              {% assign productBadgeType = tag %}
+            {% endif %}
+          {% endfor %}
+          {% if productBadgeType %}
+            <div class="badge {{ productBadgeType | split: " " | join: "" }}">
+              {% if productBadgeType == "best seller" %}
+                {% render "best-seller-star" %}
+              {% endif %}
+              <p class="faux-h6 mr-[-2px]">
+                {{ productBadgeType | uppercase }}
+              </p>
             </div>
-            <script id="collection-data" type="application/json">
-                {{ collection.products | json }}
-            </script>
+          {% endif %}
+          <div class="relative">
+            {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
+            <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2" style="transform:translateX(-50%)">
+              <button class="btn btn--sm inline-block">Quick Shop</button>
+            </modal-opener>
+          </div>
+          <div class="mt-s6">
+            <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
+            {% comment %}
+              <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
+            {% endcomment %}
+            <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+            <div class="h-s6 flex items-center gap-s1 mt-s3">
+              {% render 'product-colors', product: product, size: 'sm', preview: true %}
+            </div>
+          </div>
+        </a>
+        {% render 'quick-shop-modal', product: product %}
+      {% endfor %}
     </div>
+    <script id="collection-data" type="application/json">
+      {{ collection.products | json }}
+    </script>
+  </div>
 </div>
 
 {% schema %}
-{
-  "name": "t:sections.main-collection-product-grid.name",
-  "class": "section",
-  "settings": [
-    {
-      "type": "range",
-      "id": "products_per_page",
-      "min": 8,
-      "max": 24,
-      "step": 4,
-      "default": 16,
-      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "default": 4,
-      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_quick_add",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_filtering",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
-    },
-    {
-      "type": "select",
-      "id": "filter_type",
-      "options": [
-        {
-          "value": "horizontal",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
-        },
-        {
-          "value": "vertical",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
-        }
-      ],
-      "default": "horizontal",
-      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
-      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sorting",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
-    }
-  ]
-}
+  {
+    "name": "t:sections.main-collection-product-grid.name",
+    "class": "section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "min": 8,
+        "max": 24,
+        "step": 4,
+        "default": 16,
+        "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+      },
+      {
+        "type": "range",
+        "id": "columns_desktop",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 4,
+        "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          }, {
+            "value": "portrait",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          }, {
+            "value": "square",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          }
+        ],
+        "default": "adapt",
+        "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      }, {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": false,
+        "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+      }, {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "default": false,
+        "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+      }, {
+        "type": "checkbox",
+        "id": "show_rating",
+        "default": false,
+        "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+        "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+      }, {
+        "type": "checkbox",
+        "id": "enable_quick_add",
+        "default": false,
+        "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
+      }, {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+      }, {
+        "type": "checkbox",
+        "id": "enable_filtering",
+        "default": true,
+        "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+        "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+      }, {
+        "type": "select",
+        "id": "filter_type",
+        "options": [
+          {
+            "value": "horizontal",
+            "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+          }, {
+            "value": "vertical",
+            "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+          }, {
+            "value": "drawer",
+            "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+          }
+        ],
+        "default": "horizontal",
+        "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+        "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+      }, {
+        "type": "checkbox",
+        "id": "enable_sorting",
+        "default": true,
+        "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+      }, {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
+      }, {
+        "type": "select",
+        "id": "columns_mobile",
+        "default": "2",
+        "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+        "options": [
+          {
+            "value": "1",
+            "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+          }, {
+            "value": "2",
+            "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+          }
+        ]
+      }, {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ]
+  }
 {% endschema %}

@@ -39,7 +39,7 @@
                                         </div>
                                     {% elsif column.type == "feature-column" %}
                                         <div class="menu-column feature to-lg:hidden">
-                                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px]"/>
+                                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px] w-full"/>
                                             <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
                                         </div>
                                     {% endif %}

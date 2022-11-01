@@ -525,7 +525,8 @@ class ModalOpener extends HTMLElement {
     const button = this.querySelector('button');
 
     if (!button) return;
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
       const modal = document.querySelector(this.getAttribute('data-modal'));
       if (modal) modal.show(button);
     });
@@ -880,6 +881,9 @@ class VariantSelects extends HTMLElement {
             if (price) price.classList.remove('visibility-hidden');
             this.toggleAddButton(!this.currentVariant.available, "Sold Out", !this.currentVariant.available);
         });
+    }
+    else{
+
     }
 }
 

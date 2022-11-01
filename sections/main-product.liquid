@@ -5,8 +5,8 @@
   class="w-full px-72 bg-black-50"
   data-section="{{ section.id }}"
 >
-    <div class="breadcrumb pt-s8 pb-s9">Apparel > Mens > Tops > {{ product.title }}</div>
-    <div class="product flex items-start gap-s10 px-36 pb-s12 md:py-s13 max-w-content-lg mx-auto">
+    {% render 'breadcrumb' %}
+    <div class="product flex items-start gap-s10 px-36 pb-s12 md:pb-s13 max-w-content-lg mx-auto">
         <div class="images flex-1">
             {% if featuredImage %}
                 <img
@@ -45,14 +45,6 @@
             <variant-radios class="block relative mt-s8 " data-section="{{ section.id }}" data-url="{{ product.url }}" data-product-page="true">
                 <fieldset class="flex gap-s2 pt-s6">
                     {% render 'product-colors', product: product, preview: false %}
-                    {% for option in product.options_with_values %}
-                        {% if option.name == "Color" %}
-                            {% for optionValue in option.values %}
-                                <input type="radio" name="Color" value="{{ optionValue | escape }}" id="color-radio-{{ product.id }}-{{ forloop.index }}" class="color-selector" {% if currentVariant.options contains optionValue %}checked{% endif %}/>
-                                <label class="form-control absolute top-0 left-0 faux-p-xs text-black-700" for="color-radio-{{ product.id }}-{{ forloop.index }}">{{ optionValue }}</label>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
                 </fieldset>
                 <fieldset class="flex justify-start gap-s4 mt-s6">
                     {% for option in product.options_with_values %}

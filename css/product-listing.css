@@ -7,3 +7,13 @@ select.filter, select.sort {
     width:150px;
     padding: 4px 0;
 }
+
+/* tiles */
+.product-tile:hover modal-opener.quick-shop-opener{
+    display:block;
+}
+
+
+modal-opener.quick-shop-opener{
+    display:none;
+}
