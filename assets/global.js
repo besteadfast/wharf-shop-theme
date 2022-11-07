@@ -946,3 +946,49 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+/* search */
+
+function toggleSearchMode(e){
+    const nav = document.querySelector("nav")
+    const search = document.querySelector("nav .search");
+    const searchInput = document.querySelector("nav .search input");
+    nav.classList.toggle("search-mode");
+    if(nav.classList.contains("search-mode")){
+        search.style.position = "absolute";
+        search.style.right = "0px";
+        search.style.margin = "0px calc(226px + 72px)";
+        search.style.width = "calc(100vw - 452px - 144px )";
+        searchInput.focus();
+    }
+    else{
+        search.style.width = "40px";
+        searchInput.blur();
+        setTimeout(() => {
+            search.style.cssText = "";
+            // search.style.position = "static";
+            // search.style.margin = "0px";
+        }, 1000);
+    }
+
+}
+
+const searchElts = document.querySelectorAll("input.search-input")
+searchElts.forEach( (searchInput) => {
+    searchInput.addEventListener("keyup", (e) => {
+        if(e.key == "Enter"){
+            window.location.href = `/search?q=${e.target.value}`
+        }
+    })
+})
+
+const searchSubmit = document.querySelector("button.search-submit")
+searchSubmit.addEventListener("click", (e) => {
+    const searchInput = e.target.parentElement.querySelector("input.search-input");
+    window.location.href = `/search?q=${searchInput.value}`;
+})
+
+/*    position:absolute;
+    padding-left:72px !important;
+    margin-right: 288px !important;
+*/

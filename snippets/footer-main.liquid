@@ -39,9 +39,9 @@
             <a href="/pages/privacy-policy" class="text-black-500 faux-p-xs shrink-0">Privacy Policy</a>
         </div>
         <div class="h-s6 flex gap-s4 text-primary-800">
-            {% render '24-logo-facebook-simple' %}
-            {% render '24-logo-linkedin-simple' %}
-            {% render '24-logo-twitter' %}
+            <a href="{{ settings.social_facebook_link }}">{% render '24-logo-facebook-simple' %}</a>
+            <a href="{{ settings.social_linkedin_link }}">{% render '24-logo-linkedin-simple' %}</a>
+            <a href="{{ settings.social_twitter_link }}">{% render '24-logo-twitter' %}</a>
         </div>
         <div class="flex-1 flex justify-end ">
             <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store">

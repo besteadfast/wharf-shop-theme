@@ -1,23 +1,29 @@
-{% comment %}
-    fullbreadcrumb = ""
-    filter product collections for top level collections
-    filter product collections for second level collections
-    filter product for third level collections
-    if top level collection
-        render link
-        if second level collection with toplevel collection in name
-            render link
-            if third level collection with second level collection in name
-                render link
+{%- liquid
+    assign topLevelOptions = "apparel,objects" | split: ","
+    assign productCollections = product.collections
+    for i in product.collections
+        if topLevelOptions contains i.handle
+            assign topLevel = i.title
+        endif
+    endfor
+    if topLevel
+        for linklist in linklists
+            if linklist.handle == topLevel
+                for link in linklist.links
+                    for colleciton in product.collections
+                    endfor
+                endfor
+            endif
+        endfor
+    endif
+%}
 
-
-{% endcomment %}
 <div class="flex pt-s8 pb-s9 text-black-400">
-    <a class="faux-p-xs ">Apparel</a>
-    {% render '8-right', class: "text-black-200 mx-s2" %}
-    <a class="faux-p-xs ">Mens</a>
-    {% render '8-right', class: "text-black-200 mx-s2" %}
-    <a class="faux-p-xs ">Tops</a>
-    {% render '8-right', class: "text-black-200 mx-s2" %}
-    <a class="faux-p-xs text-black-500">{{ product.title }}</a>
+  <a class="faux-p-xs ">{{ topLevel }}</a>
+  {% render '8-right', class: "text-black-200 mx-s2" %}
+  <a class="faux-p-xs ">Mens</a>
+  {% render '8-right', class: "text-black-200 mx-s2" %}
+  <a class="faux-p-xs ">Tops</a>
+  {% render '8-right', class: "text-black-200 mx-s2" %}
+  <a class="faux-p-xs text-black-500">{{ product.title }}</a>
 </div>

@@ -1,4 +1,5 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
 {% assign currentVariant = product.selected_or_first_available_variant %}
 <section
   id="MainProduct-{{ section.id }}"
@@ -110,6 +111,32 @@
                         <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $75+</p>
                         {%- endform -%}
                     </product-form>
+            <div class="mt-s10">
+                <p class="faux-p-sm text-black-800">{{ product.description }}</p>
+            </div>
+            <div class="faq__accordion mt-s10">
+                <ul class="accordion-items list-none accordion">
+                    {% assign temp = "1,2,3,4" | split: "," %}
+                    {% for i in temp %}
+                        <li class="accordion__item accordion__item">
+                            <button aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="accordion__trigger ">
+                                <h2 class="accordion__heading faux-p-sm text-black-800">Technical Specifications</h2>
+                                {% render "12-down", class: "text-black-700 mx-s2", strokeWidth:"1" %}
+                            </button>
+                            <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="accordion__content-wrapper content-dependant" >
+                                <p class="before:hidden after:hidden pb-s7">KardiaMobile® 6L with KardiaCare is compatible with most popular phones and tablets. To use your Kardia device, <b>you must download the Kardia app on a compatible device</b> running at least Apple iOS 10.3.3, or at least Android OS 6.0.</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="share flex justify-between items-center py-s7">
+                <p class="faux-p-sm text-black-700">Share</p>
+                <div class="text-black-400 flex gap-s3">
+                    <a href="{{ settings.social_facebook_link }}" class="hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
+                    <a href="{{ settings.social_twitter_link }}" class="hover:text-black-600">{% render '16-logo-twitter' %}</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -119,14 +146,24 @@
   "name": "Main Product",
   "tag": "section",
   "class": "section",
+  "settings": [
+    {
+        "type": "checkbox",
+        "id": "size-guide",
+        "label": "Size Guide Link"
+    }
+  ],
   "blocks": [
     {
-      "type": "@app"
-    },
-    {
-      "type": "buy_buttons",
-      "name": "Buy Buttons",
-      "limit": 1
+        "name": "Accordion Item",
+        "type": "accordion-item",
+        "settings": [
+            {
+                "type": "richtext",
+                "id":"accordion-content",
+                "label": "Accordion Item Content"
+            }
+        ]
     }
   ]
 }

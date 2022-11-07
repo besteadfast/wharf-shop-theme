@@ -2,6 +2,7 @@ let accordionItems = document.querySelectorAll("button.accordion__trigger");
 let currOpenId = null;
 accordionItems.forEach( function (element, id) {
     element.addEventListener("click", function() {
+        console.log("event triggered")
         //if other acc is open, close it
         if(currOpenId && currOpenId !== this.id){
             let open = document.querySelector("#" + currOpenId)

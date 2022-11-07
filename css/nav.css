@@ -27,8 +27,23 @@ html {
         @apply w-full;
     }
 
+    .menu__item.level--1 .menu__link{
+        @apply flex justify-between px-s5 py-s6;
+    }
+
     .menu-column.link-list{
-        @apply w-full px-s8;
+        @apply w-full px-s8 text-black-600;
+    }
+
+    .dropdown__list--level-2{
+        @apply pl-s5;
+    }
+
+    .dropdown__link--level-1{
+        @apply block pt-s3 pb-s6;
+    }
+    .dropdown__link--level-2{
+        @apply block pt-s3 pb-s6;
     }
 }
 
@@ -93,7 +108,7 @@ html {
 /* search animation */
 
 nav .search-hide{
-    transition: opacity .5s;
+    transition: opacity .3s;
 }
 
 nav.search-mode .search-hide{
@@ -107,17 +122,21 @@ nav .search{
 }
 
 nav.search-mode .search{
-    position: absolute;
     width: calc(100% - 72px);
-    padding-left:72px !important;
-    padding-right: 72px !important;
+    z-index:100;
 }
 
 nav .search input{
     width:0px;
+    opacity:0;
     flex-grow: 1;
-    @apply border-black-500 border-b-2;
+    transition: margin-left .8s, opacity .8s;
 }
+nav.search-mode .search input{
+    margin-left: 24px;
+    opacity:1;
+}
+
 
 nav.search-mode .search input{
 }

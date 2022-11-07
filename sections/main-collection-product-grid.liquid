@@ -40,7 +40,8 @@
   {% endif %}
   <div class="flex {% if collection.image %}justify-end{% else %}justify-between{% endif %} w-full py-s10 px-72">
     {% unless collection.image %}
-      <h1 class="faux-h3 pt-[6px]">{{ currentTitle }}</h1>
+      <h1 class="faux-h3 pt-[6px]">{{ page.title }}</h1>
+      {{ search }}
     {% endunless %}
     <div id="filtered-collection-filters" class="flex gap-s6">
       <label for="color" class="relative flex items-center text-black-800">
@@ -76,7 +77,7 @@
               {% if current == topLevelLink.handle %}
                 <a href="{{ topLevelLink.url }}" class="faux-p-sm font-bold">{{ topLevelLink.title }}</a>
               {% else %}
-                <a href="{{ topLevelLink.url }}" class="faux-p-sm font-light">{{ topLevelLink.title }}</a>
+                <a href="{{ topLevelLink.url }}" class="faux-p-sm font-light hover:font-bold transition-all">{{ topLevelLink.title }}</a>
               {% endif %}
               {% if topLevelLink.links != blank and topLevel == topLevelLink.handle %}
                 <ul class="mt-0">
@@ -85,7 +86,7 @@
                       {% if current == secondLevelLink.handle %}
                         <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-bold">{{ secondLevelLink.title }}</a>
                       {% else %}
-                        <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-light">{{ secondLevelLink.title }}</a>
+                        <a href="{{ secondLevelLink.url }}" class="faux-p-sm font-light hover:font-bold transition-all">{{ secondLevelLink.title }}</a>
                       {% endif %}
                     </li>
                   {% endfor %}
