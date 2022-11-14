@@ -2,8 +2,6 @@
 <script src="{{ 'collection-filter.js' | asset_url }}" defer="defer"></script>
 
 
-{% assign badgeTags = "new,best seller,sale" | split: "," %}
-
 {% liquid
     assign sidebar_menus = 'apparel,objects,featured' | split: ','
     for linklist in linklists
@@ -39,11 +37,14 @@
     </div>
   {% endif %}
   <div class="flex {% if collection.image %}justify-end{% else %}justify-between{% endif %} w-full py-s10 px-72">
-    {% unless collection.image %}
-      <h1 class="faux-h3 pt-[6px]">{{ page.title }}</h1>
-      {{ search }}
-    {% endunless %}
-    <div id="filtered-collection-filters" class="flex gap-s6">
+    <div class="heading flex justify-between items-center to-lg:w-full">
+      {% unless collection.image %}
+        <h1 class="faux-h3 pt-[6px]">{{ currentTitle }}</h1>
+        {{ search }}
+      {% endunless %}
+      <button class="btn btn--sm lg:hidden capitalize tracking-0">Filter & Sort</button>
+    </div>
+    <div id="filtered-collection-filters" class="flex gap-s6 to-lg:hidden">
       <label for="color" class="relative flex items-center text-black-800">
         <select class="filter" name="color" data-filter="Color">
           <option selected disabled value="color">Color</option>
@@ -99,41 +100,7 @@
     {% endif %}
     <div id="filtered-collection-grid" data-url="{{ collection.url }}" data-section="{{ section.id }}" class="grid grid-cols-3 gap-s10 flex-1">
       {% for product in collection.products %}
-        <a class="product-tile flex-1 w-full relative text-left" href="{{ product.url }}" id="product-{{ product.id }}">
-          {% assign productBadgeType = null %}
-          {% for tag in product.tags %}
-            {% if badgeTags contains tag %}
-              {% assign productBadgeType = tag %}
-            {% endif %}
-          {% endfor %}
-          {% if productBadgeType %}
-            <div class="badge {{ productBadgeType | split: " " | join: "" }}">
-              {% if productBadgeType == "best seller" %}
-                {% render "best-seller-star" %}
-              {% endif %}
-              <p class="faux-h6 mr-[-2px]">
-                {{ productBadgeType | uppercase }}
-              </p>
-            </div>
-          {% endif %}
-          <div class="relative">
-            {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
-            <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2" style="transform:translateX(-50%)">
-              <button class="btn btn--sm inline-block">Quick Shop</button>
-            </modal-opener>
-          </div>
-          <div class="mt-s6">
-            <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
-            {% comment %}
-              <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
-            {% endcomment %}
-            <p class="mt-s5">${{ product.price | money_without_currency }}</p>
-            <div class="h-s6 flex items-center gap-s1 mt-s3">
-              {% render 'product-colors', product: product, size: 'sm', preview: true %}
-            </div>
-          </div>
-        </a>
-        {% render 'quick-shop-modal', product: product %}
+        {% render 'product-card', product: product %}
       {% endfor %}
     </div>
     <script id="collection-data" type="application/json">

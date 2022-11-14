@@ -1,28 +1,28 @@
-.accordion__item{
+.faq__accordion .accordion__item{
     --tw-border-opacity:1;
     border-color:rgb(230 230 230/var(--tw-border-opacity));
     border-top-width:3px
 }
 
-.accordion__item:last-child{
+.faq__accordion .accordion__item:last-child{
     border-bottom-width:3px
 }
 
-.accordion__trigger{
+.faq__accordion .accordion__trigger{
     align-items:flex-start;
     display:flex;
     justify-content:space-between;
     padding-bottom:32px;
     padding-top:32px;
-    width:100%
+    width:100%;
 }
 @media (min-width:1024px){
-    .accordion__trigger{
+    .faq__accordion .accordion__trigger{
         padding-bottom:32px;
         padding-top:32px
     }
 }
-.accordion__heading{
+.faq__accordion .accordion__heading{
     text-align:left;
 }
 
@@ -30,16 +30,16 @@
     overflow:hidden
 }
 
-.accordion__content{
+.faq_accordion .accordion__content{
     padding-bottom:24px;
     padding-top:4px
 }
 
 @media (min-width:1024px){
-    .accordion__content{padding-bottom:32px}
+    .faq_accordion .accordion__content{padding-bottom:32px}
 }
 
-.accordion__content--flex-item{
+.faq__accordion .accordion__content--flex-item{
     width:410px;
     text-align:center;
 }
@@ -48,11 +48,11 @@
     display:none;
 }
 
-#app accordion__content p + p {
+#app .faq__accordion accordion__content p + p {
     margin-top:1rem;
 }
 
-#app .accordion__content-wrapper {
+#app .faq__accordion .accordion__content-wrapper {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
@@ -68,4 +68,12 @@ svg path{
 
 .accordion__trigger_active svg path.right {
   d: path("M1 11L11 1");
+}
+
+@media (max-width:1023px){
+    #app nav .accordion__content-wrapper{
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
 }

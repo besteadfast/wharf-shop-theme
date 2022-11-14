@@ -8,7 +8,7 @@
 
   {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
 
-  <div class="product flex">
+  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       <media-gallery
         id="MediaGallery-{{ section.id }}"
@@ -431,8 +431,7 @@
                     {{ block.shopify_attributes }}
                   >
                     {%- for option in product.options_with_values -%}
-                      <fieldset class="js product-
-                      __input">
+                      <fieldset class="js product-form__input">
                         <legend class="form__label">{{ option.name }}</legend>
                         {%- for value in option.values -%}
                           <input
@@ -661,7 +660,7 @@
         </a>
       </div>
     </div>
-    {# {%- if section.settings.media_position == 'right' -%}
+    {%- if section.settings.media_position == 'right' -%}
       <div class="grid__item product__media-wrapper small-hide">
         <media-gallery
           id="MediaGallery-{{ section.id }}-right"
@@ -866,7 +865,7 @@
           {%- endif -%}
         </media-gallery>
       </div>
-    {%- endif -%} #}
+    {%- endif -%}
   </div>
 
   <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">

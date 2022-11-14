@@ -1,10 +1,10 @@
 html {
-    --nav-height-desktop: 104px;
-    --nav-height-mobile: 0px;
+    --nav-height: 104px;
+    --banner-height: 44px;
 }
 
 .nav-wrapper{
-    height: var(--nav-height-desktop);
+    height: var(--nav-height);
     @apply flex items-center max-w-content-lg mx-auto;
 }
 
@@ -14,12 +14,20 @@ html {
         display:none;
     }
 
-    .nav-primary.container.active{
-        display:inline-block;
+    body.nav-active{
+        overflow:hidden;
+    }
+
+    body.nav-active .nav-primary.container{
+        display:flex;
+        flex-direction: column;
         position:absolute;
         top: calc(100% + 1px);
         left:0;
         width:100vw;
+        height: calc(100vh - var(--nav-height) - var(--banner-height));
+        max-height: calc(100vh - var(--nav-height) - var(--banner-height));
+        overflow: scroll;
         background-color:white;
     }
 

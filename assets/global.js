@@ -444,7 +444,8 @@ class ModalDialog extends HTMLElement {
     const carousel = this.querySelector(".carousel");
     const images = this.querySelectorAll(".carousel-img");
     carousel.dataset.total = carousel.querySelectorAll("img").length;
-    carousel.dataset.curr = 0
+    carousel.dataset.curr = 0;
+
     this.querySelectorAll('.carousel-control').forEach((elt) => {
         if (elt.dataset.action == "prev") {elt.disabled = true;}
         elt.addEventListener(
@@ -461,7 +462,9 @@ class ModalDialog extends HTMLElement {
                         carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
                 }
                 images.forEach((img) => {
-                    console.log(img.style.left);
+                    if(Number(img.dataset.index) === Number(carousel.dataset.curr) + 1){
+                        img.removeAttribute("loading");
+                    }
                     img.style.left = `${100 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}%`;
                 });
 
@@ -503,6 +506,8 @@ class ModalDialog extends HTMLElement {
     const popup = this.querySelector('.template-popup');
     document.body.classList.add('overflow-hidden');
     this.setAttribute('open', '');
+    console.log(this.querySelector(".carousel-img[data-index='1']"));
+    this.querySelector(".carousel-img[data-index='1']").removeAttribute('loading');
     if (popup) popup.loadContent();
     trapFocus(this, this.querySelector('[role="dialog"]'));
     window.pauseAllMedia();
@@ -872,9 +877,17 @@ class VariantSelects extends HTMLElement {
         .then((response) => response.text())
         .then((responseText) => {
             const html = new DOMParser().parseFromString(responseText, 'text/html')
-            const destination = document.getElementById(`price-${this.dataset.section}`);
-            const source = html.getElementById(`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-            if (source && destination) destination.innerHTML = source.innerHTML;
+
+            //rerender price
+            const priceDestination = document.getElementById(`price-${this.dataset.section}`);
+            const priceSource = html.getElementById(`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
+            if (priceSource && priceDestination) priceDestination.innerHTML = priceSource.innerHTML;
+
+            //rerender images
+            const imagesDestination = document.getElementById(`images-${this.dataset.section}`);
+            const imagesSource = html.getElementById(`images-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
+            if (imagesSource && priceDestination) imagesDestination.innerHTML = imagesSource.innerHTML;
+
 
             const price = document.getElementById(`price-${this.dataset.section}`);
 
@@ -937,7 +950,6 @@ class VariantRadios extends VariantSelects {
   }
 
   updateOptions() {
-    console.log('here')
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
     this.options = fieldsets.map((fieldset) => {
       return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
@@ -983,10 +995,13 @@ searchElts.forEach( (searchInput) => {
 })
 
 const searchSubmit = document.querySelector("button.search-submit")
-searchSubmit.addEventListener("click", (e) => {
-    const searchInput = e.target.parentElement.querySelector("input.search-input");
+if(searchSubmit){
+    searchSubmit.addEventListener("click", (e) => {
+    const searchInput =
+        e.target.parentElement.querySelector("input.search-input");
     window.location.href = `/search?q=${searchInput.value}`;
-})
+    });
+}
 
 /*    position:absolute;
     padding-left:72px !important;

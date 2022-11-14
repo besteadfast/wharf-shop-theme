@@ -1,64 +1,86 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
 
 <nav class="px-s5 px-36 xl:px-72">
   <div class="nav-wrapper">
-    <button class="mobile-toggle flex-1 lg:hidden" onclick="document.querySelector('.nav-primary').classList.toggle('active')">
+    <button class="mobile-toggle flex-1 lg:hidden" onclick="body.classList.toggle('nav-active')">
       {% render '24-menu-8' %}
     </button>
-    <ul class="nav-primary container search-hide  list-none">
-      {% assign menuItems = "apparel,objects,featured" | split: ',' %}
-      {% for menuItem in menuItems %}
-        <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base">
-          <a class="menu__link ">
-            <span class="to-lg:hidden">{{ menuItem | capitalize }}</span>
-            <span class="lg:hidden faux-p-lg">{{ menuItem | capitalize }}</span>
-            {% render '12-down', class: "text-primary-100 ml-s2" %}
-          </a>
-          <div class="menu__dropdown">
-            <div class="menu__columns">
-              {% for column in section.blocks %}
-                {% if column.settings.menu == menuItem %}
-                  {% if column.type == "link-list" %}
-                    <div class="menu-column link-list">
-                      <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
-                        {% for link in column.settings.linkList.links %}
-                          {% assign totalSublinks = link.links | size %}
-                          <li id="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
-                            <a href="{{ link.url }}" class="dropdown__link--level-1">
-                              <span class="to-lg:hidden">{{ link.title }}</span>
-                              <span class="lg:hidden faux-p-lg">{{ link.title }}</span>
-                            </a>
-                            {% if totalSublinks > 0 %}
-                              <ul class="dropdown__list--level-2 list-none">
-                                {% for link in link.links %}
-                                  <li class="dropdown__list-item--level-2">
-                                    <a href="{{ link.url }}" class="dropdown__link--level-2">
-                                      <span class="to-lg:hidden">{{ link.title }}</span>
-                                      <span class="lg:hidden faux-p-lg">{{ link.title }}</span>
-                                    </a>
-                                  </li>
-                                {% endfor %}
-                              </ul>
-                            {% endif %}
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  {% elsif column.type == "feature-column" %}
-                    <div class="menu-column feature to-lg:hidden">
-                      <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px] w-full"/>
-                      <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
-                    </div>
+    <div class="nav-primary container search-hide to-lg:flex-col ">
+      <ul class="to-lg:flex-1 lg:flex list-none accordion-items accordion">
+        {% assign menuItems = "apparel,objects,featured" | split: ',' %}
+        {% for menuItem in menuItems %}
+          <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item">
+            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger">
+              <span class="to-lg:hidden">{{ menuItem | capitalize }}</span>
+              <span class="lg:hidden faux-p-lg">{{ menuItem | capitalize }}</span>
+              {% render '12-down', class: "text-primary-100 ml-s2" %}
+            </a>
+            <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="menu__dropdown accordion__content-wrapper content-dependant">
+              <div class="menu__columns">
+                {% for column in section.blocks %}
+                  {% if column.settings.menu == menuItem %}
+                    {% if column.type == "link-list" %}
+                      <div class="menu-column link-list">
+                        <ul class="nav-primary dropdown_list--level-1 list-none ui-base">
+                          {% for link in column.settings.linkList.links %}
+                            {% assign totalSublinks = link.links | size %}
+                            <li id="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
+                              <a href="{{ link.url }}" class="dropdown__link--level-1 to-lg:hover:text-bold">
+                                <span class="to-lg:hidden">{{ link.title }}</span>
+                                <span class="lg:hidden faux-p-lg">{{ link.title }}</span>
+                              </a>
+                              {% if totalSublinks > 0 %}
+                                <ul class="dropdown__list--level-2 list-none">
+                                  {% for link in link.links %}
+                                    <li class="dropdown__list-item--level-2">
+                                      <a href="{{ link.url }}" class="dropdown__link--level-2">
+                                        <span class="to-lg:hidden">{{ link.title }}</span>
+                                        <span class="lg:hidden faux-p-lg">{{ link.title }}</span>
+                                      </a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    {% elsif column.type == "feature-column" %}
+                      <div class="menu-column feature to-lg:hidden">
+                        <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px] w-full"/>
+                        <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
+                      </div>
+                    {% endif %}
                   {% endif %}
-                {% endif %}
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-    <img class="search-hide w-[300px] xl:w-[350px] to-md:hidden" src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
-    <img class="w-[150px] md:hidden" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80" loading="lazy"/>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="flex gap-s5 p-s5 mt-s8 lg:hidden">
+        <div class="flex-1 flex items-end p-s5 h-[240px] bg-black-50">
+          <button class="btn w-full z-auto ">Women</button>
+        </div>
+      </div>
+      <div class="w-full flex justify-between px-s5 py-s7 mt-s10 bg-white lg:hidden">
+        <div class="flex gap-s5">
+          <a href="{{ settings.social_facebook_link }}">{% render '16-logo-facebook-simple' %}</a>
+          <a href="{{ settings.social_linkedin_link }}">{% render '16-logo-linkedin-simple' %}</a>
+          <a href="{{ settings.social_twitter_link }}">{% render '16-logo-twitter' %}</a>
+        </div>
+        <div>
+          <a href="/pages/help-and-faqs">Help + FAQs</a>
+        </div>
+      </div>
+    </div>
+    <a href="/" class="to-md:hidden search-hide">
+      <img class=" w-[300px] xl:w-[350px] " src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
+    </a>
+    <a href="/" class="md:hidden search-hide">
+      <img class="w-[150px]" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80" loading="lazy"/>
+    </a>
     <div class="flex-1 flex justify-end items-center">
       <div class="p-s2 search flex to-lg:hidden">
         <button id="searchButton" onclick="toggleSearchMode();">
@@ -68,9 +90,12 @@
       </div>
       <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide relative p-s2 ml-s5 cart-notification">
         <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
-        <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full">
-          <span id="cart-quantity-bubble" class="faux-p-xs text-white">{{ cart.items | size }}</span>
-        </div>
+        {% assign cart_count = cart.items | size %}
+        {% if cart_count > 0 %}
+          <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full">
+            <span id="cart-quantity-bubble" class="faux-p-xs text-white">{{ cart.items | size }}</span>
+          </div>
+        {% endif %}
       </a>
       <a class="btn btn--sm search-hide ml-[36px] to-xl:hidden" href="/checkout">
         Checkout

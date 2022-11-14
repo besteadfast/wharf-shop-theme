@@ -7,13 +7,13 @@
     /* -------------------------------------------------------- */
     /** text colors **/
     --btn-text: theme('colors.primary.800');
-    --btn-text-hover: theme('colors.white');
-    --btn-text-disabled: theme('colors.white');
+    --btn-text-hover: theme('colors.primary.800');
+    --btn-text-disabled: theme('colors.black.400');
 
     /** background colors **/
     --btn-bg: theme('colors.secondary.100');
     --btn-bg-hover: theme('colors.secondary.200');
-    --btn-bg-disabled: theme('colors.white');
+    --btn-bg-disabled: theme('colors.black.100');
     /* -------------------------------------------------------- */
 
     @apply
@@ -30,8 +30,12 @@
     color: var(--btn-text);
     background: var(--btn-bg);
     transition: all 0.3s ease, visibility 0ms;
-
 }
+
+#app .btn:hover{
+        color: var(--btn-text-hover);
+        background: var(--btn-bg-hover);
+    }
 
 
 
@@ -53,23 +57,32 @@
 
 /* types */
 
-/** inverse **/
-#app .btn--inverse{
-	/* -------------------------------------------------------- */
-	/** text colors **/
+#app .btn--filled-inverse{
 	--btn-text: theme('colors.white');
-	--btn-text-hover: theme('colors.white');
-	--btn-text-disabled: theme('colors.primary.900');
+	--btn-text-hover: theme('colors.secondary.100');
 
-	/** background colors **/
-	--btn-bg: theme('colors.primary.800');
-	--btn-bg-hover: theme('colors.primary.500');
-	--btn-bg-disabled: theme('colors.primary.700');
-	/* -------------------------------------------------------- */
+	--btn-bg: theme('colors.secondary.500');
+	--btn-bg-hover: theme('colors.secondary.600');
 }
 
-/**
-/no background **/
+#app .btn--dark{
+	--btn-text: theme('colors.white');
+	--btn-text-hover: theme('colors.white');
+
+	--btn-bg: theme('colors.primary.800');
+	--btn-bg-hover: theme('colors.primary.700');
+}
+
+#app .btn--dark-inverse{
+	--btn-text: theme('colors.primary.800');
+	--btn-text-hover: theme('colors.primary.800');
+
+	--btn-bg: theme('colors.white');
+	--btn-bg-hover: theme('colors.secondary.50');
+}
+
+
+/** no background **/
 #app .btn--borderless{
 	@apply
 		bg-transparent
@@ -82,10 +95,37 @@
     background-position: bottom left;
     background-size: 6px 6px;
     background-repeat: repeat-x;
+}
 
+#app .btn--borderless:before{
+    @apply w-full h-full absolute top-0 pb-s2 bg-transparent;
+    content:"";
+    opacity:0;
+    transition: opacity .3s ease;
+    background-image: radial-gradient(theme('colors.primary.800') 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom left;
+    background-size: 6px 6px;
+    background-repeat: repeat-x;
+}
 
-	&:focus,
-	&:hover{
-		@apply bg-transparent;
-	}
+#app .btn--borderless:hover {
+    @apply bg-transparent;
+    background-image: radial-gradient(theme('colors.secondary.300') 33%, rgba(255,255,255,0) 0%);
+    background-position: bottom left;
+    background-size: 6px 6px;
+    background-repeat: repeat-x;
+}
+
+#app .btn--borderless:hover:before {
+    opacity:1;
+}
+
+/* disabled states */
+
+#app .btn--dark:disabled{
+    --btn-bg: #b2b2b14D;
+    --btn-bg-hover: #b2b2b14D;
+
+    --btn-text: theme('colors.black.400');
+    --btn-text-hover: theme('colors.black.400');
 }

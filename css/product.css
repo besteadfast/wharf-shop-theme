@@ -50,3 +50,10 @@ input.size-selector:checked + label{
 button.carousel-control:disabled{
 
 }
+
+
+/* images */
+
+#app div.images img:where(:first-child,:last-child:nth-child(even)){
+    @apply row-span-2 col-span-2;
+}

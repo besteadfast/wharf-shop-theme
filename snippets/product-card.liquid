@@ -1,0 +1,36 @@
+<a class="product-tile flex-1 w-full relative text-left" href="{{ product.url }}" id="product-{{ product.id }}">
+  {% assign badgeTags = "new,best seller,sale" | split: "," %}
+  {% assign productBadgeType = null %}
+  {% for tag in product.tags %}
+    {% if badgeTags contains tag %}
+      {% assign productBadgeType = tag %}
+    {% endif %}
+  {% endfor %}
+  {% if productBadgeType %}
+    <div class="badge {{ productBadgeType | split: " " | join: "" }}">
+      {% if productBadgeType == "best seller" %}
+        {% render "best-seller-star" %}
+      {% endif %}
+      <p class="faux-h6 mr-[-2px]">
+        {{ productBadgeType | uppercase }}
+      </p>
+    </div>
+  {% endif %}
+  <div class="relative {% if image_bg %}bg-black-50{% endif %}">
+    {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
+    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2" style="transform:translateX(-50%)">
+      <button class="btn btn--sm inline-block">Quick Shop</button>
+    </modal-opener>
+  </div>
+  <div class="mt-s6">
+    <h3 class="faux-p-lg font-bold text-black-900">{{ product.title }}</h3>
+    {% comment %}
+      <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
+    {% endcomment %}
+    <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+    <div class="h-s6 flex items-center gap-s1 mt-s3">
+      {% render 'product-colors', product: product, size: 'sm', preview: true %}
+    </div>
+  </div>
+</a>
+{% render 'quick-shop-modal', product: product %}

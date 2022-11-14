@@ -51,8 +51,6 @@ if (!customElements.get('product-form')) {
             return;
           }
 
-          console.log(response)
-
           this.error = false;
           const quickAddModal = this.closest('quick-add-modal');
           if (quickAddModal) {

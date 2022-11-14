@@ -129,3 +129,6 @@ function updateSearchParams(updatedFilterKey, updatedFilterVal) {
 
     window.history.replaceState({}, "", url.toString());
 }
+
+
+/* mobile ui */

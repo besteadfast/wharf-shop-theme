@@ -1,12 +1,11 @@
 <div>
-  {% capture ctaContent %} {% section "sale-cta" %} {% endcapture %}
+  {% capture ctaContent %}
+    {% section "sale-cta" %}
+  {% endcapture %}
   {% assign ctaContent = ctaContent | replace: 'class="shopify-section"', 'class="shopify-section-nested"' %}
   {{ ctaContent }}
-</div>
+</div{"name":"footer"} {% schema %}
 
 
-{% schema %}
-  {
-    "name": "footer"
-  }
-{% endschema %}
+
+  {% endschema %}

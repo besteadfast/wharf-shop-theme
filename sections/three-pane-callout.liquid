@@ -1,54 +1,58 @@
 <div class="bg-primary-800 px-54 md:px-72 pt-s12 md:pt-s13 mb-s12 md:mb-s13">
-    <div class="relative bg-primary-800 max-w-[1020px] mx-auto text-white text-center">
-        <h2> {{ section.settings.heading }} </h2>
-        <h3 class="faux-p text-secondary-100 mt-[28px]"> {{ section.settings.subheading }} </h3>
-        <div class="flex to-sm:flex-col relative to-sm:max-w-[380px] to-sm:mx-auto w-full sm:h-[200px] md:h-[400px] lg:h-[620px] -bottom-s12 md:-bottom-s13 -mt-s9 md:-mt-[56px] gap-s6">
-            {% for block in section.blocks %}
-                <div class="flex-1 bg-primary-100 flex justify-center items-center relative">
-                    <img src="{{ block.settings.image | image_url }}" class="object-cover absolute w-full h-full object-cover"/>
-                    <span class="faux-h3 z-10 to-sm:h-[500px] to-sm:flex to-sm:items-center">{{ block.settings.label }}</span>
-                </div>
-            {% endfor %}
+  <div class="relative bg-primary-800 max-w-[1020px] mx-auto text-white text-center">
+    <h2>
+      {{ section.settings.heading }}
+    </h2>
+    <h3 class="faux-p text-secondary-100 mt-[28px]">
+      {{ section.settings.subheading }}
+    </h3>
+    <div class="flex to-sm:flex-col relative to-sm:max-w-[380px] to-sm:mx-auto w-full sm:h-[200px] md:h-[400px] lg:h-[620px] -bottom-s12 md:-bottom-s13 -mt-s9 md:-mt-[56px] gap-s6">
+      {% for block in section.blocks %}
+        <div class="flex-1 bg-primary-100 relative three-pane-item">
+          <a class="flex justify-center items-center w-full h-full absolute top-0 left-0 z-10 transition" href="/">
+            <span class="faux-h3 z-10 to-sm:h-[500px] to-sm:flex to-sm:items-center">{{ block.settings.label }}</span>
+          </a>
+          <img src="{{ block.settings.image | image_url }}" class="object-cover absolute w-full h-full object-cover z-0"/>
         </div>
-
+      {% endfor %}
     </div>
+
+  </div>
 </div>
 
 {% schema %}
-    {
-        "name": "three-pane-callout",
-        "max_blocks": 3,
-        "blocks": [
-            {
-            "name": "Pane",
-            "type": "pane",
-            "settings": [
-                {
-                "type": "image_picker",
-                "id": "image",
-                "label": "Image"
-                },
-                {
-                "type": "text",
-                "id": "label",
-                "label": "Label"
-                }
-            ]
-            }
-        ],
+  {
+    "name": "three-pane-callout",
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "name": "Pane",
+        "type": "pane",
         "settings": [
-            {
-                "type": "text",
-                "id": "heading",
-                "label": "Heading",
-                "default": "Shop By Activity"
-            },
-            {
-                "type": "text",
-                "id": "subheading",
-                "label": "Subheading",
-                "default": "Made for everyday memories. We have something for everyone."
-            }
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "label",
+            "label": "Label"
+          }
         ]
-    }
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Shop By Activity"
+      }, {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "Made for everyday memories. We have something for everyone."
+      }
+    ]
+  }
 {% endschema %}

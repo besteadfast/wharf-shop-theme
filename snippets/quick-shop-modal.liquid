@@ -3,7 +3,7 @@
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
             {% for image in product.images %}
-                <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-all carousel-img" style="left:calc(100% * {{ forloop.index0 }});" data-index="{{ forloop.index0 }}" width="300" height="450" loading="lazy" />
+                <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 }});" data-index="{{ forloop.index0 }}" width="300" height="450" loading="lazy" />
             {% endfor %}
             <button class="absolute left-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden carousel-control" data-action="prev">
                 {% render "24-left", class: "text-black-400" %}
@@ -14,7 +14,7 @@
         </div>
         <div class="w-[236px]">
             <p class="faux-p-lg text-black-900 mt-s7">{{ product.title }}</p>
-            <p id="price-{{ section.id }}-{{ product.id}}" class="faux-p-sm text-black-900 mt-s5">
+            <p id="price-{{ section.id }}-{{ product.id }}" class="faux-p-sm text-black-900 mt-s5">
                 {% if currentVariant.compare_at_price and currentVariant.compare_at_price > currentVariant.price %}
                     <span class="text-black-400 line-through">{{ currentVariant.compare_at_price | money }}</span>
                     <span class="text-red-500 ml-s2">{{ currentVariant.price | money }}</span>

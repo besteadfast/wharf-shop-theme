@@ -1,0 +1,61 @@
+.rich-text{
+    @apply text-black-700;
+}
+
+.rich-text :is(h4){
+    @apply text-primary-800;
+}
+
+.rich-text :is(h5){
+    @apply text-black-900;
+}
+.rich-text :is(h6){
+    @apply text-secondary-500;
+}
+
+
+#app .rich-text ul li:before{
+  content: "";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  position: absolute ;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: -32px; /* Also needed for space (tweak if needed) */
+  margin-top: 0px;
+  @apply bg-black-400;
+}
+
+#app .rich-text ol li{
+    counter-increment: count 1;
+}
+
+#app .rich-text ol li:before{
+  content: counter(count, decimal) '.';;  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  font-size:18px;
+  font-weight:bold;
+  display: inline-block;
+  position: absolute;
+  width: 1rem;
+  margin-top:0px;
+  margin-left: -32px;
+  padding-right: 8px;
+  @apply text-black-400;
+}
+
+#app .rich-text :is(ul, ol) li{
+    @apply ml-s7;
+}
+
+#app .rich-text ul li:not(:first-child){
+    @apply mt-s7;
+}
+
+.rich-text p:first-child:before{
+    margin-top: 0px;
+}
+
+.rich-text p:last-child:after{
+    margin-bottom:0px;
+}

@@ -35,7 +35,7 @@ exports.colors = {
     200: "var(--secondary-200)",
     300: "var(--secondary-300)",
     400: "var(--secondary-400)",
-    500: "var(--secondary-500)", //*
+    500: "var(--secondary-500)",
     600: "var(--secondary-600)",
     700: "var(--secondary-700)",
     800: "var(--secondary-800)",

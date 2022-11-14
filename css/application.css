@@ -7,6 +7,7 @@
 @import "./bg-cta";
 @import "./cart-drawer";
 @import "./accordion";
+@import "./rich-text";
 /* purgecss start ignore */
 @tailwind base;
 /* purgecss end ignore */
