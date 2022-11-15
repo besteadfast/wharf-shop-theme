@@ -1,19 +1,22 @@
 <div class="py-s4 px-s6 lg:px-[36px] flex justify-center md:justify-between items-center bg-primary-800 text-secondary-100 lg:gap-s7">
-    <div class="flex-1 flex gap-s3 items-center text-secondary-600 to-md:hidden">
-        <a href="{{ settings.social_facebook_link }}">{% render '16-logo-facebook-simple' %}</a>
-        <a href="{{ settings.social_linkedin_link }}">{% render '16-logo-linkedin-simple' %}</a>
-        <a href="{{ settings.social_twitter_link }}">{% render '16-logo-twitter' %}</a>
+  <div class="flex-1 flex gap-s3 items-center text-secondary-600 to-md:hidden">
+    <a href="{{ settings.social_facebook_link }}">{% render '16-logo-facebook-simple' %}</a>
+    <a href="{{ settings.social_instagram_link }}">{% render '16-logo-instagram' %}</a>
+    <a href="{{ settings.social_tiktok_link }}">{% render '16-logo-tiktok' %}</a>
+    <a href="{{ settings.social_twitter_link }}">{% render '16-logo-twitter' %}</a>
+  </div>
+  <div class="flex items-center">
+    <div class="mr-s4 text-secondary-600">
+      {% render 'left-arrow' %}
     </div>
-    <div class="flex items-center">
-        <div class="mr-s4 text-secondary-600">
-            {% render 'left-arrow' %}
-        </div>
-        <p class="mt-0 faux-p-sm to-md:text-13 text-center">Banner announcement or ad with potential discount <b>CODENAME</b></p>
-        <div class="mt-0 ml-s4 rotate-180 text-secondary-600">
-            {% render 'left-arrow' %}
-        </div>
+    <p class="mt-0 faux-p-sm to-md:text-13 text-center">Banner announcement or ad with potential discount
+      <b>CODENAME</b>
+    </p>
+    <div class="mt-0 ml-s4 rotate-180 text-secondary-600">
+      {% render 'left-arrow' %}
     </div>
-    <div class="flex-1 flex justify-end items-center gap-s6 text-secondary-600 to-md:hidden">
-        <a href="/pages/help-and-faqs" class="to-lg:hidden">Help + FAQs</a>
-    </div>
+  </div>
+  <div class="flex-1 flex justify-end items-center gap-s6 text-secondary-600 to-md:hidden">
+    <a href="/pages/help-and-faqs" class="to-lg:hidden">Help + FAQs</a>
+  </div>
 </div>
