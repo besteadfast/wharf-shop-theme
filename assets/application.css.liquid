@@ -846,6 +846,40 @@ svg path{
   margin-bottom:0px;
 }
 
+.rich-text table{
+  margin-top: 24px;
+}
+
+.rich-text :is(table,th,td){
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(230 230 230 / var(--tw-border-opacity));
+  border-collapse: collapse;
+}
+
+.rich-text th,  .rich-text tr:first-child td{
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 230 230 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(34 34 34 / var(--tw-text-opacity));
+}
+
+.rich-text tr td:first-child{
+  --tw-text-opacity: 1;
+  color: rgb(34 34 34 / var(--tw-text-opacity));
+}
+
+.rich-text :is(th, td){
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.rich-text :is(th, td):not(:first-child){
+  text-align: center;
+}
+
 /* purgecss start ignore */
 
 /*
@@ -4746,16 +4780,6 @@ video {
   font-weight: 500;
   text-transform: capitalize;
   letter-spacing: 0;
-}
-
-#app .before\:hidden::before{
-  content: var(--tw-content);
-  display: none;
-}
-
-#app .after\:hidden::after{
-  content: var(--tw-content);
-  display: none;
 }
 
 #app .hover\:bg-secondary-50:hover{

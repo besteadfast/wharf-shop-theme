@@ -59,3 +59,28 @@
 .rich-text p:last-child:after{
     margin-bottom:0px;
 }
+
+.rich-text table {
+    @apply mt-s6;
+}
+
+.rich-text :is(table,th,td){
+    @apply border-black-100 border-[1px];
+    border-collapse: collapse;
+}
+
+.rich-text th, .rich-text tr:first-child td{
+    @apply bg-black-100 text-black-900;
+}
+
+.rich-text tr td:first-child{
+    @apply text-black-900;
+}
+
+.rich-text :is(th, td){
+    @apply px-s2 py-s1;
+}
+
+.rich-text :is(th, td):not(:first-child){
+    @apply text-center;
+}

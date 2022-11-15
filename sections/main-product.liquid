@@ -118,10 +118,12 @@
             <div class="mt-s10">
                 <p class="faux-p-sm text-black-800">{{ product.description }}</p>
             </div>
+            {% assign accordionCount = section.blocks | size %}
+            {% if accordionCount > 0 %}
             <div class="faq__accordion mt-s10">
                 <ul class="accordion-items list-none accordion">
                     {% for block in section.blocks %}
-                        <li class="accordion__item">
+                        <li class="accordion__item {{ block.type }}">
                             <button aria-controls="navAccordionContent{{ forloop.index }}" id="navAccordionBtn{{ forloop.index }}" class="accordion__trigger ">
                                 <h2 class="accordion__heading faux-p-sm text-black-800">
                                     {{ block.settings.heading }}
@@ -129,18 +131,23 @@
                                 {% render "12-down", class: "text-black-700 mx-s2", strokeWidth:"1" %}
                             </button>
                             <div id="navAccordionContent{{ forloop.index }}" aria-labelledby="navAccordionBtn{{ forloop.index }}" class="accordion__content-wrapper content-dependant" >
-                                <p class="before:hidden after:hidden pb-s7 rich-text">
-                                    {{ block.settings.accordion_content }}
-                                </p>
+                                <div class="pb-s7 rich-text">
+                                    {% if block.type == 'size-guide-accordion-item' %}
+                                        {{ block.settings.accordion_content.content }}
+                                    {% else %}
+                                        {{ block.settings.accordion_content}}
+                                    {% endif %}
+                                </div>
                             </div>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
             <div class="share flex justify-between items-center py-s7">
                 <p class="faux-p-sm text-black-700">Share</p>
                 <div class="text-black-400 flex gap-s3">
-                    <a href="{{ settings.social_facebook_link }}" class="hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: request.path | url_encode }}&src=sdkpreparse" class="fb-xfbml-parse-ignore hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
                     <a href="{{ settings.social_twitter_link }}" class="hover:text-black-600">{% render '16-logo-twitter' %}</a>
                 </div>
             </div>
@@ -162,8 +169,24 @@
   ],
   "blocks": [
     {
-        "name": "Accordion Item",
-        "type": "accordion-item",
+        "name": "Basic Accordion Item",
+        "type": "basic-accordion-item",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading"
+            },
+            {
+                "type": "richtext",
+                "id":"accordion_content",
+                "label": "Content"
+            }
+        ]
+    },
+    {
+        "name": "Size Guide Accordion Item",
+        "type": "size-guide-accordion-item",
         "settings": [
             {
                 "type": "text",
