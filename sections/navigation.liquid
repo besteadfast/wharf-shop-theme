@@ -10,13 +10,13 @@
       <ul class="to-lg:flex-1 lg:flex list-none accordion-items accordion">
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
-          <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item">
-            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger">
-              <span class="to-lg:hidden">{{ menuItem | capitalize }}</span>
+          <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item group">
+            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger hover:text-black-700">
+              <span class="to-lg:hidden transition-all duration-300 group-hover:text-secondary-500">{{ menuItem | capitalize }}</span>
               <span class="lg:hidden faux-p-lg">{{ menuItem | capitalize }}</span>
-              {% render '12-down', class: "text-primary-100 ml-s2" %}
+              {% render '12-down', class: "text-primary-100 ml-s2 transition-all group-hover:rotate-[180deg] group-hover:text-secondary-500" %}
             </a>
-            <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="menu__dropdown accordion__content-wrapper content-dependant">
+            <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="menu__dropdown accordion__content-wrapper content-dependant group-hover:block">
               <div class="menu__columns">
                 {% for column in section.blocks %}
                   {% if column.settings.menu == menuItem %}
@@ -26,7 +26,7 @@
                           {% for link in column.settings.linkList.links %}
                             {% assign totalSublinks = link.links | size %}
                             <li id="navLevel2Item{{ forloop.index }}" class="dropdown__list-item--level-1 {% if totalSublinks > 0 %}has-children{% endif %}">
-                              <a href="{{ link.url }}" class="dropdown__link--level-1 to-lg:hover:text-bold">
+                              <a href="{{ link.url }}" class="dropdown__link--level-1">
                                 <span class="to-lg:hidden">{{ link.title }}</span>
                                 <span class="lg:hidden faux-p-lg">{{ link.title }}</span>
                               </a>
@@ -47,9 +47,14 @@
                         </ul>
                       </div>
                     {% elsif column.type == "feature-column" %}
-                      <div class="menu-column feature to-lg:hidden">
-                        <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-[256px] w-full"/>
-                        <a href="{{ column.settings.linkDest }}" class="btn btn--borderless mt-s6">{{ column.settings.label }}</a>
+                      <div class="menu-column feature to-lg:hidden relative">
+                        <a href="{{ column.settings.linkDest }}" class="block">
+                          <div class="h-[256px] w-full overflow-hidden">
+                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-full w-full transition"/>
+                          </div>
+                          <div class="absolute top-0 left-0 h-[256px] w-full transition overlay"></div>
+                          <span class="btn btn--borderless mt-s6">{{ column.settings.label }}</span>
+                        </a>
                       </div>
                     {% endif %}
                   {% endif %}
@@ -84,12 +89,12 @@
     <div class="flex-1 flex justify-end items-center">
       <div class="p-s2 search flex to-lg:hidden">
         <button id="searchButton" onclick="toggleSearchMode();">
-          <img src="{{ '24-search.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
+          {% render '24-search', class: "text-primary-800 hover:text-primary-600" %}
         </button>
         <input class="search-input bg-transparent" placeholder="Search the shop" value="{% if search %}{{search.terms}}{% endif %}"/>
       </div>
-      <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide relative p-s2 ml-s5 cart-notification">
-        <img src="{{ '24-shopping-cart.svg' | asset_url }}" width="24" height="24" loading="lazy"/>
+      <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide relative p-s2 ml-s5 cart-notification group">
+        {% render '24-shopping-cart', class: "text-primary-800 group-hover:text-primary-700" %}
         {% assign cart_count = cart.items | size %}
         {% if cart_count > 0 %}
           <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full">

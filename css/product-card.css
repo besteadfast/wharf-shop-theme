@@ -1,3 +1,7 @@
+#app .product-tile:hover .lifestyle-image{
+    opacity:1;
+}
+
 .badge{
     @apply
     absolute top-s3 right-s3

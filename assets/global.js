@@ -448,6 +448,7 @@ class ModalDialog extends HTMLElement {
 
     this.querySelectorAll('.carousel-control').forEach((elt) => {
         if (elt.dataset.action == "prev") {elt.disabled = true;}
+        if (elt.dataset.action == "next" && carousel.dataset.total <= 1) {elt.disabled = true;}
         elt.addEventListener(
             'click',
             () => {
@@ -989,7 +990,7 @@ const searchElts = document.querySelectorAll("input.search-input")
 searchElts.forEach( (searchInput) => {
     searchInput.addEventListener("keyup", (e) => {
         if(e.key == "Enter"){
-            window.location.href = `/search?q=${e.target.value}`
+            window.location.href = `/search?q=${e.target.value}&type=product`
         }
     })
 })
@@ -999,11 +1000,19 @@ if(searchSubmit){
     searchSubmit.addEventListener("click", (e) => {
     const searchInput =
         e.target.parentElement.querySelector("input.search-input");
-    window.location.href = `/search?q=${searchInput.value}`;
+    window.location.href = `/search?q=${searchInput.value}&type=product`;
     });
 }
 
-/*    position:absolute;
-    padding-left:72px !important;
-    margin-right: 288px !important;
-*/
+
+/* titlecase helper */
+
+function toTitleCase(string){
+    const wordArray = string.split(" ").map((word) => {
+        return word[0].toUpperCase() + word.substring(1, word.length)
+    })
+
+    return wordArray.join(" ");
+
+
+}

@@ -84,3 +84,7 @@
 .rich-text :is(th, td):not(:first-child){
     @apply text-center;
 }
+
+.inline-link{
+    @apply text-primary-500 hover:text-primary-500 underline;
+}

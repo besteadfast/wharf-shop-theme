@@ -7,7 +7,7 @@
     {% endif %}
   {% endfor %}
   {% if productBadgeType %}
-    <div class="badge {{ productBadgeType | split: " " | join: "" }}">
+    <div class="badge {{ productBadgeType | split: " " | join: "" }} z-10">
       {% if productBadgeType == "best seller" %}
         {% render "best-seller-star" %}
       {% endif %}
@@ -17,8 +17,16 @@
     </div>
   {% endif %}
   <div class="relative {% if image_bg %}bg-black-50{% endif %}">
-    {{ product | image_url: width: 200 | image_tag: class: 'w-full aspect-[4/5] object-contain', loading: 'lazy' }}
-    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2" style="transform:translateX(-50%)">
+    {% assign product_img_url = product | image_url: width: 200 %}
+    {% if product_img_url %}
+      {{ product_img_url | image_tag: class: 'w-full aspect-[4/5] object-contain main-img', loading: 'lazy' }}
+    {% else %}
+      <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" class="w-full aspect-[4/5] object-contain main-img bg-black-50" loading="lazy">
+    {% endif %}
+    {% if product.metafields.custom.lifestyle_image %}
+      <img src="{{ product.metafields.custom.lifestyle_image | image_url: width: 200 }}" width="200" height="250" class="w-full aspect-[4/5] object-contain absolute top-0 left-0 opacity-0 transition-all lifestyle-image" loading="lazy"/>
+    {% endif %}
+    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2 pointer-events-none opacity-0 transition-all" style="transform:translateX(-50%)">
       <button class="btn btn--sm inline-block">Quick Shop</button>
     </modal-opener>
   </div>
@@ -28,9 +36,11 @@
       <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
     {% endcomment %}
     <p class="mt-s5">${{ product.price | money_without_currency }}</p>
-    <div class="h-s6 flex items-center gap-s1 mt-s3">
-      {% render 'product-colors', product: product, size: 'sm', preview: true %}
-    </div>
+    {% if product.options contains "Color" %}
+      <div class="h-s6 flex items-center gap-s1 mt-s3">
+        {% render 'product-colors', product: product, size: 'sm', preview: true %}
+      </div>
+    {% endif %}
   </div>
 </a>
 {% render 'quick-shop-modal', product: product %}

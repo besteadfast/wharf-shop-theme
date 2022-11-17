@@ -70,7 +70,8 @@ html {
     }
 
     .menu__dropdown{
-        @apply w-screen bg-white absolute left-0 py-s10 px-s13 hidden;
+        @apply w-screen bg-white absolute left-0 py-s10 px-s13;
+        display:none;
         top: calc(100% + 1px);
     }
     .menu__columns{
@@ -80,9 +81,8 @@ html {
         @apply flex-1;
     }
 
-    .menu__link:hover+.menu__dropdown,
-    .menu__dropdown:hover{
-        display:block;
+    .menu__item.level--1.open .menu__link svg{
+        transform:scale(-1);
     }
 
     .dropdown__list-item--level-1:not(:first-child){
@@ -94,7 +94,7 @@ html {
     }
 
     .dropdown__link--level-1{
-        @apply text-primary-800 uppercase;
+        @apply text-primary-800 transition-all hover:text-secondary-500 uppercase;
     }
 
     .dropdown__list-item--level-1:not(:first-child){
@@ -107,7 +107,7 @@ html {
     }
 
     .dropdown__link--level-2{
-        @apply text-black-600 capitalize;
+        @apply text-black-600 transition-all hover:text-secondary-500 capitalize;
     }
 }
 

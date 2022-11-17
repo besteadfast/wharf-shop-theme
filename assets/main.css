@@ -66,5 +66,25 @@ modal-dialog[open] {
 /* transitions */
 
 .three-pane-item a:hover {
-    background-color: rgba(0, 0, 0, 25%);
+    background-color: rgba(3, 28, 48, 50%);
+}
+
+.three-pane-item a:hover + img {
+    transform:scale(1.1);
+}
+
+.featured-category a:hover .overlay{
+    background-color: rgba(3, 28, 48, 50%);
+}
+
+.featured-category a:hover img{
+    transform: scale(1.1);
+}
+
+.menu-column.feature a:hover .overlay{
+    background-color: rgba(3, 28, 48, 50%);
+}
+
+.menu-column.feature a:hover img{
+    transform: scale(1.1);
 }

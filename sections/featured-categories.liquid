@@ -1,59 +1,65 @@
 <div class="py-s12 md:py-s13 px-54 md:px-72 lg:px-s13">
-    <div class="mx-auto">
-        <p class="faux-h6 text-black-400  text-center"> {{ section.settings.preheading }} </p>
-        <h2 class="faux-h4 text-primary-800 text-center max-w-[800px] mx-auto mt-s6"> {{ section.settings.heading }} </h2>
-        <div class="flex to-sm:flex-col gap-s8 mt-s10">
-            {% for block in section.blocks %}
-                <div class="flex-1">
-                    <img class="h-[360px] w-full object-cover" src="{{ block.settings.image | image_url }}"/>
-                    <a class="mt-s6 btn btn--borderless" href="{{ block.settings.linkDest.url }}">{{ block.settings.linkLabel }}</a>
-                </div>
-            {% endfor %}
+  <div class="mx-auto">
+    <p class="faux-h6 text-black-400  text-center">
+      {{ section.settings.preheading }}
+    </p>
+    <h2 class="faux-h4 text-primary-800 text-center max-w-[800px] mx-auto mt-s6">
+      {{ section.settings.heading }}
+    </h2>
+    <div class="flex to-sm:flex-col gap-s8 mt-s10">
+      {% for block in section.blocks %}
+        <div class="relative flex-1 featured-category">
+          <a href="{{ block.settings.linkDest.url }}" class="block">
+            <div class="h-[360px] w-full overflow-hidden">
+              <img class="h-[360px] w-full object-cover transition-all" src="{{ block.settings.image | image_url }}"/>
+            </div>
+            <div class="absolute top-0 left-0 h-[360px] w-full transition overlay"></div>
+            <span class="mt-s6 btn btn--borderless">{{ block.settings.linkLabel }}</span>
+          </a>
         </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 
 {% schema %}
-    {
-        "name": "featured-categories",
-        "max_blocks": 2,
-        "blocks": [
-            {
-            "name": "Category",
-            "type": "category",
-            "settings": [
-                {
-                "type": "image_picker",
-                "id": "image",
-                "label": "Image"
-                },
-                {
-                "type": "text",
-                "id": "linkLabel",
-                "label": "Link Label"
-                },
-                {
-                "type": "page",
-                "id": "linkDest",
-                "label": "Link Destination"
-                }
-            ]
-            }
-        ],
+  {
+    "name": "featured-categories",
+    "max_blocks": 2,
+    "blocks": [
+      {
+        "name": "Category",
+        "type": "category",
         "settings": [
-            {
-                "type": "text",
-                "id": "preheading",
-                "label": "Preheading",
-                "default": "Duis ligula efficitur nam"
-            },
-            {
-                "type": "text",
-                "id": "heading",
-                "label": "Heading",
-                "default": "Bring home something from The Wharf to help you remember the life that happens here."
-            }
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "linkLabel",
+            "label": "Link Label"
+          }, {
+            "type": "page",
+            "id": "linkDest",
+            "label": "Link Destination"
+          }
         ]
-    }
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "preheading",
+        "label": "Preheading",
+        "default": "Duis ligula efficitur nam"
+      }, {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Bring home something from The Wharf to help you remember the life that happens here."
+      }
+    ]
+  }
 {% endschema %}

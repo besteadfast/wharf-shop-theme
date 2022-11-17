@@ -8,12 +8,12 @@ select.filter, select.sort {
     padding: 4px 0;
 }
 
-/* tiles */
-.product-tile:hover modal-opener.quick-shop-opener{
+#app #mobileSelectedFilterContainer :not(.hidden) ~ button{
     display:block;
 }
 
-
-modal-opener.quick-shop-opener{
-    display:none;
+/* tiles */
+#app .product-tile:hover modal-opener.quick-shop-opener{
+    opacity:1;
+    pointer-events:auto;
 }

@@ -106,6 +106,7 @@
     background-position: bottom left;
     background-size: 6px 6px;
     background-repeat: repeat-x;
+    pointer-events:none;
 }
 
 #app .btn--borderless:hover {
@@ -118,6 +119,10 @@
 
 #app .btn--borderless:hover:before {
     opacity:1;
+}
+
+#app form.btn--borderless:hover:before{
+    opacity:0;
 }
 
 /* disabled states */
