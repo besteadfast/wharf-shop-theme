@@ -2,6 +2,26 @@
   "sections": {
     "main": {
       "type": "main-product",
+      "blocks": {
+        "6b43e4a1-d55a-4be8-9d48-bb4b8791e036": {
+          "type": "basic-accordion-item",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "accordion_content": "<p>Shipping cost is based on weight. Just add products to your cart and use the Shipping Calculator to see the shipping price.<br\/><br\/>We want you to be 100% satisfied with your purchase. Items can be returned or exchanged within 30 days of delivery.<br\/><br\/>Any items returned used or not in the original condition will be subject to a 15% restocking fee.  <br\/><br\/><a href=\"\/pages\/help-and-faqs\" title=\"How Can We Help\">Read more about Shipping & Returns here.<\/a><\/p>"
+          }
+        },
+        "53943d9d-9afb-4854-8f89-ec6ff5f0fe8a": {
+          "type": "size-guide-accordion-item",
+          "settings": {
+            "heading": "Size Guide",
+            "accordion_content": "shirt-sizing-chart"
+          }
+        }
+      },
+      "block_order": [
+        "6b43e4a1-d55a-4be8-9d48-bb4b8791e036",
+        "53943d9d-9afb-4854-8f89-ec6ff5f0fe8a"
+      ],
       "settings": {
         "size_guide": true
       }
