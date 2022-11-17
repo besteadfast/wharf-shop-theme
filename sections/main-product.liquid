@@ -2,204 +2,192 @@
 <script src="{{ 'accordion.js' | asset_url }}" defer="defer"></script>
 {% assign currentVariant = product.selected_or_first_available_variant %}
 {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
-<section
-  id="MainProduct-{{ section.id }}"
-  class="w-full px-72 bg-black-50"
-  data-section="{{ section.id }}"
->
-    {% render 'breadcrumb' %}
-    <div class="product flex items-start gap-s10 px-36 pb-s12 md:pb-s13 max-w-content-lg mx-auto">
-        <div id="images-{{ section.id }}" class="images flex-1 grid grid-cols-2 gap-s3">
-            {% if product.selected_or_first_available_variant.image %}
-                <img
-                    id="Thumbnail-{{ section.id }}-0"
-                    class="row-span-2 col-span-2 w-full"
-                    src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}"
-                    alt="{{ product.selected_or_first_available_variant.image.alt | escape }}"
-                    loading="lazy"
-                >
-            {% endif %}
-            {%- for media in product.media -%}
-                {% unless variant_images contains media.src %}
-                    <img
-                    id="Thumbnail-{{ section.id }}-{{ forloop.index }}"
-                    src="{{ media | image_url: width: 700 }}"
-                    alt="{{ media.alt | escape }}"
-                    loading="lazy"
-                    class="row-span-1 col-span-1 w-full"
-                    >
-                {% endunless %}
-            {% endfor %}
-        </div>
-        <div class="product-info w-[460px] sticky top-s10">
-            <h1 class="faux-h3 text-primary-900">{{product.title}}</h1>
-
-            <p id="price-{{ section.id }}" class="price faux-p-lg text-primary-900">
-                {% if currentVariant.compare_at_price and currentVariant.compare_at_price > currentVariant.price %}
-                    <span class="text-black-400 line-through">{{ currentVariant.compare_at_price | money }}</span>
-                    <span class="text-red-500 ml-s2">{{ currentVariant.price | money }}</span>
-                {% else %}
-                    {{ currentVariant.price | money }}
-                {% endif %}
-                {% unless currentVariant.available %}
-                    <span class="text-red-500 ml-s2">Out of Stock</span>
-                {% endunless %}
-            </p>
-            <div class="w-full h-[1px] mt-s8" style="background-color:#DDDDDD;"></div>
-            <p></p>
-            <variant-radios class="block relative mt-s8 " data-section="{{ section.id }}" data-url="{{ product.url }}" data-product-page="true">
-                <fieldset class="flex gap-s2 pt-s6">
-                    {% render 'product-colors', product: product, preview: false %}
-                </fieldset>
-                <fieldset class="flex justify-start gap-s4 mt-s6">
-                    {% for option in product.options_with_values %}
-                        {% if option.name == "Size" %}
-                            {% for optionValue in option.values %}
-                                <input type="radio" name="Size" value="{{ optionValue | escape }}" id="size-radio-{{ forloop.index }}" class="absolute size-selector" {% if currentVariant.options contains optionValue %}checked{% endif %}/>
-                                <label class="form-control faux-p p-s4 border-1" for="size-radio-{{ forloop.index }}">{{ optionValue }}</label>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                </fieldset>
-                <script type="application/json">
-                    {{ product.variants | json }}
-                </script>
-                <a class="inline-block mt-s4">Size Guide</a>
-            </variant-radios>
-                    {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-                    <product-form class="{% unless currentVariant.available %}hidden{% endunless %}">
-                        {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                        <input
-                            type="hidden"
-                            name="id"
-                            value="{{ product.selected_or_first_available_variant.id }}"
-                            disabled
-                        >
-                        <button
-                            id="{{ product_form_id }}-submit"
-                            type="submit"
-                            name="add"
-                            class="quick-add__submit btn btn--sm w-full mt-s8"
-                            aria-haspopup="dialog"
-                            aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
-                            aria-live="polite"
-                            data-sold-out-message="true"
-                            {% if product.selected_or_first_available_variant.available == false %}
-                            disabled
-                            {% endif %}
-                        >
-                            <span>
-                            {%- if product.selected_or_first_available_variant.available -%}
-                                Add to Cart
-                            {%- else -%}
-                                Sold Out
-                            {%- endif -%}
-                            </span>
-                            <span class="sold-out-message hidden">
-                            Sold Out
-                            </span>
-                            <div class="loading-overlay__spinner hidden">
-                            <svg
-                                aria-hidden="true"
-                                focusable="false"
-                                role="presentation"
-                                class="spinner"
-                                viewBox="0 0 66 66"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                            </svg>
-                            </div>
-                        </button>
-                        <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $75+</p>
-                        {%- endform -%}
-                    </product-form>
-            <div class="mt-s10">
-                <p class="faux-p-sm text-black-800">{{ product.description }}</p>
-            </div>
-            {% assign accordionCount = section.blocks | size %}
-            {% if accordionCount > 0 %}
-            <div class="faq__accordion mt-s10">
-                <ul class="accordion-items list-none accordion">
-                    {% for block in section.blocks %}
-                        <li class="accordion__item {{ block.type }}">
-                            <button aria-controls="navAccordionContent{{ forloop.index }}" id="navAccordionBtn{{ forloop.index }}" class="accordion__trigger ">
-                                <h2 class="accordion__heading faux-p-sm text-black-800">
-                                    {{ block.settings.heading }}
-                                </h2>
-                                {% render "12-down", class: "text-black-700 mx-s2", strokeWidth:"1" %}
-                            </button>
-                            <div id="navAccordionContent{{ forloop.index }}" aria-labelledby="navAccordionBtn{{ forloop.index }}" class="accordion__content-wrapper content-dependant" >
-                                <div class="pb-s7 rich-text">
-                                    {% if block.type == 'size-guide-accordion-item' %}
-                                        {{ block.settings.accordion_content.content }}
-                                    {% else %}
-                                        {{ block.settings.accordion_content}}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            <div class="share flex justify-between items-center py-s7">
-                <p class="faux-p-sm text-black-700">Share</p>
-                <div class="text-black-400 flex gap-s3">
-                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: request.path | url_encode }}&src=sdkpreparse" class="fb-xfbml-parse-ignore hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
-                    <a target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet?url={{ request.origin | append: request.path | url_encode }}" data-size="large">{% render '16-logo-twitter' %}</a>
-                </div>
-            </div>
-        </div>
+<section id="MainProduct-{{ section.id }}" class="w-full px-72 bg-black-50" data-section="{{ section.id }}">
+  {% render 'breadcrumb' %}
+  <div class="relative product flex to-md:flex-col items-start gap-s10 lg:px-36 pb-s12 md:pb-s13 max-w-content-lg mx-auto">
+    <div id="images-{{ section.id }}" class="images flex-1 grid grid-cols-2 gap-s3 to-md:hidden">
+      {% if product.selected_or_first_available_variant.image %}
+        <img id="Thumbnail-{{ section.id }}-0" class="row-span-2 col-span-2 w-full" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" loading="lazy">
+      {% endif %}
+      {%- for media in product.media -%}
+        {% unless variant_images contains media.src %}
+          <img id="Thumbnail-{{ section.id }}-{{ forloop.index }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" loading="lazy" class="row-span-1 col-span-1 w-full">
+        {% endunless %}
+      {% endfor %}
     </div>
+    <img-carousel id="mobile-images-{{ section.id }}" class="md:hidden w-full">
+      <div class="carousel">
+        <div style="padding-top:100%; width:100%;"></div>
+        {% assign variantImg = false %}
+        {% if product.selected_or_first_available_variant.image %}
+          <img id="Thumbnail-{{ section.id }}-0" class="carousel-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * 0);" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" loading="lazy" data-index="0">
+          {% assign variantImg = true %}
+        {% endif %}
+        {%- for media in product.media -%}
+          {% assign index = forloop.index0 %}
+          {% if variantImg %}
+            {% assign index = forloop.index0 | plus: 1 %}
+          {% endif %}
+          {% unless variant_images contains media.src %}
+            <img id="Thumbnail-{{ section.id }}-{{ index }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" loading="lazy" class="carousel-img absolute top-0 transition-left w-full aspect-square" style="left:calc(100% * {{ index }} + 12px * {{ index }});" data-index="{{ index }}">
+          {% endunless %}
+        {% endfor %}
+        </div>
+        <div class="carousel-controls flex justify-center items-center mt-s4">
+            <button class="carousel-control disabled:invisible p-s2 text-black-200 hover:text-black-400" data-action="prev">
+                {% render '8-left' %}
+            </button>
+            <p class="page-number faux-p-xs text-black-400 before:content-none after:content-none"></p>
+            <button class="carousel-control disabled:invisible text-black-200 hover:text-black-400 p-s2" data-action="next">
+                {% render '8-right' %}
+            </button>
+        </div>
+      </img-carousel>
+      <div class="product-info w-full md:w-[360px] lg:w-[460px] sticky top-s10">
+        <h1 class="faux-h3 text-primary-900">{{product.title}}</h1>
+
+        <p id="price-{{ section.id }}" class="price faux-p-lg text-primary-900">
+          {% if currentVariant.compare_at_price and currentVariant.compare_at_price > currentVariant.price %}
+            <span class="text-black-400 line-through">{{ currentVariant.compare_at_price | money }}</span>
+            <span class="text-red-500 ml-s2">{{ currentVariant.price | money }}</span>
+          {% else %}
+            {{ currentVariant.price | money }}
+          {% endif %}
+          {% unless currentVariant.available %}
+            <span class="text-red-500 ml-s2">Out of Stock</span>
+          {% endunless %}
+        </p>
+        <div class="w-full h-[1px] mt-s8" style="background-color:#DDDDDD;"></div>
+        <p></p>
+        <variant-radios class="block relative mt-s8 " data-section="{{ section.id }}" data-url="{{ product.url }}" data-product-page="true">
+          <fieldset class="flex gap-s2 pt-s6">
+            {% render 'product-colors', product: product, preview: false %}
+          </fieldset>
+          <fieldset class="flex justify-start gap-s4 mt-s6">
+            {% for option in product.options_with_values %}
+              {% if option.name == "Size" %}
+                {% for optionValue in option.values %}
+                  <input type="radio" name="Size" value="{{ optionValue | escape }}" id="size-radio-{{ forloop.index }}" class="absolute size-selector" {% if currentVariant.options contains optionValue %}checked{% endif %}/>
+                  <label class="form-control faux-p p-s4 border-1" for="size-radio-{{ forloop.index }}">{{ optionValue }}</label>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          </fieldset>
+          <script type="application/json">
+            {{ product.variants | json }}
+          </script>
+          <a class="inline-block mt-s4">Size Guide</a>
+        </variant-radios>
+        {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+        <product-form class="{% unless currentVariant.available %}hidden{% endunless %}">
+          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+            <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--sm w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
+              {% if product.selected_or_first_available_variant.available == false %}
+              disabled
+              {% endif %}>
+              <span>
+                {%- if product.selected_or_first_available_variant.available -%}
+                  Add to Cart
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </span>
+              <span class="sold-out-message hidden">
+                Sold Out
+              </span>
+              <div class="loading-overlay__spinner hidden">
+                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+          <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $75+</p>
+        {%- endform -%}
+      </product-form>
+      <div class="mt-s10">
+        <p class="faux-p-sm text-black-800">{{ product.description }}</p>
+      </div>
+      {% assign accordionCount = section.blocks | size %}
+      {% if accordionCount > 0 %}
+        <div class="faq__accordion mt-s10">
+          <ul class="accordion-items list-none accordion">
+            {% for block in section.blocks %}
+              <li class="accordion__item {{ block.type }}">
+                <button aria-controls="navAccordionContent{{ forloop.index }}" id="navAccordionBtn{{ forloop.index }}" class="accordion__trigger ">
+                  <h2 class="accordion__heading faux-p-sm text-black-800">
+                    {{ block.settings.heading }}
+                  </h2>
+                  {% render "12-down", class: "text-black-700 mx-s2", strokeWidth:"1" %}
+                </button>
+                <div id="navAccordionContent{{ forloop.index }}" aria-labelledby="navAccordionBtn{{ forloop.index }}" class="accordion__content-wrapper content-dependant">
+                  <div class="pb-s7 rich-text">
+                    {% if block.type == 'size-guide-accordion-item' %}
+                      {{ block.settings.accordion_content.content }}
+                    {% else %}
+                      {{ block.settings.accordion_content}}
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      <div class="share flex justify-between items-center py-s7">
+        <p class="faux-p-sm text-black-700">Share</p>
+        <div class="text-black-400 flex gap-s3">
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: request.path | url_encode }}&src=sdkpreparse" class="fb-xfbml-parse-ignore hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
+          <a target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet?url={{ request.origin | append: request.path | url_encode }}" data-size="large">{% render '16-logo-twitter' %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% schema %}
-{
-  "name": "Main Product",
-  "tag": "section",
-  "class": "section",
-  "settings": [
-    {
+  {
+    "name": "Main Product",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
         "type": "checkbox",
         "id": "size_guide",
         "label": "Size Guide Link"
-    }
-  ],
-  "blocks": [
-    {
+      }
+    ],
+    "blocks": [
+      {
         "name": "Basic Accordion Item",
         "type": "basic-accordion-item",
         "settings": [
-            {
-                "type": "text",
-                "id": "heading",
-                "label": "Heading"
-            },
-            {
-                "type": "richtext",
-                "id":"accordion_content",
-                "label": "Content"
-            }
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "richtext",
+            "id": "accordion_content",
+            "label": "Content"
+          }
         ]
-    },
-    {
+      }, {
         "name": "Size Guide Accordion Item",
         "type": "size-guide-accordion-item",
         "settings": [
-            {
-                "type": "text",
-                "id": "heading",
-                "label": "Heading"
-            },
-            {
-                "type": "page",
-                "id":"accordion_content",
-                "label": "Content"
-            }
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          }, {
+            "type": "page",
+            "id": "accordion_content",
+            "label": "Content"
+          }
         ]
-    }
-  ]
-}
+      }
+    ]
+  }
 {% endschema %}

@@ -960,6 +960,62 @@ class VariantRadios extends VariantSelects {
 
 customElements.define('variant-radios', VariantRadios);
 
+class Carousel extends HTMLElement {
+  constructor() {
+    super();
+    const carousel = this.querySelector(".carousel");
+    const images = this.querySelectorAll(".carousel-img");
+    const carouselControls = this.querySelectorAll(".carousel-control");
+    const pageNumber = this.querySelector(".page-number");
+    carousel.dataset.total = carousel.querySelectorAll("img").length;
+    carousel.dataset.curr = 0;
+    pageNumber.innerHTML = `1/${carousel.dataset.total}`;
+
+    carouselControls.forEach((elt) => {
+        if (elt.dataset.action == "prev") {elt.disabled = true;}
+        if (elt.dataset.action == "next" && carousel.dataset.total <= 1) {elt.disabled = true;}
+        elt.addEventListener(
+            'click',
+            () => {
+                //shift carousel if not already first/last
+                switch (elt.dataset.action) {
+                    case "prev":
+                        if (carousel.dataset.curr == 0) {break;}
+                        carousel.dataset.curr = parseInt(carousel.dataset.curr) - 1;
+                        break;
+                    case "next":
+                        if (carousel.dataset.curr >= (carousel.dataset.total - 1)) {break;}
+                        carousel.dataset.curr = parseInt(carousel.dataset.curr) + 1;
+                }
+                images.forEach((img) => {
+                    if(Number(img.dataset.index) === Number(carousel.dataset.curr) + 1){
+                        img.removeAttribute("loading");
+                    }
+                    img.style.left = `calc(${100 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}% + ${12 * (-parseInt(carousel.dataset.curr) + parseInt(img.dataset.index))}px`;
+                });
+
+                //toggle disabling buttons if first/last element
+                this.querySelectorAll("button.carousel-control").forEach((btn) => {
+                    switch (btn.dataset.action) {
+                        case "prev":
+                            btn.disabled = (carousel.dataset.curr == 0);
+                            break;
+                        case "next":
+                            btn.disabled = (carousel.dataset.curr >= (carousel.dataset.total - 1));
+                    }
+                })
+
+                //update page number
+                pageNumber.innerHTML = `${parseInt(carousel.dataset.curr) + 1}/${carousel.dataset.total}`
+            }
+        )
+    })
+  }
+}
+
+customElements.define("img-carousel", Carousel);
+
+
 /* search */
 
 function toggleSearchMode(e){
@@ -1011,8 +1067,5 @@ function toTitleCase(string){
     const wordArray = string.split(" ").map((word) => {
         return word[0].toUpperCase() + word.substring(1, word.length)
     })
-
     return wordArray.join(" ");
-
-
 }
