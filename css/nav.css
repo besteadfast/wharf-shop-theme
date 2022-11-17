@@ -36,7 +36,10 @@ html {
     }
 
     .menu__item.level--1 .menu__link{
-        @apply flex justify-between px-s5 py-s6;
+        @apply flex justify-between items-center px-s5 py-s3;
+    }
+    .menu__item.level--1 .menu__link span{
+        @apply before:content-none after:content-none;
     }
 
     .menu-column.link-list{
@@ -94,7 +97,7 @@ html {
     }
 
     .dropdown__link--level-1{
-        @apply text-primary-800 transition-all hover:text-secondary-500 uppercase;
+        @apply text-primary-800 uppercase;
     }
 
     .dropdown__list-item--level-1:not(:first-child){
@@ -107,10 +110,13 @@ html {
     }
 
     .dropdown__link--level-2{
-        @apply text-black-600 transition-all hover:text-secondary-500 capitalize;
+        @apply text-black-600 capitalize;
     }
 }
 
+.dropdown__link--level-1, .dropdown__link--level-2{
+    @apply transition-all hover:text-secondary-500;
+}
 
 
 /* search animation */

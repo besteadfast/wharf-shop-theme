@@ -37,16 +37,16 @@
     <div class="flex gap-s8 lg:gap-s10">
       <div>
         <h3 class="ui-sm uppercase text-primary-800">Contact</h3>
-        <a href="mailto:{{ settings.email }}" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s7">{{ settings.email }}</a>
-        <a href="tel:{{ settings.phone_number | remove: "-" | remove: "." | remove: "(" | remove: ")" | remove: " " }}" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s6">{{ settings.phone_number}}</a>
-        <a href="https://www.google.com/maps/place/The+Wharf/@30.2930875,-87.631064,17z/data=!3m1!4b1!4m5!3m4!1s0x889a05adb6d2fbbd:0x30b0a172c0e610ce!8m2!3d30.2930829!4d-87.6288753" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s6">{{ settings.address | newline_to_br }}</a>
+        <a href="mailto:{{ settings.email }}" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s7">{{ settings.email }}</a>
+        <a href="tel:{{ settings.phone_number | remove: "-" | remove: "." | remove: "(" | remove: ")" | remove: " " }}" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">{{ settings.phone_number}}</a>
+        <a href="https://www.google.com/maps/place/The+Wharf/@30.2930875,-87.631064,17z/data=!3m1!4b1!4m5!3m4!1s0x889a05adb6d2fbbd:0x30b0a172c0e610ce!8m2!3d30.2930829!4d-87.6288753" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">{{ settings.address | newline_to_br }}</a>
       </div>
       <div class="w-max">
         <h3 class="ui-sm uppercase text-primary-800">Customer Service</h3>
-        <a href="/pages/customer-service" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all transition-all mt-s7">Customer Service</a>
-        <a href="/pages/help-and-faqs" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s6">Help / FAQ</a>
-        <a href="/pages/help-and-faqs#returnsAndExchanges" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s6">Returns & Exchanges</a>
-        <a href="/pages/help-and-faqs#giftCards" class="block faux-p-sm text-black-600 hover:text-black-700 transition-all mt-s6">Gift Cards</a>
+        <a href="/pages/customer-service" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all transition-all mt-s7">Customer Service</a>
+        <a href="/pages/help-and-faqs" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Help / FAQ</a>
+        <a href="/pages/help-and-faqs#returnsAndExchanges" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Returns & Exchanges</a>
+        <a href="/pages/help-and-faqs#giftCards" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Gift Cards</a>
       </div>
     </div>
   </div>
@@ -55,15 +55,15 @@
     <div class="flex-1 flex items-center gap-s4">
       <p class="text-black-500 faux-p-xs">© 2022 Shop the Wharf. All Rights Reserved.</p>
       <div class="h-s5 w-[2px] bg-primary-50"></div>
-      <a href="/pages/privacy-policy" class="text-black-500 hover:text-black-700 transition-all faux-p-xs shrink-0">Privacy Policy</a>
+      <a href="/pages/privacy-policy" class="text-black-500 hover:text-secondary-500 transition-all faux-p-xs shrink-0">Privacy Policy</a>
     </div>
     <div class="h-s6 flex gap-s4 text-primary-800">
-      <a href="{{ settings.social_facebook_link }}">{% render '24-logo-facebook-simple' %}</a>
-      <a href="{{ settings.social_linkedin_link }}">{% render '24-logo-linkedin-simple' %}</a>
-      <a href="{{ settings.social_twitter_link }}">{% render '24-logo-twitter' %}</a>
+      <a href="{{ settings.social_facebook_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-facebook-simple' %}</a>
+      <a href="{{ settings.social_linkedin_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-linkedin-simple' %}</a>
+      <a href="{{ settings.social_twitter_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-twitter' %}</a>
     </div>
-    <div class="flex-1 flex justify-end ">
+    <a href="/" class="flex-1 flex justify-end ">
       <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store">
-    </div>
+    </a>
   </div>
 </div>

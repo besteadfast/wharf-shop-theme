@@ -1401,7 +1401,7 @@
         "type": "text",
         "id": "social_linkedin_link",
         "label": "LinkedIn",
-        "info": "https://www.linkedin.com/company/shopify"
+        "info": "https:\/\/www.linkedin.com\/company\/shopify"
       },
       {
         "type": "text",

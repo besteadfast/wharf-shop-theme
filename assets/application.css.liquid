@@ -415,11 +415,22 @@ html {
 
   .menu__item.level--1 .menu__link{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .menu__item.level--1 .menu__link span::before{
+    --tw-content: none;
+    content: var(--tw-content);
+  }
+
+  .menu__item.level--1 .menu__link span::after{
+    --tw-content: none;
+    content: var(--tw-content);
   }
 
   .menu-column.link-list{
@@ -524,13 +535,6 @@ html {
   .dropdown__link--level-1{
     text-transform: uppercase;
     color: var(--primary-800);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-
-  .dropdown__link--level-1:hover{
-    color: var(--secondary-500);
   }
 
   .dropdown__list-item--level-1:not(:first-child){
@@ -545,14 +549,17 @@ html {
     text-transform: capitalize;
     --tw-text-opacity: 1;
     color: rgb(108 108 108 / var(--tw-text-opacity));
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
   }
+}
 
-  .dropdown__link--level-2:hover{
-    color: var(--secondary-500);
-  }
+.dropdown__link--level-1,  .dropdown__link--level-2{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.dropdown__link--level-1:hover,  .dropdown__link--level-2:hover{
+  color: var(--secondary-500);
 }
 
 /* search animation */
@@ -4953,13 +4960,16 @@ video {
   color: rgb(108 108 108 / var(--tw-text-opacity));
 }
 
-#app .hover\:text-black-700:hover{
-  --tw-text-opacity: 1;
-  color: rgb(83 83 83 / var(--tw-text-opacity));
-}
-
 #app .hover\:text-primary-600:hover{
   color: var(--primary-600);
+}
+
+#app .hover\:text-secondary-500:hover{
+  color: var(--secondary-500);
+}
+
+#app .hover\:text-primary-700:hover{
+  color: var(--primary-700);
 }
 
 #app .disabled\:hidden:disabled{
@@ -5446,6 +5456,15 @@ video {
 
   #app .to-lg\:flex-wrap{
     flex-wrap: wrap;
+  }
+
+  #app .to-lg\:border-b-\[1px\]{
+    border-bottom-width: 1px;
+  }
+
+  #app .to-lg\:border-black-50{
+    --tw-border-opacity: 1;
+    border-color: rgb(247 247 247 / var(--tw-border-opacity));
   }
 }
 

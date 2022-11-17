@@ -6,15 +6,16 @@
     <button class="mobile-toggle flex-1 lg:hidden" onclick="body.classList.toggle('nav-active')">
       {% render '24-menu-8' %}
     </button>
-    <div class="nav-primary container search-hide to-lg:flex-col ">
+    <div class="nav-primary container search-hide to-lg:flex-col z-10">
       <ul class="to-lg:flex-1 lg:flex list-none accordion-items accordion">
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
-          <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item group">
-            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger hover:text-black-700">
+          <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item group to-lg:border-b-[1px] to-lg:border-black-50">
+            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger">
               <span class="to-lg:hidden transition-all duration-300 group-hover:text-secondary-500">{{ menuItem | capitalize }}</span>
-              <span class="lg:hidden faux-p-lg">{{ menuItem | capitalize }}</span>
-              {% render '12-down', class: "text-primary-100 ml-s2 transition-all group-hover:rotate-[180deg] group-hover:text-secondary-500" %}
+              <span class="lg:hidden faux-p-lg transition-all group-hover:text-secondary-500">{{ menuItem | capitalize }}</span>
+              {% render '12-down', class: "text-primary-100 ml-s2 transition-all group-hover:rotate-[180deg] group-hover:text-secondary-500 to-lg:hidden" %}
+              {% render '24-plus', class: "text-primary-100 ml-s2 transition-all group-hover:text-secondary-500 lg:hidden" %}
             </a>
             <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="menu__dropdown accordion__content-wrapper content-dependant group-hover:block">
               <div class="menu__columns">
