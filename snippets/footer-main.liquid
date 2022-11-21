@@ -58,9 +58,18 @@
       <a href="/pages/privacy-policy" class="text-black-500 hover:text-secondary-500 transition-all faux-p-xs shrink-0">Privacy Policy</a>
     </div>
     <div class="h-s6 flex gap-s4 text-primary-800">
-      <a href="{{ settings.social_facebook_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-facebook-simple' %}</a>
-      <a href="{{ settings.social_linkedin_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-linkedin-simple' %}</a>
-      <a href="{{ settings.social_twitter_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-twitter' %}</a>
+      {% if settings.social_facebook_link != '' %}
+        <a href="{{ settings.social_facebook_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-facebook-simple' %}</a>
+      {% endif %}
+      {% if settings.social_instagram_link != '' %}
+        <a href="{{ settings.social_instagram_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-instagram' %}</a>
+      {% endif %}
+      {% if settings.social_tiktok_link != '' %}
+        <a href="{{ settings.social_tiktok_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-tiktok' %}</a>
+      {% endif %}
+      {% if settings.social_twitter_link != '' %}
+        <a href="{{ settings.social_twitter_link }}" class="hover:text-primary-700 transition-all">{% render '24-logo-twitter' %}</a>
+      {% endif %}
     </div>
     <a href="/" class="flex-1 flex justify-end ">
       <img src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store">
