@@ -221,17 +221,31 @@ function renderFilteredCollection(grid) {
             if (variantSpecificFirstImages[index]){
                 elt.querySelector(".main-img").src = variantSpecificFirstImages[index];
             }
-
-            const modal = document.querySelector(`modal-dialog[data-for='${elt.id}']`)
-            const images = modal.querySelectorAll(".carousel img");
-            for (img of images) {
-                if(img.src && variantSpecificFirstImages[index] && img.src.replace(/https?/,"") == variantSpecificFirstImages[index].replace(/https?/,"")){
-                }
+            const modal = document.querySelector(`modal-dialog[data-for='${elt.id}']`);
+            const carousel = modal.querySelector(".carousel");
+            const images = carousel.querySelectorAll("img");
+            if(variantSpecificFirstImages[index]){
+                //shift all current elements
+                images.forEach((img) => {
+                    img.dataset.index = Number(img.dataset.index) + 1;
+                    img.style.left = `calc(${img.style.left} + 100% + 12px)`
+                })
+                const newFirstImg = carousel.firstElementChild.cloneNode(true);
+                console.log(newFirstImg)
+                newFirstImg.src = variantSpecificFirstImages[index];
+                newFirstImg.style = "left:0;";
+                newFirstImg.dataset.index = 0;
+                carousel.insertBefore(newFirstImg, carousel.firstChild);
             }
+            // for (img of images) {
+            //     if(img.src && variantSpecificFirstImages[index] && img.src.replace(/https?/,"") == variantSpecificFirstImages[index].replace(/https?/,"")){
+            //     }
+            // }
+            const imageCount = carousel.querySelectorAll("img").length;
+            carousel.dataset.total = imageCount;
         })
 
         if (source && destination) {
-            console.log("here")
             while (destination.firstChild) {
                 destination.removeChild(destination.firstChild);
             }
@@ -239,6 +253,8 @@ function renderFilteredCollection(grid) {
                 destination.append(i);
             }
         }
+
+        console.log('source', source, 'destination', destination)
     });
 }
 

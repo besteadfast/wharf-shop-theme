@@ -959,7 +959,6 @@ class Carousel extends HTMLElement {
   constructor() {
     super();
     const carousel = this.querySelector(".carousel");
-    const images = this.querySelectorAll(".carousel-img");
     const carouselControls = this.querySelectorAll(".carousel-control");
     const pageNumber = this.querySelector(".page-number");
     carousel.dataset.total = carousel.querySelectorAll("img").length;
@@ -972,6 +971,7 @@ class Carousel extends HTMLElement {
         elt.addEventListener(
             'click',
             () => {
+                const images = carousel.querySelectorAll(".carousel-img");
                 //shift carousel if not already first/last
                 switch (elt.dataset.action) {
                     case "prev":
