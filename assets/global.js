@@ -799,6 +799,7 @@ class VariantSelects extends HTMLElement {
     this.toggleAddButton(true, '');
     this.updatePickupAvailability();
     this.removeErrorMessage();
+    this.updateCarousel();
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '');
@@ -901,9 +902,6 @@ class VariantSelects extends HTMLElement {
             // this.toggleAddButton(!this.currentVariant.available, "Sold Out");
         });
     }
-    else{
-
-    }
 }
 
 toggleAddButton(disable = true, text) {
@@ -935,6 +933,72 @@ toggleAddButton(disable = true, text) {
   getVariantData() {
     this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
+  }
+
+  updateCarousel() {
+    const product = document.querySelector(`#product-${this.dataset.product}`);
+    const productObj = window.shopifyData.collection.find((product) => {
+        return product.id == this.dataset.product;
+    });
+    const variantImage = this.currentVariant.featured_image ? this.currentVariant.featured_image.src : null;
+    console.log(variantImage)
+    //replace product images with variant images
+    if(window.shopifyData.collection){
+          if (variantImage) {
+            product.querySelector(".main-img").src = variantImage;
+          }
+          const modal = document.querySelector(`modal-dialog[data-for='${product.id}']`);
+          const carousel = modal.querySelector(".carousel");
+          const images = carousel.querySelectorAll("img");
+          //if variant has image and carousel doesn't yet
+          if ( variantImage && !carousel.querySelector(".variant-img") ) {
+            //shift all current elements
+            const newFirstImg = carousel.firstElementChild.cloneNode(true);
+            newFirstImg.src = variantImage;
+            newFirstImg.classList.add("variant-img");
+            carousel.insertBefore(newFirstImg, carousel.firstChild);
+          }
+          //if variant has image and carousel has image
+          else if (variantImage) {
+            //check if different
+            if ( !( carousel.querySelector(".variant-img").src == variantImage) ) {
+              //swap new one in
+              carousel.querySelector(".variant-img").src = variantImage
+            }
+          }
+          //if variant doesn't have image and carousel has image
+          else if (carousel.querySelector(".variant-img")) {
+            carousel.querySelector(".variant-img").remove();
+            images.forEach((img) => {
+              img.dataset.index = Number(img.dataset.index) + 1;
+              img.style.left = `calc(${img.style.left} + 100% + 12px)`;
+            });
+          }
+          const updatedImages = carousel.querySelectorAll("img");
+          //update image positions
+          updatedImages.forEach((img, index) => {
+            img.dataset.index = index;
+            img.style.left = `calc(${100 * parseInt(img.dataset.index)}% + ${
+              12 * parseInt(index)
+            }px`;
+          });
+
+          //set total
+          const imageCount = carousel.querySelectorAll("img").length;
+          carousel.dataset.total = imageCount;
+          carousel.dataset.curr = 0;
+
+          //reset next/prev
+          carousel.querySelectorAll("button.carousel-control").forEach((btn) => {
+            switch (btn.dataset.action) {
+              case "prev":
+                btn.disabled = carousel.dataset.curr == 0;
+                break;
+              case "next":
+                btn.disabled = carousel.dataset.curr >= carousel.dataset.total - 1;
+            }
+          });
+    }
   }
 }
 

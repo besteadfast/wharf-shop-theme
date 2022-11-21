@@ -1,8 +1,9 @@
 {% assign currentVariant = product.selected_or_first_available_variant %}
+{%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
 <modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
-            {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+
             {% for image in product.images %}
                 {% unless variant_images contains image.src %}
                 <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 }});" data-index="{{ forloop.index0 }}" width="300" height="450" loading="lazy" />

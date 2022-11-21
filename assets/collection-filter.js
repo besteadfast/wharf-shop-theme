@@ -111,14 +111,11 @@ function applyFilters() {
 
 function applySort() {
   if (window.shopifyData.sort) {
-    console.log(window.shopifyData.sort)
     window.shopifyData.collection = window.shopifyData.collection.slice().sort((a,b) => {
         switch (window.shopifyData.sort) {
             case "price-low-high":
-                console.log("here")
                 return a.price - b.price;
             case "price-high-low":
-                console.log("actually here")
                 return b.price - a.price;
         }
     })
@@ -224,25 +221,59 @@ function renderFilteredCollection(grid) {
             const modal = document.querySelector(`modal-dialog[data-for='${elt.id}']`);
             const carousel = modal.querySelector(".carousel");
             const images = carousel.querySelectorAll("img");
-            if(variantSpecificFirstImages[index]){
+            //if variant has image and carousel doesn't yet
+            if(variantSpecificFirstImages[index] && !carousel.querySelector(".variant-img")){
                 //shift all current elements
-                images.forEach((img) => {
-                    img.dataset.index = Number(img.dataset.index) + 1;
-                    img.style.left = `calc(${img.style.left} + 100% + 12px)`
-                })
                 const newFirstImg = carousel.firstElementChild.cloneNode(true);
-                console.log(newFirstImg)
                 newFirstImg.src = variantSpecificFirstImages[index];
-                newFirstImg.style = "left:0;";
-                newFirstImg.dataset.index = 0;
+                newFirstImg.classList.add("variant-img")
                 carousel.insertBefore(newFirstImg, carousel.firstChild);
             }
-            // for (img of images) {
-            //     if(img.src && variantSpecificFirstImages[index] && img.src.replace(/https?/,"") == variantSpecificFirstImages[index].replace(/https?/,"")){
-            //     }
-            // }
+            //if variant has image and carousel has image
+            else if (variantSpecificFirstImages[index]){
+                //check if different
+                if( !(carousel.querySelector(".variant-img").src == variantSpecificFirstImages[index]) ){
+                    //swap new one in
+                    carousel.querySelector(".variant-img").src = variantSpecificFirstImages[index];
+                }
+
+
+            }
+            //if variant doesn't have image and carousel has image
+            else if ( carousel.querySelector(".variant-img") ){
+                console.log('here')
+                carousel.querySelector(".variant-img").remove()
+                images.forEach((img) => {
+                  img.dataset.index = Number(img.dataset.index) + 1;
+                  img.style.left = `calc(${img.style.left} + 100% + 12px)`;
+                });
+            }
+            const updatedImages = carousel.querySelectorAll("img");
+            //update image positions
+            updatedImages.forEach((img, index) => {
+                console.log(img)
+                img.dataset.index = index;
+                img.style.left = `calc(${100 * (parseInt(img.dataset.index))}% + ${12 * (parseInt(index))}px`;
+            });
+
+
+
+            //set total
             const imageCount = carousel.querySelectorAll("img").length;
             carousel.dataset.total = imageCount;
+            carousel.dataset.curr = 0;
+
+            //reset next/prev
+            carousel.querySelectorAll("button.carousel-control").forEach((btn) => {
+                console.log(btn)
+                switch (btn.dataset.action) {
+                    case "prev":
+                        btn.disabled = (carousel.dataset.curr == 0);
+                        break;
+                    case "next":
+                        btn.disabled = (carousel.dataset.curr >= (carousel.dataset.total - 1));
+                }
+            })
         })
 
         if (source && destination) {
@@ -254,7 +285,6 @@ function renderFilteredCollection(grid) {
             }
         }
 
-        console.log('source', source, 'destination', destination)
     });
 }
 
