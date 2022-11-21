@@ -37,11 +37,19 @@
 %}
 
 <div class="flex pt-s8 pb-s9 text-black-400">
-  <a class="faux-p-xs " href="{{ topLevelUrl }}">{{ topLevel }}</a>
-  {% render '8-right', class: "text-black-200 mx-s2" %}
-  <a class="faux-p-xs " href="{{ secondLevelUrl }}">{{ secondLevel }}</a>
-  {% render '8-right', class: "text-black-200 mx-s2" %}
-  <a class="faux-p-xs " href="{{ thirdLevelUrl }}">{{ thirdLevel }}</a>
-  {% render '8-right', class: "text-black-200 mx-s2" %}
-  <a class="faux-p-xs text-black-500">{{ product.title }}</a>
+  {% if topLevel or secondLevel or thirdLevel %}
+    {% if topLevel and topLevelUrl %}
+      <a class="faux-p-xs " href="{{ topLevelUrl }}">{{ topLevel }}</a>
+      {% render '8-right', class: "text-black-200 mx-s2" %}
+    {% endif %}
+    {% if secondLevel and secondLevelUrl %}
+      <a class="faux-p-xs " href="{{ secondLevelUrl }}">{{ secondLevel }}</a>
+      {% render '8-right', class: "text-black-200 mx-s2" %}
+    {% endif %}
+    {% if thirdLevel and thirdLevelUrl %}
+      <a class="faux-p-xs " href="{{ thirdLevelUrl }}">{{ thirdLevel }}</a>
+      {% render '8-right', class: "text-black-200 mx-s2" %}
+    {% endif %}
+    <a class="faux-p-xs text-black-500">{{ product.title }}</a>
+  {% endif %}
 </div>
