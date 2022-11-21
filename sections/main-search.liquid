@@ -48,7 +48,7 @@
         {% endfor %}
       </div>
     {% else %}
-      <div class="w-full text-center">Nothin to see here 👀</div>
+      <p class="faux-h4">No results for "{{ search.terms }}"</p>
     {% endif %}
     <script id="collection-data" type="application/json">
       {{ collection.products | json }}
