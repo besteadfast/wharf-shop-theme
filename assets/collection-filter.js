@@ -95,7 +95,6 @@ window.addEventListener('DOMContentLoaded', function(){
 function applyFilters() {
   if (window.shopifyData.filters) {
     for (filter in window.shopifyData.filters) {
-      if (window.shopifyData.filters[filter] == "all") continue;
       window.shopifyData.collection = window.shopifyData.collection.filter(
         (product) => {
           return product.variants.some((variant) =>
@@ -205,17 +204,38 @@ function renderFilteredCollection(grid) {
         const destination = grid;
         const productsSource = html.getElementById(grid.id).children;
         const filteredAndSortedProductIds = window.shopifyData.collection.map((filteredElt) => `product-${filteredElt.id}`);
-        const filteredSource = [...productsSource].filter((elt) => {
+        const variantSpecificFirstImages = window.shopifyData.collection.map((product) => getVariantSpecificFirstImage(product))
+
+        //filter
+        let source = [...productsSource].filter((elt) => {
             return filteredAndSortedProductIds.includes(elt.id);
         });
-        const filteredAndSortedSource = filteredSource.sort((a,b) => {
+
+        //sort
+        source = source.sort((a,b) => {
             return filteredAndSortedProductIds.indexOf(a.id) - filteredAndSortedProductIds.indexOf(b.id);
         })
-        if (filteredAndSortedSource && destination) {
+
+        //replace product images with variant images
+        source.forEach((elt, index) => {
+            if (variantSpecificFirstImages[index]){
+                elt.querySelector(".main-img").src = variantSpecificFirstImages[index];
+            }
+
+            const modal = document.querySelector(`modal-dialog[data-for='${elt.id}']`)
+            const images = modal.querySelectorAll(".carousel img");
+            for (img of images) {
+                if(img.src && variantSpecificFirstImages[index] && img.src.replace(/https?/,"") == variantSpecificFirstImages[index].replace(/https?/,"")){
+                }
+            }
+        })
+
+        if (source && destination) {
+            console.log("here")
             while (destination.firstChild) {
                 destination.removeChild(destination.firstChild);
             }
-            for (i of filteredAndSortedSource) {
+            for (i of source) {
                 destination.append(i);
             }
         }
@@ -232,6 +252,23 @@ function updateSearchParams(updatedFilterKey, updatedFilterVal) {
     }
 
     window.history.replaceState({}, "", url.toString());
+}
+
+function getVariantSpecificFirstImage(product) {
+    const currentVariant = product.variants.find((variant) => {
+        const lowercaseOptions = variant.options.map((option) => option.toLowerCase());
+        for (filter of Object.values(window.shopifyData.filters)){
+            if( !(lowercaseOptions.includes(filter)) ){
+                return false;
+            }
+        }
+        return true;
+    })
+    if(currentVariant.featured_image){
+        return currentVariant.featured_image.src
+    } else{
+        return null;
+    }
 }
 
 

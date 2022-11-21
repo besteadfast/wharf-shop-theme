@@ -16,7 +16,7 @@
       </p>
     </div>
   {% endif %}
-  <div class="relative {% if image_bg %}bg-black-50{% endif %}">
+  <div class="relative {% if image_bg %}bg-black-50{% endif %} image-container">
     {% assign product_img_url = product | image_url: width: 200 %}
     {% if product_img_url %}
       {{ product_img_url | image_tag: class: 'w-full aspect-[4/5] object-contain main-img', loading: 'lazy' }}
@@ -26,7 +26,7 @@
     {% if product.metafields.custom.lifestyle_image %}
       <img src="{{ product.metafields.custom.lifestyle_image | image_url: width: 200 }}" width="200" height="250" class="w-full aspect-[4/5] object-contain absolute top-0 left-0 opacity-0 transition-all lifestyle-image" loading="lazy"/>
     {% endif %}
-    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2 pointer-events-none opacity-0 transition-all" style="transform:translateX(-50%)">
+    <modal-opener data-modal="#ProductModal-{{ product.id }}" id="product-{{ product.id }}" class="quick-shop-opener absolute bottom-s8 mx-auto w-max left-1/2 pointer-events-none opacity-0 transition-all to-md:hidden" style="transform:translateX(-50%)">
       <button class="btn btn--sm inline-block">Quick Shop</button>
     </modal-opener>
   </div>
@@ -35,7 +35,14 @@
     {% comment %}
       <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
     {% endcomment %}
-    <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+    {% if product.compare_at_price %}
+      <p class="mt-s5">
+        <span class="mt-s5 line-through text-black-400">${{ product.compare_at_price_max | money_without_currency }}</span>
+        <span class="text-red-500">${{ product.price | money_without_currency }}</span>
+      </p>
+    {% else %}
+      <p class="mt-s5">${{ product.price | money_without_currency }}</p>
+    {% endif %}
     {% if product.options contains "Color" %}
       <div class="h-s6 flex items-center gap-s1 mt-s3">
         {% render 'product-colors', product: product, size: 'sm', preview: true %}

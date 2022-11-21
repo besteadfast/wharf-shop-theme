@@ -1,4 +1,18 @@
+html {
+    scroll-behavior:smooth;
+}
 
+/* hero */
+@media (max-width: 767px){
+    .home-hero{
+        height:calc(100vh - 148px)
+    }
+}
+@media (min-width: 768px){
+    #heroImg{
+        height:calc(100vh - 148px);
+    }
+}
 
 /* cart drawer */
 

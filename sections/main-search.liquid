@@ -40,11 +40,16 @@
 </div>
 <div class="products px-s5 sm:px-54 md:px-72 ">
   <div class="max-w-[1112px] w-full mx-auto pb-s11 md:pb-s13 flex ">
-    <div id="filtered-collection-grid" data-url="{{ search.url }}" data-section="{{ section.id }}" class="grid grid-cols-2 lg:grid-cols-3 gap-x-s4 xs:gap-x-s8 gap-y-s8 md:gap-s10 flex-1">
-      {% for product in search.results %}
-        {% render 'product-card', product: product %}
-      {% endfor %}
-    </div>
+    {% assign resultCount = search.results | size %}
+    {% if resultCount > 0 %}
+      <div id="filtered-collection-grid" data-url="{{ search.url }}" data-section="{{ section.id }}" class="grid grid-cols-2 lg:grid-cols-3 gap-x-s4 xs:gap-x-s8 gap-y-s8 md:gap-s10 flex-1">
+        {% for product in search.results %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="w-full text-center">Nothin to see here 👀</div>
+    {% endif %}
     <script id="collection-data" type="application/json">
       {{ collection.products | json }}
     </script>

@@ -51,7 +51,7 @@
   <div class="flex to-lg:flex-col {% if collection.image %}justify-end{% else %}justify-between{% endif %} w-full py-s10 px-s5 sm:px-54 md:px-72">
     <div class="heading flex {% unless secondLevel %}to-sm:flex-col items-stretch{% endunless %} justify-between items-center to-lg:w-full to-lg:flex-wrap gap-y-s5 md:gap-y-s8 gap-x-s8">
       <h1 class="faux-h3 before:hidden after:hidden {% if collection.image %}lg:hidden{% endif %}">{{ currentTitle }}</h1>
-      <div class="flex flex-1 basis-auto justify-end gap-s4 ">
+      <div class="flex flex-1 basis-auto justify-end gap-s4">
         {% unless secondLevel %}
           <label for="collection" class="relative flex items-center text-black-800 w-full sm:w-[261px] to-sm:min-w-[240px] lg:hidden">
             <select class="filter w-full" name="collection">
@@ -59,7 +59,6 @@
               {% for link in secondLevelLinks %}
                 <option value="{{ link.url }}">{{ link.title }}</option>
               {% endfor %}
-
             </select>
             {% render '8-down', class: 'text-black-200 absolute right-0' %}
           </label>
@@ -87,14 +86,14 @@
       <label for="color" class="relative flex items-center text-black-800">
         <select class="filter to-lg:w-full" name="color" data-filter="Color">
           <option selected disabled value="">Color</option>
-          <option value="all">All Colors</option>
+          <option value="">All Colors</option>
         </select>
         {% render '8-down', class: 'text-black-200 absolute right-0' %}
       </label>
       <label for="size" class="relative flex items-center text-black-800">
         <select class="filter to-lg:w-full" name="size" data-filter="Size">
           <option selected disabled value="">Size</option>
-          <option value="all">All Sizes</option>
+          <option value="">All Sizes</option>
         </select>
         {% render '8-down', class: 'text-black-200 absolute right-0' %}
       </label>

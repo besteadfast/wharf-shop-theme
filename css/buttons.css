@@ -81,6 +81,16 @@
 	--btn-bg-hover: theme('colors.secondary.50');
 }
 
+#app .btn--outlined{
+    --btn-text: theme('colors.primary.800');
+	--btn-text-hover: theme('colors.primary.800');
+
+	--btn-bg: theme('colors.white');
+	--btn-bg-hover: theme('colors.secondary.200');
+
+    @apply border-[2px] border-secondary-200;
+}
+
 
 /** no background **/
 #app .btn--borderless{

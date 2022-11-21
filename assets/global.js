@@ -796,12 +796,12 @@ class VariantSelects extends HTMLElement {
   onVariantChange() {
     this.updateOptions();
     this.updateMasterId();
-    this.toggleAddButton(true, '', false);
+    this.toggleAddButton(true, '');
     this.updatePickupAvailability();
     this.removeErrorMessage();
 
     if (!this.currentVariant) {
-      this.toggleAddButton(true, '', true);
+      this.toggleAddButton(true, '');
       this.setUnavailable();
     } else {
       this.updateMedia();
@@ -887,13 +887,18 @@ class VariantSelects extends HTMLElement {
             //rerender images
             const imagesDestination = document.getElementById(`images-${this.dataset.section}`);
             const imagesSource = html.getElementById(`images-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-            if (imagesSource && priceDestination) imagesDestination.innerHTML = imagesSource.innerHTML;
+            if (imagesSource && imagesDestination) imagesDestination.innerHTML = imagesSource.innerHTML;
 
+            //rerender add to cart/notify when available
+            const addButtonDestination = document.getElementById(`addButton-${this.dataset.section}`);
+            const addButtonSource = html.getElementById(`addButton-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
+            if (addButtonSource && addButtonDestination) addButtonDestination.innerHTML = addButtonSource.innerHTML;
+            console.log(addButtonDestination)
 
             const price = document.getElementById(`price-${this.dataset.section}`);
 
             if (price) price.classList.remove('visibility-hidden');
-            this.toggleAddButton(!this.currentVariant.available, "Sold Out", !this.currentVariant.available);
+            // this.toggleAddButton(!this.currentVariant.available, "Sold Out");
         });
     }
     else{
@@ -901,7 +906,7 @@ class VariantSelects extends HTMLElement {
     }
 }
 
-toggleAddButton(disable = true, text, hide = false) {
+toggleAddButton(disable = true, text) {
     const productForm = document.getElementById(`product-form-${this.dataset.section}`);
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
@@ -915,16 +920,6 @@ toggleAddButton(disable = true, text, hide = false) {
       addButton.removeAttribute('disabled');
       addButtonText.textContent = window.variantStrings.addToCart;
     }
-
-    if (hide) {
-        productForm.classList.add("hidden");
-    } else {
-        productForm.classList.remove("hidden");
-    }
-
-
-
-
   }
 
   setUnavailable() {
@@ -1015,20 +1010,32 @@ class Carousel extends HTMLElement {
 
 customElements.define("img-carousel", Carousel);
 
+/* mobile nav toggle */
+function toggleNav() {
+    body.classList.toggle("nav-active");
+}
 
 /* search */
 
 function toggleSearchMode(e){
+
+    //desktop
     const nav = document.querySelector("nav")
     const search = document.querySelector("nav .search");
     const searchInput = document.querySelector("nav .search input");
+    const mobileSearchInput = document.querySelector("nav .search-mobile input")
+    const searchCloseButton = document.querySelector("nav .search #searchCloseButton")
     nav.classList.toggle("search-mode");
     if(nav.classList.contains("search-mode")){
+        //desktop
+        const offsetRight = window.innerWidth - search.offsetLeft - search.offsetWidth;
         search.style.position = "absolute";
         search.style.right = "0px";
-        search.style.margin = "0px calc(226px + 72px)";
-        search.style.width = "calc(100vw - 452px - 144px )";
+        search.style.margin = `0px ${offsetRight}px`;
+        search.style.width = `calc(100vw - 2 * (${offsetRight}px) )`;
+        search.style.paddingRight = "28px";
         searchInput.focus();
+        //mobile
     }
     else{
         search.style.width = "40px";
@@ -1039,7 +1046,9 @@ function toggleSearchMode(e){
             // search.style.margin = "0px";
         }, 1000);
     }
-
+    searchCloseButton.classList.toggle("w-0");
+    searchCloseButton.classList.toggle("opacity-0");
+    document.querySelector(".mobile-toggle").classList.toggle("flex-1")
 }
 
 const searchElts = document.querySelectorAll("input.search-input")
@@ -1054,12 +1063,23 @@ searchElts.forEach( (searchInput) => {
 const searchSubmit = document.querySelector("button.search-submit")
 if(searchSubmit){
     searchSubmit.addEventListener("click", (e) => {
-    const searchInput =
-        e.target.parentElement.querySelector("input.search-input");
+        console.log(e.currentTarget)
+    const searchInput = e.currentTarget.parentElement.querySelector("input.search-input");
     window.location.href = `/search?q=${searchInput.value}&type=product`;
     });
 }
 
+/* size guide link */
+const sizeGuideLink = document.querySelector("a#sizeGuideLink")
+const sizeGuide = document.querySelector("li.accordion__item#sizeGuide");
+if(sizeGuideLink && sizeGuide){
+    sizeGuideLink.addEventListener("click", () => {
+        if( !sizeGuide.querySelector(".accordion__trigger_active")){
+            sizeGuide.querySelector("button.accordion__trigger").click();
+        }
+        setTimeout(() => {sizeGuide.scrollIntoView(true)}, 201);
+    })
+}
 
 /* titlecase helper */
 

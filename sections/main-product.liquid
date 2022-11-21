@@ -58,7 +58,7 @@
           {% endunless %}
         </p>
         <div class="w-full h-[1px] mt-s8" style="background-color:#DDDDDD;"></div>
-        <p></p>
+        {% if product.variants.length > 0 %}
         <variant-radios class="block relative mt-s8 " data-section="{{ section.id }}" data-url="{{ product.url }}" data-product-page="true">
           <fieldset class="flex gap-s2 pt-s6">
             {% render 'product-colors', product: product, preview: false %}
@@ -76,14 +76,19 @@
           <script type="application/json">
             {{ product.variants | json }}
           </script>
-          <a class="inline-block mt-s4">Size Guide</a>
+          {% if section.settings.size_guide %}
+            <a id="sizeGuideLink" class="block inline-link mt-s4">Size Guide</a>
+          {% endif %}
         </variant-radios>
+    {% endif %}
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
-        <product-form class="{% unless currentVariant.available %}hidden{% endunless %}">
+        <div id="addButton-{{ section.id }}">
+        {% if product.selected_or_first_available_variant.available %}
+        <product-form class="">
           {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
-            <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--sm w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
+            <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--lg btn--dark capitalize tracking-0 w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
               {% if product.selected_or_first_available_variant.available == false %}
               disabled
               {% endif %}>
@@ -106,15 +111,28 @@
           <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $75+</p>
         {%- endform -%}
       </product-form>
+      {% else %}
+        <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
+        <form id="email_signup" action="https://manage.kmail-lists.com/subscriptions/subscribe?a=WUN3cr&g=UAW7nW" method="POST" class="mt-s3 w-full  py-0 flex">
+          <input type="hidden" name="g" value="UAW7nW">
+          <input type="email" value="" name="email" id="k_id_email" placeholder="Enter your email" class="py-s2 outline-none btn--borderless faux-p flex-1 mr-s3"/>
+          <button type="submit" id="notifySignup" class="btn  capitalize tracking-0 w-max">Notify Me</button>
+        </form>
+
+      {% endif %}
+    <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+      </div>
+      {% if product.description.length > 0 %}
       <div class="mt-s10">
         <p class="faux-p-sm text-black-800">{{ product.description }}</p>
       </div>
+    {% endif %}
       {% assign accordionCount = section.blocks | size %}
       {% if accordionCount > 0 %}
         <div class="faq__accordion mt-s10">
           <ul class="accordion-items list-none accordion">
             {% for block in section.blocks %}
-              <li class="accordion__item {{ block.type }}">
+              <li {% if block.type == 'size-guide-accordion-item' %}id="sizeGuide"{% endif %} class="accordion__item {{ block.type }}">
                 <button aria-controls="navAccordionContent{{ forloop.index }}" id="navAccordionBtn{{ forloop.index }}" class="accordion__trigger ">
                   <h2 class="accordion__heading faux-p-sm text-black-800">
                     {{ block.settings.heading }}
@@ -135,7 +153,7 @@
           </ul>
         </div>
       {% endif %}
-      <div class="share flex justify-between items-center py-s7">
+      <div class="share flex justify-between items-center py-s7 border-t-[3px] border-black-100">
         <p class="faux-p-sm text-black-700">Share</p>
         <div class="text-black-400 flex gap-s3">
           <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: request.path | url_encode }}&src=sdkpreparse" class="fb-xfbml-parse-ignore hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>

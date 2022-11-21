@@ -4,14 +4,32 @@
     for i in product.collections
         if topLevelOptions contains i.handle
             assign topLevel = i.title
+            assign topLevelHandle = i.handle
         endif
     endfor
+    assign topLevelUrl = "/collections/" | append: topLevelHandle
     if topLevel
         for linklist in linklists
-            if linklist.handle == topLevel
+            if linklist.handle == topLevelHandle
                 for link in linklist.links
-                    for colleciton in product.collections
+                    for collection in product.collections
+                        if link.handle == collection.handle
+                            assign secondLevel = link.title
+                            assign secondLevelUrl = link.url
+                            assign secondLevelHandle = link.handle
+                        endif
                     endfor
+                    if link.handle == secondLevelHandle
+                        for innerLink in link.links
+                            for tag in product.tags
+                                assign lowerTag= tag | downcase
+                                if lowerTag == innerLink.handle
+                                    assign thirdLevel = innerLink.title
+                                    assign thirdLevelUrl = innerLink.url
+                                endif
+                            endfor
+                        endfor
+                    endif
                 endfor
             endif
         endfor
@@ -19,11 +37,11 @@
 %}
 
 <div class="flex pt-s8 pb-s9 text-black-400">
-  <a class="faux-p-xs ">{{ topLevel }}</a>
+  <a class="faux-p-xs " href="{{ topLevelUrl }}">{{ topLevel }}</a>
   {% render '8-right', class: "text-black-200 mx-s2" %}
-  <a class="faux-p-xs ">Mens</a>
+  <a class="faux-p-xs " href="{{ secondLevelUrl }}">{{ secondLevel }}</a>
   {% render '8-right', class: "text-black-200 mx-s2" %}
-  <a class="faux-p-xs ">Tops</a>
+  <a class="faux-p-xs " href="{{ thirdLevelUrl }}">{{ thirdLevel }}</a>
   {% render '8-right', class: "text-black-200 mx-s2" %}
   <a class="faux-p-xs text-black-500">{{ product.title }}</a>
 </div>

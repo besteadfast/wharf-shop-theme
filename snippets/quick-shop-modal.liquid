@@ -1,5 +1,5 @@
 {% assign currentVariant = product.selected_or_first_available_variant %}
-<modal-dialog id="ProductModal-{{ product.id }}">
+<modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
             {% for image in product.images %}

@@ -1,11 +1,21 @@
-<img src="{{ 'header-family.png' | asset_url }}" class="w-full max-h-[800px] object-cover" style="height:calc(100vh - 148px);" width="1520" height="1014" loading="lazy"/>
-<div class="absolute top-0 left-0 right-0 flex items-center w-full h-full max-w-[1440px] mx-auto py-s8">
-  <div class="w-[720px] px-s14">
-    <h1>{{ section.settings.heading }}</h1>
-    <a class="inline-block btn btn--dark mt-s10 capitalize tracking-0 ui-caps" href="/products">
-      {{ section.settings.buttonLabel }}</a>
+<div class="home-hero to-md:flex to-md:flex-col">
+  <img id="heroImg" src="{{ 'header-family.png' | asset_url }}" class="w-full max-h-[800px] object-cover flex-1" width="1520" height="1014" loading="lazy"/>
+  <div class="to-md:hidden absolute top-0 left-0 right-0 flex items-center w-full h-full max-w-[1440px] mx-auto py-s8">
+    <div class="w-[720px] px-s14">
+      <h1 class="to-md:hidden">{{ section.settings.heading }}</h1>
+      <a class="to-md:hidden inline-block btn btn--dark mt-s10 capitalize tracking-0 ui-caps" href="/products">
+        {{ section.settings.buttonLabel }}
+      </a>
+    </div>
+  </div>
+  <div class="md:hidden w-full bg-primary-800 py-s8 px-s5">
+    <div class="w-full text-center">
+      <h1 class="text-white">{{ section.settings.heading }}</h1>
+      <a href="/collections/best-sellers" class="btn btn--sm capitalize tracking-0 mt-s7">{{ section.settings.buttonLabel }}</a>
+    </div>
   </div>
 </div>
+
 
 
 {% schema %}

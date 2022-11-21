@@ -4,7 +4,7 @@
     border-top-width:3px
 }
 
-.faq__accordion .accordion__item:last-child{
+.faq__accordion:last-child .accordion__item:last-child{
     border-bottom-width:3px
 }
 
@@ -62,11 +62,11 @@ svg path{
     transition: 0.2s;
 }
 
-.accordion__trigger_active svg path.left {
+.faq__accordion .accordion__trigger_active svg path.left {
   d: path("M1 1L11 11");
 }
 
-.accordion__trigger_active svg path.right {
+.faq__accordion .accordion__trigger_active svg path.right {
   d: path("M1 11L11 1");
 }
 

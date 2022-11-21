@@ -10,15 +10,20 @@ html {
 
 @media screen and (max-width: 1023px){
 
-    .nav-primary.container{
-        display:none;
+    body.nav-active .nav-primary {
+        transform:translateX(0);
+    }
+
+    .nav-primary.container {
+        transform:translateX(-100%);
+        transition: transform .2s ease;
     }
 
     body.nav-active{
         overflow:hidden;
     }
 
-    body.nav-active .nav-primary.container{
+    body .nav-primary.container{
         display:flex;
         flex-direction: column;
         position:absolute;
@@ -31,8 +36,47 @@ html {
         background-color:white;
     }
 
+    /* may be too generalized? */
+    svg path{
+        transform-origin:center;
+    }
+
+    body.nav-active .accordion__trigger_active svg path.vert{
+        transform:rotate(90deg);
+    }
+
+    body.nav-active .accordion__trigger_active svg path.horiz{
+        transform:rotate(180deg);
+    }
+
+    body.nav-active .mobile-toggle svg path:is(.top,.bot),
+    nav.search-mode .mobile-toggle svg path:is(.top,.bot){
+        transform: scale(0);
+    }
+
+    body.nav-active .mobile-toggle svg path.mid1,
+    nav.search-mode .mobile-toggle svg path.mid1{
+       d: path("M2.25 3L23.25 21")
+    }
+
+    body.nav-active .mobile-toggle svg path.mid2,
+    nav.search-mode .mobile-toggle svg path.mid2{
+        d: path("M2.25 21L23.25 3")
+    }
+
+
+
+    /* body.nav-active .mobile-toggle svg path.top{
+        d: path("M2.25 3L23.25 21")
+    }
+
+    body.nav-active .mobile-toggle svg path.bot{
+        d: path("M2.25 21L23.25 3")
+    } */
+
+
     .menu__item.level--1{
-        @apply w-full;
+        @apply w-full cursor-pointer;
     }
 
     .menu__item.level--1 .menu__link{
@@ -56,6 +100,21 @@ html {
     .dropdown__link--level-2{
         @apply block pt-s3 pb-s6;
     }
+    nav.search-mode .search-hide-mobile{
+        opacity:0;
+        pointer-events:none;
+        display:none;
+    }
+
+    body#app.nav-active .search-mobile{
+        display:flex;
+    }
+    body#app.nav-active .search-hide-mobile{
+        display:none;
+    }
+    body#app.nav-active .buttons, body#app.nav-active .mobile-toggle{
+        flex-grow:0;
+    }
 }
 
 @media screen and (min-width: 1024px){
@@ -63,7 +122,7 @@ html {
         @apply flex-1 flex h-full;
     }
     .menu__item.level--1{
-        @apply text-black-600 h-full;
+        @apply text-black-600 h-full cursor-pointer;
     }
     .menu__link{
         @apply h-full flex px-s2 xl:px-s3 items-center;
@@ -112,6 +171,11 @@ html {
     .dropdown__link--level-2{
         @apply text-black-600 capitalize;
     }
+
+    nav.search-mode .search-hide{
+        opacity:0;
+        pointer-events:none;
+    }
 }
 
 .dropdown__link--level-1, .dropdown__link--level-2{
@@ -121,13 +185,8 @@ html {
 
 /* search animation */
 
-nav .search-hide{
+nav .search-hide, nav .search-hide-mobile{
     transition: opacity .3s;
-}
-
-nav.search-mode .search-hide{
-    opacity:0;
-    pointer-events:none;
 }
 
 nav .search{
