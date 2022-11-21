@@ -507,8 +507,10 @@ class ModalDialog extends HTMLElement {
     const popup = this.querySelector('.template-popup');
     document.body.classList.add('overflow-hidden');
     this.setAttribute('open', '');
-    console.log(this.querySelector(".carousel-img[data-index='1']"));
-    this.querySelector(".carousel-img[data-index='1']").removeAttribute('loading');
+    const secondImg = this.querySelector(".carousel-img[data-index='1']");
+    if(secondImg){
+        secondImg.removeAttribute('loading');
+    }
     if (popup) popup.loadContent();
     trapFocus(this, this.querySelector('[role="dialog"]'));
     window.pauseAllMedia();
@@ -938,13 +940,10 @@ toggleAddButton(disable = true, text) {
   updateCarousel() {
     if(this.dataset.productPage){return};
     const product = document.querySelector(`#product-${this.dataset.product}`);
-    const productObj = window.shopifyData.collection.find((product) => {
-        return product.id == this.dataset.product;
-    });
     const variantImage = this.currentVariant.featured_image ? this.currentVariant.featured_image.src : null;
     console.log(variantImage)
     //replace product images with variant images
-    if(window.shopifyData.collection){
+    if(!this.dataset.productPage){
           if (variantImage) {
             product.querySelector(".main-img").src = variantImage;
           }

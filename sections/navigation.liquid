@@ -111,11 +111,9 @@
         {% render '24-shopping-cart', class: "text-primary-800 group-hover:text-primary-700 to-lg:hidden" %}
         {% render '24-shopping-cart', class: "text-black-400 group-hover:text-black-500 lg:hidden" %}
         {% assign cart_count = cart.items | size %}
-        {% if cart_count > 0 %}
-          <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full">
-            <span id="cart-quantity-bubble" class="faux-p-xs text-white">{{ cart.items | size }}</span>
-          </div>
-        {% endif %}
+        <div class="absolute top-0 right-0 w-s5 h-s5 flex justify-center items-center bg-secondary-500 rounded-full {% if cart_count <= 0 %}invisible{% endif %}">
+          <span id="cart-quantity-bubble" class="faux-p-xs text-white">{{ cart.items | size }}</span>
+        </div>
       </a>
       <a class="btn btn--sm search-hide ml-[36px] to-xl:hidden" href="/checkout">
         Checkout
