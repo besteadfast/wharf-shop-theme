@@ -936,6 +936,7 @@ toggleAddButton(disable = true, text) {
   }
 
   updateCarousel() {
+    if(this.dataset.productPage){return};
     const product = document.querySelector(`#product-${this.dataset.product}`);
     const productObj = window.shopifyData.collection.find((product) => {
         return product.id == this.dataset.product;

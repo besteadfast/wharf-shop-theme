@@ -58,7 +58,8 @@
           {% endunless %}
         </p>
         <div class="w-full h-[1px] mt-s8" style="background-color:#DDDDDD;"></div>
-        {% if product.variants.length > 0 %}
+        {% assign variantCount = product.variants | size %}
+        {% if variantCount > 0 %}
         <variant-radios class="block relative mt-s8 " data-section="{{ section.id }}" data-url="{{ product.url }}" data-product-page="true">
           <fieldset class="flex gap-s2 pt-s6">
             {% render 'product-colors', product: product, preview: false %}
