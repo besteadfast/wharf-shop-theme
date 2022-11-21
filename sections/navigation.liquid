@@ -6,7 +6,7 @@
     <button class="mobile-toggle flex-1 lg:hidden" onclick="body.classList.toggle('nav-active')">
       {% render '24-menu-8', class: "text-black-400" %}
     </button>
-    <div class="nav-primary container search-hide to-lg:flex-col z-20">
+    <div class="nav-primary container search-hide to-lg:flex-col z-10">
       <ul class="to-lg:flex-1 lg:flex list-none accordion-items accordion">
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
