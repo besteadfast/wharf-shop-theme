@@ -38,7 +38,7 @@
                 </div>
                 <div class="mt-s5">
                     <p class="faux-p-xs block">Size</p>
-                    <fieldset class="flex justify-start gap-s2 mt-s2">
+                    <fieldset class="flex flex-wrap justify-start gap-s2 mt-s2">
                         {% for option in product.options_with_values %}
                             {% if option.name == "Size" %}
                                 {% for optionValue in option.values %}
@@ -48,7 +48,7 @@
                                         {% if firstLetter == "X" %}
                                             {{ optionValue }}
                                         {% else %}
-                                        {{ optionValue | slice: 0 }}
+                                            {{ optionValue | slice: 0 }}
                                         {% endif %}
                                     </label>
                                 {% endfor %}
