@@ -899,22 +899,23 @@ svg path{
   content: "";
   /* Add content: \2022 is the CSS Code/unicode for a bullet */
   font-weight: bold;
-  /* If you want it to be bold */
   display: inline-block;
-  /* Needed to add space between the bullet and the text */
-  position: absolute ;
-  width: 8px;
+  position: absolute;
   height: 8px;
+  width: 8px;
   border-radius: 50%;
-  margin-left: -32px;
-  /* Also needed for space (tweak if needed) */
-  margin-top: 0px;
+  margin-left: -26px;
+  margin-top: 10px;
   --tw-bg-opacity: 1;
   background-color: rgb(157 157 157 / var(--tw-bg-opacity));
 }
 
-#app .rich-text ol li{
+#app .rich-text ol>li{
   counter-increment: count 1;
+}
+
+#app .rich-text ol>ol>li{
+  counter-increment: chapter 1;
 }
 
 #app .rich-text ol li:before{
@@ -935,8 +936,31 @@ svg path{
   margin-left: 32px;
 }
 
-#app .rich-text ul li:not(:first-child){
+#app .rich-text :is(ul, ol) li:not(:first-child){
   margin-top: 32px;
+}
+
+#app .rich-text ul ul,  #app .rich-text ol ol{
+  margin-left: 32px;
+  margin-top: 32px;
+}
+
+#app .rich-text ul ul li:before{
+  margin-left:-32px;
+}
+
+#app .rich-text ul ul ul li:before{
+  height: 6px;
+  width: 6px;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(157 157 157 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+#app .rich-text ol ol li:before{
+  content: counter(chapter, lower-alpha) '.';
 }
 
 .rich-text p:first-child:before{

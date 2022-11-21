@@ -16,19 +16,22 @@
 
 #app .rich-text ul li:before{
   content: "";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  font-weight: bold; /* If you want it to be bold */
-  display: inline-block; /* Needed to add space between the bullet and the text */
-  position: absolute ;
-  width: 8px;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
   height: 8px;
+  width: 8px;
   border-radius: 50%;
-  margin-left: -32px; /* Also needed for space (tweak if needed) */
-  margin-top: 0px;
+  margin-left: -26px;
+  margin-top: 10px;
   @apply bg-black-400;
 }
 
-#app .rich-text ol li{
+#app .rich-text ol>li{
     counter-increment: count 1;
+}
+#app .rich-text ol>ol>li{
+    counter-increment: chapter 1;
 }
 
 #app .rich-text ol li:before{
@@ -48,8 +51,24 @@
     @apply ml-s7;
 }
 
-#app .rich-text ul li:not(:first-child){
+#app .rich-text :is(ul, ol) li:not(:first-child){
     @apply mt-s7;
+}
+
+#app .rich-text ul ul, #app .rich-text ol ol{
+    @apply ml-s7 mt-s7;
+}
+
+#app .rich-text ul ul li:before{
+    margin-left:-32px;
+}
+
+#app .rich-text ul ul ul li:before{
+    @apply bg-white border-[2px] border-black-400 w-[6px] h-[6px];
+}
+
+#app .rich-text ol ol li:before{
+  content: counter(chapter, lower-alpha) '.';
 }
 
 .rich-text p:first-child:before{
