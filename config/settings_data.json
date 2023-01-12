@@ -121,7 +121,7 @@
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
-    "favicon": "shopify:\/\/shop_images\/favicon-32x32.png",
+    "favicon": "shopify:\/\/shop_images\/wharf-favicon.png",
     "currency_code_enabled": true,
     "sections": {
       "announcement-bar": {
@@ -201,8 +201,7 @@
             "settings": {
               "menu": "apparel",
               "label": "Logo Series",
-              "linkDest": "test-page",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
+              "linkDest": "test-page"
             }
           },
           "1f478b93-3a60-4601-a628-4a1b20b4470d": {
@@ -217,8 +216,7 @@
             "settings": {
               "menu": "featured",
               "label": "Fun In The Sun",
-              "linkDest": "test-page",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
+              "linkDest": "test-page"
             }
           },
           "56d83dad-4faf-49d1-a89f-23d02659f676": {
@@ -226,8 +224,7 @@
             "settings": {
               "menu": "featured",
               "label": "Event Gear",
-              "linkDest": "test-page",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-event.jpg"
+              "linkDest": "test-page"
             }
           },
           "8761a945-e978-4df3-ad92-ea7dce583774": {
@@ -256,8 +253,7 @@
             "settings": {
               "menu": "objects",
               "label": "Picnic",
-              "linkDest": "test-page",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-picnic.jpg"
+              "linkDest": "test-page"
             }
           }
         },
