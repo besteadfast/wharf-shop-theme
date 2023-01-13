@@ -86,6 +86,7 @@
       "type": "sale-cta",
       "settings": {
         "heading": "Our Summer Sale is Shining!",
+        "headingImage": "shopify:\/\/shop_images\/banner-the-wharf-orange-beach-logo.png",
         "text": "Take 50% off our end of season sale. All sales final — ends soon!",
         "buttonLabel": "Shop Sale",
         "buttonDest": "shopify:\/\/collections\/sale"

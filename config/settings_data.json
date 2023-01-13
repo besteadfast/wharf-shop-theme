@@ -201,7 +201,7 @@
             "settings": {
               "menu": "apparel",
               "label": "Logo Series",
-              "linkDest": "test-page",
+              "linkDest": "",
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-logo-series.jpg"
             }
           },
@@ -217,7 +217,7 @@
             "settings": {
               "menu": "featured",
               "label": "Fun In The Sun",
-              "linkDest": "test-page",
+              "linkDest": "",
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
             }
           },
@@ -226,7 +226,7 @@
             "settings": {
               "menu": "featured",
               "label": "Event Gear",
-              "linkDest": "test-page",
+              "linkDest": "",
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-event_e2230668-8d15-4a3e-8935-962ac9de5dee.jpg"
             }
           },
@@ -256,7 +256,7 @@
             "settings": {
               "menu": "objects",
               "label": "Picnic",
-              "linkDest": "test-page",
+              "linkDest": "",
               "featuredImage": "shopify:\/\/shop_images\/nav-feature-picnic.jpg"
             }
           }
