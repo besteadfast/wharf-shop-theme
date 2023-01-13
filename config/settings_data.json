@@ -201,7 +201,8 @@
             "settings": {
               "menu": "apparel",
               "label": "Logo Series",
-              "linkDest": "test-page"
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-logo-series.jpg"
             }
           },
           "1f478b93-3a60-4601-a628-4a1b20b4470d": {
@@ -216,7 +217,8 @@
             "settings": {
               "menu": "featured",
               "label": "Fun In The Sun",
-              "linkDest": "test-page"
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
             }
           },
           "56d83dad-4faf-49d1-a89f-23d02659f676": {
@@ -224,7 +226,8 @@
             "settings": {
               "menu": "featured",
               "label": "Event Gear",
-              "linkDest": "test-page"
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-event_e2230668-8d15-4a3e-8935-962ac9de5dee.jpg"
             }
           },
           "8761a945-e978-4df3-ad92-ea7dce583774": {
@@ -253,7 +256,8 @@
             "settings": {
               "menu": "objects",
               "label": "Picnic",
-              "linkDest": "test-page"
+              "linkDest": "test-page",
+              "featuredImage": "shopify:\/\/shop_images\/nav-feature-picnic.jpg"
             }
           }
         },
@@ -278,9 +282,10 @@
         "type": "sale-cta",
         "settings": {
           "heading": "Our Summer Sale is Shining!",
-          "text": "Take 50% off our end of season sale. All sales final — ends soon!",
-          "buttonLabel": "Shop Sale",
-          "buttonDest": ""
+          "headingImage": "shopify:\/\/shop_images\/banner-the-wharf-orange-beach-logo.png",
+          "text": "Located in the heart of the Gulf Coast, The Wharf is the perfect bonus getaway for beachgoers and sightseeing vacationers. Prop up your feet after a day of sun and sand and enjoy the breezy atmosphere. Take advantage of all we have to offer.",
+          "buttonLabel": "Explore Alwharf.com",
+          "buttonDest": "https:\/\/alwharf.com"
         }
       }
     },

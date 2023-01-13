@@ -22,21 +22,24 @@
           "type": "pane",
           "settings": {
             "image": "shopify:\/\/shop_images\/collection-boat.png",
-            "label": "Boat"
+            "label": "Boat",
+            "linkDest": ""
           }
         },
         "dac62742-03d3-4093-86b2-455335088373": {
           "type": "pane",
           "settings": {
             "image": "shopify:\/\/shop_images\/collection-swim.png",
-            "label": "Swim"
+            "label": "Swim",
+            "linkDest": "shopify:\/\/collections\/swim"
           }
         },
         "20035cd3-43fe-4fd4-a4d4-e35ccc638858": {
           "type": "pane",
           "settings": {
             "image": "shopify:\/\/shop_images\/collection-play.png",
-            "label": "Play"
+            "label": "Play",
+            "linkDest": "shopify:\/\/collections\/swim-toys"
           }
         }
       },
@@ -58,7 +61,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/category-women.png",
             "linkLabel": "Shop Womens",
-            "linkDest": ""
+            "linkDest": "shopify:\/\/collections\/womens"
           }
         },
         "fb33c416-427a-4e74-b9a3-4bd4125fa1dd": {
@@ -66,7 +69,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/category-men.png",
             "linkLabel": "Shop Mens",
-            "linkDest": ""
+            "linkDest": "shopify:\/\/collections\/mens"
           }
         }
       },
@@ -85,7 +88,7 @@
         "heading": "Our Summer Sale is Shining!",
         "text": "Take 50% off our end of season sale. All sales final — ends soon!",
         "buttonLabel": "Shop Sale",
-        "buttonDest": ""
+        "buttonDest": "shopify:\/\/collections\/sale"
       }
     },
     "floating_cta": {
@@ -107,7 +110,7 @@
         "heading": "Gifts for Dad",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Shop Mens",
-        "buttonDest": "",
+        "buttonDest": "shopify:\/\/collections\/mens",
         "bgImage": "shopify:\/\/shop_images\/highlight-fathers-day-collection.png"
       }
     },
@@ -125,7 +128,7 @@
         "heading": "About",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Visit Us",
-        "buttonDest": "",
+        "buttonDest": "https:\/\/alwharf.com",
         "bgImage": "shopify:\/\/shop_images\/highlight-boat.png"
       }
     }

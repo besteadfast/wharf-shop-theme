@@ -11,19 +11,13 @@
         {% assign menuItems = "apparel,objects,featured" | split: ',' %}
         {% for menuItem in menuItems %}
           <li id="navLevel1Item{{ forloop.index }}" class="menu__item level--1 has-children ui-base accordion__item group to-lg:border-b-[1px] to-lg:border-black-50">
-            <a
-              aria-controls="accordionContent{{ forloop.index }}"
-              id="accordionBtn{{ forloop.index }}"
-              class="menu__link accordion__trigger">
+            <a aria-controls="accordionContent{{ forloop.index }}" id="accordionBtn{{ forloop.index }}" class="menu__link accordion__trigger">
               <span class="to-lg:hidden transition-all duration-300 group-hover:text-secondary-500">{{ menuItem | capitalize }}</span>
               <span class="lg:hidden faux-p-lg transition-all text-black-900 group-hover:text-secondary-500">{{ menuItem | capitalize }}</span>
               {% render '12-down', class: "text-primary-100 ml-s2 transition-all group-hover:rotate-[180deg] group-hover:text-secondary-500 to-lg:hidden" %}
               {% render '24-plus', class: "mobile text-primary-100 ml-s2 transition-all group-hover:text-secondary-500 lg:hidden" %}
             </a>
-            <div
-              id="accordionContent{{ forloop.index }}"
-              aria-labelledby="accordionBtn{{ forloop.index }}"
-              class="menu__dropdown accordion__content-wrapper content-dependant group-hover:block">
+            <div id="accordionContent{{ forloop.index }}" aria-labelledby="accordionBtn{{ forloop.index }}" class="menu__dropdown accordion__content-wrapper content-dependant group-hover:block">
               <div class="menu__columns">
                 {% for column in section.blocks %}
                   {% if column.settings.menu == menuItem %}
@@ -57,7 +51,7 @@
                       <div class="menu-column feature to-lg:hidden relative">
                         <a href="{{ column.settings.linkDest }}" class="block">
                           <div class="h-[256px] w-full overflow-hidden">
-                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-full w-full transition" />
+                            <img src="{{ column.settings.featuredImage | image_url }}" class="object-cover h-full w-full transition"/>
                           </div>
                           <div class="absolute top-0 left-0 h-[256px] w-full transition overlay"></div>
                           <span class="btn btn--borderless mt-s6">{{ column.settings.label }}</span>
@@ -92,28 +86,13 @@
       </div>
     </div>
     <a href="/" class="to-md:hidden search-hide search-hide-mobile">
-      <img
-        class=" w-[300px] xl:w-[350px] "
-        src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}"
-        alt="The Wharf Store"
-        width="350"
-        height="35"
-        loading="lazy" />
+      <img class=" w-[300px] xl:w-[350px] " src="{{ 'Logo-Wharf-Horizontal.svg' | asset_url }}" alt="The Wharf Store" width="350" height="35" loading="lazy"/>
     </a>
     <a href="/" class="md:hidden search-hide-mobile">
-      <img
-        class="w-[150px]"
-        src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}"
-        alt="The Wharf Store"
-        width="150"
-        height="80"
-        loading="lazy" />
+      <img class="w-[150px]" src="{{ 'Logo-Wharf-Stacked.svg' | asset_url }}" alt="The Wharf Store" width="150" height="80" loading="lazy"/>
     </a>
     <div class="p-s2 search-mobile flex-1 items-center hidden">
-      <input
-        class="search-input bg-transparent outline-none flex-1 ml-s6 faux-p-lg text-black-900"
-        placeholder="Search the shop"
-        value="{% if search %}{{search.terms}}{% endif %}" />
+      <input class="search-input bg-transparent outline-none flex-1 ml-s6 faux-p-lg text-black-900" placeholder="Search the shop" value="{% if search %}{{search.terms}}{% endif %}"/>
       <button id="searchButton" class="search-submit">
         {% render '24-search', class: "text-black-400 hover:text-black-500" %}
       </button>
@@ -123,21 +102,12 @@
         <button id="searchButton" onclick="toggleSearchMode();">
           {% render '24-search', class: "text-primary-800 hover:text-primary-600" %}
         </button>
-        <input
-          class="search-input bg-transparent outline-none text-black-900 faux-p-lg"
-          placeholder="Search the shop"
-          value="{% if search %}{{search.terms}}{% endif %}" />
-        <button
-          id="searchCloseButton"
-          onclick="toggleSearchMode()"
-          class="absolute right-s2 opacity-0 w-0 overflow-hidden transition-all">
+        <input class="search-input bg-transparent outline-none text-black-900 faux-p-lg" placeholder="Search the shop" value="{% if search %}{{search.terms}}{% endif %}"/>
+        <button id="searchCloseButton" onclick="toggleSearchMode()" class="absolute right-s2 opacity-0 w-0 overflow-hidden transition-all">
           {% render '12-close', class: "text-black-400" %}
         </button>
       </div>
-      <a
-        href="{{ routes.cart_url }}"
-        id="cart-icon-bubble"
-        class="search-hide relative p-s2 ml-s2 lg:ml-s3 cart-notification group">
+      <a href="{{ routes.cart_url }}" id="cart-icon-bubble" class="search-hide relative p-s2 ml-s2 lg:ml-s3 cart-notification group">
         {% render '24-shopping-cart', class: "text-primary-800 group-hover:text-primary-700 to-lg:hidden" %}
         {% render '24-shopping-cart', class: "text-black-400 group-hover:text-black-500 lg:hidden" %}
         {% assign cart_count = cart.items | size %}
@@ -211,7 +181,7 @@
             "id": "label",
             "label": "Link Label"
           }, {
-            "type": "url",
+            "type": "page",
             "id": "linkDest",
             "label": "Link Destination"
           }, {
