@@ -9,9 +9,9 @@
     <div class="flex to-sm:flex-col gap-s8 mt-s10">
       {% for block in section.blocks %}
         <div class="relative flex-1 featured-category">
-          <a href="{{ block.settings.linkDest.url }}" class="block">
+          <a href="{{ block.settings.linkDest }}" class="block">
             <div class="h-[360px] w-full overflow-hidden">
-              <img class="h-[360px] w-full object-cover transition-all" src="{{ block.settings.image | image_url }}"/>
+              <img class="h-[360px] w-full object-cover transition-all" src="{{ block.settings.image | image_url }}" />
             </div>
             <div class="absolute top-0 left-0 h-[360px] w-full transition overlay"></div>
             <span class="mt-s6 btn btn--borderless">{{ block.settings.linkLabel }}</span>
@@ -41,7 +41,7 @@
             "id": "linkLabel",
             "label": "Link Label"
           }, {
-            "type": "page",
+            "type": "url",
             "id": "linkDest",
             "label": "Link Destination"
           }

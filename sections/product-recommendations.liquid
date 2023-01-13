@@ -5,11 +5,11 @@
         <div class="w-full border-b-[1px] border-black-50">
           <h2 class="product-recommendations__heading faux-h6 w-max mb-[-1px] pb-s3 border-b-[1px] text-primary-800 border-secondary-200">Related Products</h2>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-s8 lg:gap-s6 mt-s9 md:mt-s8" role="list">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-s8 lg:gap-s6 mt-s9 md:mt-s8">
           {% for recommendation in recommendations.products %}
             {% render 'product-card', product: recommendation, image_bg: true %}
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     </product-recommendations>
   </div>

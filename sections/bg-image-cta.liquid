@@ -1,67 +1,63 @@
 <div class="bg-image-cta relative flex items-center  md:p-72 lg:p-s13 {{section.settings.position}}">
-    <img src="{{ section.settings.bgImage | image_url }}" class="bg-image"/>
-    <div class="relative w-full max-w-content mx-auto">
-        <div class="cta relative w-full bg-white">
-            <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
-            <p class="max-w-[548px] mx-auto text-black-600">{{ section.settings.text }}</p>
-            <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
-        </div>
+  <img src="{{ section.settings.bgImage | image_url }}" class="bg-image" />
+  <div class="relative w-full max-w-content mx-auto">
+    <div class="cta relative w-full bg-white">
+      <h2 class="text-primary-800">{{ section.settings.heading }}</h2>
+      <p class="max-w-[548px] mx-auto text-black-600">{{ section.settings.text }}</p>
+      <a href="{{ section.settings.buttonDest }}" class="btn btn--borderless btn--sm mt-s8">{{ section.settings.buttonLabel }}</a>
     </div>
+  </div>
 </div>
 
 {% schema %}
-    {
-        "name": "bg-image-cta",
-        "settings": [
-            {
-                "type": "select",
-                "id": "position",
-                "label": "Position",
-                "options": [
-                    {
-                    "value": "left",
-                    "label": "Left"
-                    },
-                    {
-                    "value": "middle",
-                    "label": "Middle"
-                    },
-                    {
-                    "value": "right",
-                    "label": "Right"
-                    }
-                ],
-                "default": "middle"
-            },
-            {
-                "type": "text",
-                "id": "heading",
-                "label": "Heading",
-                "default": "Gifts for Dad"
-            },
-            {
-                "type": "text",
-                "id": "text",
-                "label": "Main Text",
-                "default": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis."
-            },
-            {
-                "type": "text",
-                "id": "buttonLabel",
-                "label": "Button Label",
-                "default": "Shop Mens"
-            },
-            {
-                "type": "page",
-                "id": "buttonDest",
-                "label": "Button Destination"
-            },
-            {
-                "type": "image_picker",
-                "id": "bgImage",
-                "label": "Background Image"
-            }
-        ]
+  {
+    "name": "bg-image-cta",
+    "settings": [
+      {
+        "type": "select",
+        "id": "position",
+        "label": "Position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "middle",
+            "label": "Middle"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "middle"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Gifts for Dad"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Main Text",
+        "default": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis."
+      },
+      {
+        "type": "text",
+        "id": "buttonLabel",
+        "label": "Button Label",
+        "default": "Shop Mens"
+      }, {
+        "type": "url",
+        "id": "buttonDest",
+        "label": "Button Destination"
+      }, {
+        "type": "image_picker",
+        "id": "bgImage",
+        "label": "Background Image"
+      }
+    ]
 
-    }
+  }
 {% endschema %}

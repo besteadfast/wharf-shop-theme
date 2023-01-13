@@ -9,10 +9,10 @@
     <div class="flex to-sm:flex-col relative to-sm:max-w-[380px] to-sm:mx-auto w-full h-max sm:h-[200px] md:h-[400px] lg:h-[620px] -bottom-s12 md:-bottom-s13 -mt-s9 md:-mt-[56px] gap-s6">
       {% for block in section.blocks %}
         <div class="sm:flex-1 to-sm:h-[500px] bg-primary-100 relative three-pane-item overflow-hidden">
-          <a class="flex justify-center items-center w-full h-full absolute top-0 left-0 z-10 transition-all" href="/">
+          <a class="flex justify-center items-center w-full h-full absolute top-0 left-0 z-10 transition-all" href="{{ block.settings.linkDest }}">
             <span class="faux-h3 z-10">{{ block.settings.label }}</span>
           </a>
-          <img src="{{ block.settings.image | image_url }}" class="object-cover absolute w-full h-full object-cover z-0 transition-all"/>
+          <img src="{{ block.settings.image | image_url }}" class="object-cover absolute w-full h-full object-cover z-0 transition-all" />
         </div>
       {% endfor %}
     </div>
@@ -37,6 +37,10 @@
             "type": "text",
             "id": "label",
             "label": "Label"
+          }, {
+            "type": "url",
+            "id": "linkDest",
+            "label": "Link Destination"
           }
         ]
       }
