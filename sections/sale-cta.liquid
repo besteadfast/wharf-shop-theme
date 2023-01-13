@@ -1,10 +1,10 @@
 <div class="bg-primary-800 py-s10 px-54 md:px-72 lg:px-s13">
   <div class="w-full max-w-content mx-auto flex to-md:flex-col to-md:items-center gap-s7 md:gap-s8 lg:gap-s9">
-    <div class="md:w-[366px] shrink flex justify-center md:justify-end items-center">
+    <div class="md:w-[230px] lg:min-w-[366px] shrink flex justify-center md:justify-end items-center">
       {% if section.settings.headingImage %}
-        <img src="{{ section.settings.headingImage | image_url }}" class="w-[360px]" />
+        <img src="{{ section.settings.headingImage | image_url }}" class="w-full" />
       {% else %}
-        <h2 class="faux-h4 w-[180px] md:w-[230px] text-right text-secondary-100">
+        <h2 class="faux-h4 w-[180px] md:w-[230px] text-center md:text-right text-secondary-100">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
