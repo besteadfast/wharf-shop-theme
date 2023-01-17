@@ -142,11 +142,11 @@
                 </button>
                 <div id="navAccordionContent{{ forloop.index }}" aria-labelledby="navAccordionBtn{{ forloop.index }}" class="accordion__content-wrapper content-dependant relative ">
                 {% if block.type == 'size-guide-accordion-item' %}
-                <div class="pb-s7 rich-text">
+                <div class="pb-s7 pt-s1 rich-text">
                     {{ block.settings.accordion_content.content }}
                 </div>
                 {% else %}
-                  <div class="pb-s7 pt-s1 rich-text">
+                  <div class="pb-s7 rich-text">
                       {{ block.settings.accordion_content }}
                   </div>
                 {% endif %}
