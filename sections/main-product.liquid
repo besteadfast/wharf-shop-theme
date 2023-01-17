@@ -158,7 +158,7 @@
         <p class="faux-p-sm text-black-700">Share</p>
         <div class="text-black-400 flex gap-s3">
           <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin | append: request.path | url_encode }}&src=sdkpreparse" class="fb-xfbml-parse-ignore hover:text-black-600">{% render '16-logo-facebook-simple' %}</a>
-          <a target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet?url={{ request.origin | append: request.path | url_encode }}" data-size="large">{% render '16-logo-twitter' %}</a>
+          <a target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet?url={{ request.origin | append: request.path | url_encode }}" data-size="large" class="hover:text-black-600">{% render '16-logo-twitter' %}</a>
         </div>
       </div>
     </div>

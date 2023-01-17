@@ -194,7 +194,6 @@ select.filter, select.sort {
   top: 12px;
   right: 12px;
   display: flex;
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   align-items: center;
@@ -262,7 +261,7 @@ select.filter, select.sort {
   width: 12px;
 }
 
-.product-variant--page *,  .product-variant--tile *{
+.product-variant--page *, .product-variant--tile *{
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -283,20 +282,20 @@ select.filter, select.sort {
   border-radius: 50%;
 }
 
-.product-variant--page .disc,  .product-variant--tile .disc{
+.product-variant--page .disc, .product-variant--tile .disc{
   height: 100%;
   width: 100%;
   border-radius: 50%;
 }
 
-.product-variant--page .disc:hover,  .product-variant--tile .disc:hover{
+.product-variant--page .disc:hover, .product-variant--tile .disc:hover{
   border-width: 1px;
   border-style: solid;
   --tw-border-opacity: 1;
   border-color: rgb(157 157 157 / var(--tw-border-opacity));
 }
 
-.product-variant--page.active .disc,  .product-variant--tile.active .disc{
+.product-variant--page.active .disc, .product-variant--tile.active .disc{
   border-width: 1px;
   border-style: solid;
   --tw-border-opacity: 1;
@@ -628,13 +627,13 @@ html {
   }
 }
 
-.dropdown__link--level-1,  .dropdown__link--level-2{
+.dropdown__link--level-1, .dropdown__link--level-2{
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 
-.dropdown__link--level-1:hover,  .dropdown__link--level-2:hover{
+.dropdown__link--level-1:hover, .dropdown__link--level-2:hover{
   color: var(--secondary-500);
 }
 
@@ -940,7 +939,7 @@ svg path{
   margin-top: 32px;
 }
 
-#app .rich-text ul ul,  #app .rich-text ol ol{
+#app .rich-text ul ul, #app .rich-text ol ol{
   margin-left: 32px;
   margin-top: 32px;
 }
@@ -982,7 +981,7 @@ svg path{
   border-collapse: collapse;
 }
 
-.rich-text th,  .rich-text tr:first-child td{
+.rich-text th, .rich-text tr:first-child td{
   --tw-bg-opacity: 1;
   background-color: rgb(230 230 230 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
@@ -1005,20 +1004,19 @@ svg path{
   text-align: center;
 }
 
-.rich-text a,  .inline-link{
+.rich-text a, .inline-link{
   color: var(--primary-500);
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
-.rich-text a:hover,  .inline-link:hover{
+.rich-text a:hover, .inline-link:hover{
   color: var(--primary-600);
 }
 
 /* purgecss start ignore */
 
 /*
-	! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
+	! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1049,6 +1047,7 @@ svg path{
 2. Prevent adjustments of font size after orientation changes in iOS.
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
 */
 
 html {
@@ -1063,6 +1062,8 @@ html {
   /* 3 */
   font-family: Inter, sans-serif;
   /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
 }
 
 /*
@@ -1427,6 +1428,12 @@ img,
 video {
   max-width: 100%;
   height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
 }
 
 :is(.faux-sh){
@@ -3289,58 +3296,11 @@ video {
   }
 }
 
-*, 
-	::before, 
+*,
+	::before,
 	::after{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-}
-
-::-webkit-backdrop{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -3448,6 +3408,10 @@ video {
   visibility: hidden;
 }
 
+#app .collapse{
+  visibility: collapse;
+}
+
 #app .static{
   position: static;
 }
@@ -3465,7 +3429,6 @@ video {
 }
 
 #app .sticky{
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -3816,14 +3779,6 @@ video {
   aspect-ratio: 4/5;
 }
 
-#app .h-auto{
-  height: auto;
-}
-
-#app .h-s6{
-  height: 24px;
-}
-
 #app .h-icon-64{
   height: 64px;
 }
@@ -3842,6 +3797,14 @@ video {
 
 #app .h-icon-12{
   height: 12px;
+}
+
+#app .h-auto{
+  height: auto;
+}
+
+#app .h-s6{
+  height: 24px;
 }
 
 #app .h-full{
@@ -3873,7 +3836,6 @@ video {
 }
 
 #app .h-max{
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
 }
@@ -3918,16 +3880,6 @@ video {
   max-height: 800px;
 }
 
-#app .w-full{
-  width: 100%;
-}
-
-#app .w-max{
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
 #app .w-icon-64{
   width: 64px;
 }
@@ -3946,6 +3898,15 @@ video {
 
 #app .w-icon-12{
   width: 12px;
+}
+
+#app .w-full{
+  width: 100%;
+}
+
+#app .w-max{
+  width: -moz-max-content;
+  width: max-content;
 }
 
 #app .w-screen{
@@ -3977,7 +3938,6 @@ video {
 }
 
 #app .w-min{
-  width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
 }
@@ -4014,8 +3974,8 @@ video {
   width: 150px;
 }
 
-#app .w-\[360px\]{
-  width: 360px;
+#app .w-\[230px\]{
+  width: 230px;
 }
 
 #app .w-\[180px\]{
@@ -4938,13 +4898,11 @@ video {
 }
 
 #app .underline{
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+  text-decoration-line: underline;
 }
 
 #app .line-through{
-  -webkit-text-decoration-line: line-through;
-          text-decoration-line: line-through;
+  text-decoration-line: line-through;
 }
 
 #app .antialiased{
@@ -5007,9 +4965,9 @@ video {
 }
 
 #app .transition{
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -5027,9 +4985,7 @@ video {
 }
 
 #app .transition-colors{
-  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -5254,10 +5210,6 @@ video {
     width: 382px;
   }
 
-  #app .md\:w-\[366px\]{
-    width: 366px;
-  }
-
   #app .md\:w-\[230px\]{
     width: 230px;
   }
@@ -5353,6 +5305,10 @@ video {
   #app .md\:pt-s13{
     padding-top: 120px;
   }
+
+  #app .md\:text-right{
+    text-align: right;
+  }
 }
 
 @media (min-width: 1024px){
@@ -5394,6 +5350,10 @@ video {
 
   #app .lg\:w-\[460px\]{
     width: 460px;
+  }
+
+  #app .lg\:min-w-\[366px\]{
+    min-width: 366px;
   }
 
   #app .lg\:max-w-content{
