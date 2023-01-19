@@ -85,9 +85,9 @@
     "sale_cta": {
       "type": "sale-cta",
       "settings": {
-        "heading": "Our Summer Sale is Shining!",
+        "heading": "",
         "headingImage": "shopify:\/\/shop_images\/banner-the-wharf-orange-beach-logo.png",
-        "text": "Take 50% off our end of season sale. All sales final — ends soon!",
+        "text": "",
         "buttonLabel": "Shop Sale",
         "buttonDest": "shopify:\/\/collections\/sale"
       }
@@ -100,7 +100,7 @@
         "buttonLabel": "Shop the Kids collection",
         "buttonDest": "",
         "productImage": "shopify:\/\/shop_images\/feature-product-shot-tee-coral_1.png",
-        "mainImage": "shopify:\/\/shop_images\/feature-lifestyle-boy-fishing.png",
+        "mainImage": "shopify:\/\/shop_images\/TWS_2022_Web_71.jpg",
         "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
       }
     },
