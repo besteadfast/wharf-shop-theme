@@ -125,12 +125,12 @@
     "bg_image_right_cta": {
       "type": "bg-image-cta",
       "settings": {
-        "position": "right",
+        "position": "left",
         "heading": "About",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Visit Us",
         "buttonDest": "https:\/\/alwharf.com",
-        "bgImage": "shopify:\/\/shop_images\/highlight-boat.png"
+        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_398.jpg"
       }
     }
   },
