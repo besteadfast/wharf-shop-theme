@@ -32,6 +32,11 @@
 
 
 %}
+
+{% unless currentTitle %}
+  {% assign currentTitle = collection.title %}
+{% endunless %}
+
 {% capture colors %}
   {%- for coll in collections -%}
     {%- if coll.metafields.custom.color -%}
@@ -40,11 +45,10 @@
   {%- endfor -%}
 {% endcapture %}
 
-
 <div class="hero">
   {% if collection.image %}
     <div class="relative flex justify-center bg-primary-800">
-      <img src="{{ collection.image | image_url }}" class="h-[151px] xs:h-[382px] lg:h-[526px] w-full object-cover"/>
+      <img src="{{ collection.image | image_url }}" class="h-[151px] xs:h-[382px] lg:h-[526px] w-full object-cover" />
       <h1 class="absolute bottom-s11 w-full px-s10 max-w-[1416px] text-white to-lg:hidden">{{ currentTitle }}</h1>
     </div>
   {% endif %}
@@ -55,7 +59,10 @@
         {% unless secondLevel %}
           <label for="collection" class="relative flex items-center text-black-800 w-full sm:w-[261px] to-sm:min-w-[240px] lg:hidden">
             <select class="filter w-full" name="collection">
-              <option selected disabled value="color">Shop By Category</option>
+              <option
+                selected
+                disabled
+                value="color">Shop By Category</option>
               {% for link in secondLevelLinks %}
                 <option value="{{ link.url }}">{{ link.title }}</option>
               {% endfor %}
@@ -70,13 +77,19 @@
       <div id="selectedColor" class="px-s3 py-s3 flex items-center gap-s2 bg-black-50 mt-s7 hidden">
         <div class="rounded-full border-[1px] border-black-200 w-[10px] h-[10px] color-swatch"></div>
         <p class="text-black-600 indicator-label">Color</p>
-        <button id="removeColorFilterButton" class="remove-filter-button" data-close="color">
+        <button
+          id="removeColorFilterButton"
+          class="remove-filter-button"
+          data-close="color">
           {% render '8-close', class: "text-black-400" %}
         </button>
       </div>
       <div id="selectedSize" class="px-s3 py-s3 flex items-center gap-s2 bg-black-50 mt-s7 hidden">
         <p class="text-black-600 indicator-label">Size</p>
-        <button id="removeSizeFilterButton" class="remove-filter-button" data-close="size">
+        <button
+          id="removeSizeFilterButton"
+          class="remove-filter-button"
+          data-close="size">
           {% render '8-close', class: "text-black-400" %}
         </button>
       </div>
@@ -84,22 +97,37 @@
     </div>
     <div id="filtered-collection-filters" class="flex to-lg:flex-col gap-s4 md:gap-s6 to-lg:mt-s7 to-lg:hidden">
       <label for="color" class="relative flex items-center text-black-800">
-        <select class="filter to-lg:w-full" name="color" data-filter="Color">
-          <option selected disabled value="">Color</option>
+        <select
+          class="filter to-lg:w-full"
+          name="color"
+          data-filter="Color">
+          <option
+            selected
+            disabled
+            value="">Color</option>
           <option value="">All Colors</option>
         </select>
         {% render '8-down', class: 'text-black-200 absolute right-0' %}
       </label>
       <label for="size" class="relative flex items-center text-black-800">
-        <select class="filter to-lg:w-full" name="size" data-filter="Size">
-          <option selected disabled value="">Size</option>
+        <select
+          class="filter to-lg:w-full"
+          name="size"
+          data-filter="Size">
+          <option
+            selected
+            disabled
+            value="">Size</option>
           <option value="">All Sizes</option>
         </select>
         {% render '8-down', class: 'text-black-200 absolute right-0' %}
       </label>
       <label for="sort" class="relative flex items-center text-black-800">
         <select class="sort to-lg:w-full" name="sort">
-          <option selected disabled value="sort">Sort</option>
+          <option
+            selected
+            disabled
+            value="sort">Sort</option>
           <option value="price-low-high">Price (Low - High)</option>
           <option value="price-high-low">Price (High - Low)</option>
         </select>
@@ -138,7 +166,11 @@
         </ul>
       </div>
     {% endif %}
-    <div id="filtered-collection-grid" data-url="{{ collection.url }}" data-section="{{ section.id }}" class="grid grid-cols-2 lg:grid-cols-3  gap-x-s4 xs:gap-x-s8 gap-y-s8 md:gap-s10 flex-1">
+    <div
+      id="filtered-collection-grid"
+      data-url="{{ collection.url }}"
+      data-section="{{ section.id }}"
+      class="grid grid-cols-2 lg:grid-cols-3  gap-x-s4 xs:gap-x-s8 gap-y-s8 md:gap-s10 flex-1">
       {% for product in collection.products %}
         {% render 'product-card', product: product %}
       {% endfor %}
