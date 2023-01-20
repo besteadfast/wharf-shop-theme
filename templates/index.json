@@ -107,12 +107,12 @@
     "bg_image_center_cta": {
       "type": "bg-image-cta",
       "settings": {
-        "position": "left",
+        "position": "right",
         "heading": "Gifts for Dad",
         "text": "",
         "buttonLabel": "Shop Mens",
         "buttonDest": "shopify:\/\/collections\/mens",
-        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_39.jpg"
+        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_170_edited.jpg"
       }
     },
     "category_products": {
