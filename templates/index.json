@@ -118,8 +118,8 @@
     "category_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "",
-        "collection": "top-tees-for-dads"
+        "customHeading": "Drinkware",
+        "collection": "home"
       }
     },
     "bg_image_right_cta": {
