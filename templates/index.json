@@ -95,11 +95,11 @@
     "floating_cta": {
       "type": "floating_cta",
       "settings": {
-        "heading": "Headline about the Kids Collection",
-        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis sed tempor nisl, senectus.",
+        "heading": "Kids Collection",
+        "text": "Find exclusive Wharf branded merchandise for your littles!",
         "buttonLabel": "Shop the Kids collection",
         "buttonDest": "",
-        "productImage": "shopify:\/\/shop_images\/feature-product-shot-tee-coral_1.png",
+        "productImage": "shopify:\/\/shop_images\/Rainbow_ToddlerT_Butter_Front.png",
         "mainImage": "shopify:\/\/shop_images\/TWS_2022_Web_71.jpg",
         "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
       }
