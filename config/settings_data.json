@@ -162,6 +162,9 @@
       "banner": {
         "type": "banner",
         "settings": {
+          "bannerText": "Banner announcement or ad with potential discount <strong>CODENAME<\/strong>",
+          "linkText": "Help + FAQs",
+          "linkDest": "shopify:\/\/pages\/help-and-faqs"
         }
       },
       "navigation": {
@@ -286,6 +289,16 @@
           "text": "Located in the heart of the Gulf Coast, The Wharf is the perfect bonus getaway for beachgoers and sightseeing vacationers. Prop up your feet after a day of sun and sand and enjoy the breezy atmosphere. Take advantage of all we have to offer.",
           "buttonLabel": "Explore Alwharf.com",
           "buttonDest": "https:\/\/alwharf.com"
+        }
+      },
+      "footer-main": {
+        "type": "footer-main",
+        "settings": {
+          "linkList": "footer",
+          "instaTagline": "TAG US IN YOUR PHOTOS!",
+          "followLinkText": "Follow Us On Instagram",
+          "newsletterText": "Be the first to know about promotions and new products—plus, get 15% off your first purchase!",
+          "newsletterPlaceholder": "Enter your email to get our newsletter"
         }
       }
     },

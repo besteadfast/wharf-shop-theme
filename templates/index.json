@@ -5,7 +5,8 @@
       "settings": {
         "heading": "Life Happens Here",
         "buttonLabel": "Shop Best Sellers",
-        "buttonUrl": "shopify:\/\/collections\/best-sellers"
+        "buttonUrl": "shopify:\/\/collections\/best-sellers",
+        "bgImage": "shopify:\/\/shop_images\/header-family.png"
       }
     },
     "new_products": {
