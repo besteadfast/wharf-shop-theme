@@ -218,7 +218,7 @@
               "menu": "featured",
               "label": "Fun In The Sun",
               "linkDest": "shopify:\/\/collections\/fun-in-the-sun",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-fun-sun.jpg"
+              "featuredImage": "shopify:\/\/shop_images\/TWS_2022_Web_437_edited.jpg"
             }
           },
           "56d83dad-4faf-49d1-a89f-23d02659f676": {
@@ -255,9 +255,9 @@
             "type": "feature-column",
             "settings": {
               "menu": "objects",
-              "label": "Picnic",
+              "label": "Brumate Series",
               "linkDest": "shopify:\/\/collections\/outside-picnic",
-              "featuredImage": "shopify:\/\/shop_images\/nav-feature-picnic.jpg"
+              "featuredImage": "shopify:\/\/shop_images\/Wharf_BruMate_Hopsulator-Duo_Aqua_5.png"
             }
           }
         },
