@@ -11,7 +11,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "",
+        "customHeading": "Fan Favorites",
         "collection": "top-tees-for-dads"
       }
     },
