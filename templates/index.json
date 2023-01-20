@@ -125,7 +125,7 @@
     "bg_image_right_cta": {
       "type": "bg-image-cta",
       "settings": {
-        "position": "left",
+        "position": "right",
         "heading": "About",
         "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
         "buttonLabel": "Visit Us",
