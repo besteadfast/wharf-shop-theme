@@ -1,8 +1,8 @@
 <div class="max-w-[1440px] mx-auto">
   <div class="pt-s10">
     <div class="flex justify-between items-center px-36 lg:px-72">
-      <p class="faux-h6 text-black-500 ">Tag us in your photos!</p>
-      <a class="btn btn--sm btn--borderless to-md:hidden" href="{{ settings.social_instagram_link }}">Follow us on instagram</a>
+      <p class="faux-h6 text-black-500 ">{{ section.settings.instaTagline }}</p>
+      <a class="btn btn--sm btn--borderless to-md:hidden" href="{{ settings.social_instagram_link }}">{{ section.settings.followLinkText }}</a>
     </div>
     <style>
       .tagembed-container iframe {
@@ -17,16 +17,16 @@
       <script src="https://widget.tagembed.com/embed.min.js" type="text/javascript"></script>
     </div>
     <div class="text-right px-36 mt-s5 md:hidden">
-      <a class="btn btn--sm btn--borderless">Follow us on instagram</a>
+      <a class="btn btn--sm btn--borderless" href="{{ settings.social_instagram_link }}">{{ section.settings.followLinkText }}</a>
     </div>
   </div>
   <div class="px-36 lg:px-72 pt-s12 pb-s9 md:py-s10 flex to-md:flex-col gap-s11 md:gap-s8 lg:gap-s14 justify-between">
     <div class="max-w-[600px]">
-      <p class="faux-h4 text-primary-800">Be the first to know about promotions and new products—plus, get 15% off your first purchase!</p>
+      <p class="faux-h4 text-primary-800">{{ section.settings.newsletterText }}</p>
       <div class="relative">
         <form id="email_signup" action="https://manage.kmail-lists.com/subscriptions/subscribe?a=WUN3cr&g=UAW7nW" method="POST" class="mt-s7 w-full btn--borderless py-0 flex">
           <input type="hidden" name="g" value="UAW7nW">
-          <input type="email" value="" name="email" id="k_id_email" placeholder="Enter your email to get our newsletter" class="py-s2 mb-s1 outline-none w-full mr-s3"/>
+          <input type="email" value="" name="email" id="k_id_email" placeholder="{{ section.settings.newsletterPlaceholder }}" class="py-s2 mb-s1 outline-none w-full mr-s3"/>
           <button type="submit">
             {% render '12-right-arrow', class: "text-secondary-300" %}
           </button>
@@ -43,10 +43,11 @@
       </div>
       <div class="w-max">
         <h3 class="ui-sm uppercase text-primary-800">Customer Service</h3>
-        <a href="/pages/customer-service" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all transition-all mt-s7">Customer Service</a>
-        <a href="/pages/help-and-faqs" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Help / FAQ</a>
-        <a href="/pages/help-and-faqs#returnsAndExchanges" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Returns & Exchanges</a>
-        <a href="/pages/help-and-faqs#giftCards" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all mt-s6">Gift Cards</a>
+        {% if section.settings.linkList %}
+            {% for link in section.settings.linkList.links %}
+                <a href="{{ link.url }}" class="block faux-p-sm text-black-600 hover:text-secondary-500 transition-all {% if forloop.first %}mt-s7{% else %}mt-s6{% endif %}">{{ link.title }}</a>
+            {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -76,3 +77,37 @@
     </a>
   </div>
 </div>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "linkList",
+        "label": "Footer Menu"
+      }, {
+        "type": "text",
+        "id": "instaTagline",
+        "label": "Instagram Tagline",
+        "default": "TAG US IN YOUR PHOTOS!"
+      }, {
+        "type": "text",
+        "id": "followLinkText",
+        "label": "Instagram Follow Link Text",
+        "default": "Follow Us On Instagram"
+      }, {
+        "type": "text",
+        "id": "newsletterText",
+        "label": "Newsletter Text",
+        "default": "Be the first to know about promotions and new products—plus, get 15% off your first purchase!"
+      }, {
+        "type": "text",
+        "id": "newsletterPlaceholder",
+        "label": "Newsletter Input Placeholder",
+        "default": "Enter your email to get our newsletter"
+      }
+    ]
+  }
+{% endschema %}

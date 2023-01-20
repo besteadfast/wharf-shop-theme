@@ -1,30 +1,65 @@
 <div class="py-s4 px-s6 lg:px-[36px] flex justify-center md:justify-between items-center bg-primary-800 text-secondary-100 lg:gap-s7">
   <div class="flex-1 flex gap-s3 items-center text-secondary-600 to-md:hidden">
     {% if settings.social_facebook_link != '' %}
-      <a href="{{ settings.social_facebook_link }}" target="_blank" class="transition-all hover:text-secondary-400">{% render '16-logo-facebook-simple' %}</a>
+      <a
+        href="{{ settings.social_facebook_link }}"
+        target="_blank"
+        class="transition-all hover:text-secondary-400">{% render '16-logo-facebook-simple' %}</a>
     {% endif %}
     {% if settings.social_instagram_link != '' %}
-      <a href="{{ settings.social_instagram_link }}" target="_blank" class="transition-all hover:text-secondary-400">{% render '16-logo-instagram' %}</a>
+      <a
+        href="{{ settings.social_instagram_link }}"
+        target="_blank"
+        class="transition-all hover:text-secondary-400">{% render '16-logo-instagram' %}</a>
     {% endif %}
     {% if settings.social_tiktok_link != '' %}
-      <a href="{{ settings.social_tiktok_link }}" target="_blank" class="transition-all hover:text-secondary-400">{% render '16-logo-tiktok' %}</a>
+      <a
+        href="{{ settings.social_tiktok_link }}"
+        target="_blank"
+        class="transition-all hover:text-secondary-400">{% render '16-logo-tiktok' %}</a>
     {% endif %}
     {% if settings.social_twitter_link != '' %}
-      <a href="{{ settings.social_twitter_link }}" target="_blank" class="transition-all hover:text-secondary-400">{% render '16-logo-twitter' %}</a>
+      <a
+        href="{{ settings.social_twitter_link }}"
+        target="_blank"
+        class="transition-all hover:text-secondary-400">{% render '16-logo-twitter' %}</a>
     {% endif %}
   </div>
   <div class="flex items-center">
     <div class="mr-s4 text-secondary-600">
       {% render 'left-arrow' %}
     </div>
-    <p class="mt-0 faux-p-sm to-md:text-13 text-center">Banner announcement or ad with potential discount
-      <b>CODENAME</b>
+    <p class="mt-0 faux-p-sm to-md:text-13 text-center">{{ section.settings.bannerText }}
     </p>
     <div class="mt-0 ml-s4 rotate-180 text-secondary-600">
       {% render 'left-arrow' %}
     </div>
   </div>
   <div class="flex-1 flex justify-end items-center gap-s6 text-secondary-600 to-md:hidden">
-    <a href="/pages/help-and-faqs" class="to-lg:hidden transition-all hover:text-secondary-400">Help + FAQs</a>
+    <a href="{{ section.settings.linkDest }}" class="to-lg:hidden transition-all hover:text-secondary-400">{{ section.settings.linkText }}</a>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "bannerText",
+        "label": "Banner Text",
+        "default": "Banner announcement or ad with potential discount <b>CODENAME</b>"
+      }, {
+        "type": "text",
+        "id": "linkText",
+        "label": "Link Text",
+        "default": "Help + FAQs"
+      }, {
+        "type": "url",
+        "id": "linkDest",
+        "label": "Link Destination"
+      }
+
+    ]
+  }
+{% endschema %}
