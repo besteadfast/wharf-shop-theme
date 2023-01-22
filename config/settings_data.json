@@ -203,7 +203,7 @@
             "type": "feature-column",
             "settings": {
               "menu": "apparel",
-              "label": "Logo Collection",
+              "label": "Sk",
               "linkDest": "shopify:\/\/collections\/logo-collection",
               "featuredImage": "shopify:\/\/shop_images\/TWS_2022_Web_81.jpg"
             }
@@ -226,6 +226,7 @@
           },
           "56d83dad-4faf-49d1-a89f-23d02659f676": {
             "type": "feature-column",
+            "disabled": true,
             "settings": {
               "menu": "featured",
               "label": "Event Gear",
