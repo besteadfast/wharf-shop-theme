@@ -203,9 +203,9 @@
             "type": "feature-column",
             "settings": {
               "menu": "apparel",
-              "label": "Sk",
-              "linkDest": "shopify:\/\/collections\/logo-collection",
-              "featuredImage": "shopify:\/\/shop_images\/TWS_2022_Web_81.jpg"
+              "label": "Skyline Collection",
+              "linkDest": "shopify:\/\/collections\/skyline-collection",
+              "featuredImage": "shopify:\/\/shop_images\/TWS_2022_Web_325.jpg"
             }
           },
           "1f478b93-3a60-4601-a628-4a1b20b4470d": {
