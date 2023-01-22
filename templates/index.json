@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Fan Favorites",
+        "customHeading": "Top Tees",
         "collection": "top-tees-for-dads"
       }
     },
