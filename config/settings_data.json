@@ -162,7 +162,7 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "<strong>Take 15% off your first order with code: SHOPTHEWHARF<\/strong>",
+          "bannerText": "<strong>Spend $100 or more + get free stickers!<\/strong>",
           "linkText": "Help + FAQs",
           "linkDest": "shopify:\/\/pages\/contact"
         }
