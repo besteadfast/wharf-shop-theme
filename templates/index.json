@@ -136,6 +136,7 @@
     },
     "167441288914b1f8a6": {
       "type": "apps",
+      "disabled": true,
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
           "type": "shopify:\/\/apps\/social-media-feeds\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
