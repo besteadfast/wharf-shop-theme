@@ -133,6 +133,26 @@
         "buttonDest": "https:\/\/alwharf.com",
         "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_73.jpg"
       }
+    },
+    "167441288914b1f8a6": {
+      "type": "apps",
+      "blocks": {
+        "66714f5d-15d5-482c-8a2b-a7f60219671c": {
+          "type": "shopify:\/\/apps\/social-media-feeds\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "settings": {
+            "tagembed_widget": "83133",
+            "tagembed_widget_position": "center",
+            "tagembed_widget_height": "500",
+            "tagembed_widget_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "66714f5d-15d5-482c-8a2b-a7f60219671c"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -144,6 +164,7 @@
     "floating_cta",
     "bg_image_center_cta",
     "category_products",
-    "bg_image_right_cta"
+    "bg_image_right_cta",
+    "167441288914b1f8a6"
   ]
 }
