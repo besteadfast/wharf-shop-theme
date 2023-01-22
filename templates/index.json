@@ -107,6 +107,7 @@
     },
     "bg_image_center_cta": {
       "type": "bg-image-cta",
+      "disabled": true,
       "settings": {
         "position": "right",
         "heading": "Gifts for Dad",
@@ -116,22 +117,22 @@
         "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_170_edited.jpg"
       }
     },
+    "bg_image_right_cta": {
+      "type": "bg-image-cta",
+      "settings": {
+        "position": "right",
+        "heading": "See you Here!",
+        "text": "When you’re ready to get away from the everyday, The Wharf is your destination for scenic adventure and one-of-a-kind entertainment.",
+        "buttonLabel": "Visit Us",
+        "buttonDest": "https:\/\/alwharf.com",
+        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_73.jpg"
+      }
+    },
     "category_products": {
       "type": "featured-products",
       "settings": {
         "customHeading": "Drinkware",
         "collection": "home-drinkware"
-      }
-    },
-    "bg_image_right_cta": {
-      "type": "bg-image-cta",
-      "settings": {
-        "position": "right",
-        "heading": "About",
-        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
-        "buttonLabel": "Visit Us",
-        "buttonDest": "https:\/\/alwharf.com",
-        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_73.jpg"
       }
     },
     "167441288914b1f8a6": {
@@ -164,8 +165,8 @@
     "sale_cta",
     "floating_cta",
     "bg_image_center_cta",
-    "category_products",
     "bg_image_right_cta",
+    "category_products",
     "167441288914b1f8a6"
   ]
 }
