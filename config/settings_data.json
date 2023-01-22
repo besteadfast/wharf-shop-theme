@@ -106,8 +106,8 @@
     "sold_out_badge_color_scheme": "inverse",
     "accent_icons": "text",
     "email": "hello@shopthewharf.com",
-    "phone_number": "123.456.7890",
-    "address": "23101 Canal Road\n Orange Beach, AL 36561",
+    "phone_number": "251.224.1904",
+    "address": "4851 Wharf Parkway East Suite D118\n Orange Beach, AL 36561",
     "social_twitter_link": "",
     "social_facebook_link": "https:\/\/www.facebook.com\/shopthewharf",
     "social_tiktok_link": "https:\/\/www.tiktok.com\/@shopthewharf",
@@ -298,7 +298,7 @@
           "linkList": "footer",
           "instaTagline": "TAG US IN YOUR PHOTOS!",
           "followLinkText": "Follow Us On Instagram",
-          "newsletterText": "Be the first to know about promotions and new products—plus, get 15% off your first purchase!",
+          "newsletterText": "Be the first to know about promotions and new products!",
           "newsletterPlaceholder": "Enter your email to get our newsletter"
         }
       }
