@@ -131,8 +131,8 @@
     "category_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Drinkware",
-        "collection": "home-drinkware"
+        "customHeading": "Amphitheater Collection",
+        "collection": "amphitheater-collection"
       }
     },
     "167441288914b1f8a6": {
