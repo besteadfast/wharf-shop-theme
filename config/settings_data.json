@@ -162,9 +162,9 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "Banner announcement or ad with potential discount <strong>CODENAME<\/strong>",
+          "bannerText": "<strong>Take 15% off your first order with code: SHOPTHEWHARF<\/strong>",
           "linkText": "Help + FAQs",
-          "linkDest": "shopify:\/\/pages\/help-and-faqs"
+          "linkDest": "shopify:\/\/pages\/contact"
         }
       },
       "navigation": {
