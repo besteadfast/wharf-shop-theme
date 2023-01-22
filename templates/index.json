@@ -120,7 +120,7 @@
       "type": "featured-products",
       "settings": {
         "customHeading": "Drinkware",
-        "collection": "home"
+        "collection": "home-drinkware"
       }
     },
     "bg_image_right_cta": {
