@@ -4,9 +4,11 @@
   {% if collection.metafields.custom.color or collection.metafields.custom.color_image %}
     {% assign colorDefKeys = colorDefKeys | append: collection.title | append: "," %}
     {% if collection.metafields.custom.color_image %}
-        {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color_image | append: "," %}
+      {% assign colorImgUrl = collection.metafields.custom.color_image | image_url %}
+      {% assign currColorDefValue = "url('" | append: colorImgUrl | append: "')" %}
+      {% assign colorDefValues = colorDefValues | append: currColorDefValue | append: "," %}
     {% else %}
-        {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color | append: "," %}
+      {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color | append: "," %}
     {% endif %}
   {% endif %}
 {% endfor %}
@@ -27,7 +29,14 @@
           <div class="dot" style="background: center / cover no-repeat {{ colorDef }};"></div>
         </div>
       {% elsif preview == false %}
-        <input type="radio" name="color-{{ product.id }}-{{ section.id }}" value="{{ colorOption | escape }}" id="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}" class="color-selector" style="--color-selector-bg:{{ colorDef }};" {% if forloop.first %}checked{% endif %}/>
+        <input
+          type="radio"
+          name="color-{{ product.id }}-{{ section.id }}"
+          value="{{ colorOption | escape }}"
+          id="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}"
+          class="color-selector"
+          style="--color-selector-bg:{{ colorDef }};"
+          {% if forloop.first %}checked{% endif %} />
         <p class="absolute top-0 left-0 faux-p-xs text-black-700">Color:<label class="form-control pl-s2" for="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}">{{ colorOption }}</label>
         </p>
       {% endif %}
