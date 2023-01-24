@@ -28,7 +28,7 @@ input.color-selector:checked + label, input.color-selector:checked + * label{
 }
 input.color-selector::before{
     content:"";
-    background-color: var(--color-selector-bg);
+    background: center / cover no-repeat var(--color-selector-bg);
     @apply w-[26px] h-[26px] rounded-full;
 }
 

@@ -1,9 +1,13 @@
 {% assign colorDefKeys = "" %}
 {% assign colorDefValues = "" %}
 {% for collection in product.collections %}
-  {% if collection.metafields.custom.color %}
+  {% if collection.metafields.custom.color or collection.metafields.custom.color_image %}
     {% assign colorDefKeys = colorDefKeys | append: collection.title | append: "," %}
-    {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color | append: "," %}
+    {% if collection.metafields.custom.color_image %}
+        {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color_image | append: "," %}
+    {% else %}
+        {% assign colorDefValues = colorDefValues | append: collection.metafields.custom.color | append: "," %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 {% assign colorDefKeys = colorDefKeys | split: "," %}
@@ -20,10 +24,10 @@
       {% endfor %}
       {% if preview == true and totalColors < 3 %}
         <div class="product-variant--tile">
-          <div class="dot" style="background-color:{{ colorDef }};"></div>
+          <div class="dot" style="background: center / cover no-repeat {{ colorDef }};"></div>
         </div>
       {% elsif preview == false %}
-        <input type="radio" name="color-{{ product.id }}-{{ section.id }}" value="{{ colorOption | escape }}" id="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}" class="color-selector {{ size }}" style="--color-selector-bg:{{ colorDef }};" {% if forloop.first %}checked{% endif %}/>
+        <input type="radio" name="color-{{ product.id }}-{{ section.id }}" value="{{ colorOption | escape }}" id="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}" class="color-selector" style="--color-selector-bg:{{ colorDef }};" {% if forloop.first %}checked{% endif %}/>
         <p class="absolute top-0 left-0 faux-p-xs text-black-700">Color:<label class="form-control pl-s2" for="color-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}">{{ colorOption }}</label>
         </p>
       {% endif %}
