@@ -14,12 +14,12 @@
     <div class="drawer__inner" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
       <div class="py-s5 flex justify-center relative">
         <div class="empty-bar bg-secondary-50 absolute w-full h-full inset-0"></div>
-        <div class="progress-bar bg-secondary-200 absolute top-0 left-0 h-full max-w-full" style="width:{{ cart.total_price | divided_by: 75 }}%;"></div>
+        <div class="progress-bar bg-secondary-200 absolute top-0 left-0 h-full max-w-full" style="width:{{ cart.total_price | divided_by: 150 }}%;"></div>
         <p class="z-10">
-          {% if cart.total_price >= 7500 %}
+          {% if cart.total_price >= 15000 %}
             You get free shipping!
           {% else %}
-            Spend {{ 7500 | minus: cart.total_price | money }} more to get free US Shipping
+            Spend {{ 15000 | minus: cart.total_price | money }} more to get free US Shipping
           {% endif %}
         </p>
       </div>
@@ -180,7 +180,7 @@
             <button type="submit" id="CartDrawer-Checkout" class="cart__checkout-button btn btn--dark capitalize tracking-0 w-full mt-s8" name="checkout" form="CartDrawer-Form" {% if cart == empty %} disabled{% endif %}>
               Checkout
             </button>
-            <p class="text-center faux-p-sm text-secondary-500 mt-s6">Free US Shipping on orders $75+</p>
+            <p class="text-center faux-p-sm text-secondary-500 mt-s6">Free US Shipping on orders $150+</p>
           </div>
         </div>
       </div>

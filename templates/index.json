@@ -5,13 +5,14 @@
       "settings": {
         "heading": "Life Happens Here",
         "buttonLabel": "Shop Best Sellers",
-        "buttonUrl": "shopify:\/\/collections\/best-sellers"
+        "buttonUrl": "shopify:\/\/collections\/best-sellers",
+        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_37.jpg"
       }
     },
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "",
+        "customHeading": "Top Tees",
         "collection": "top-tees-for-dads"
       }
     },
@@ -23,7 +24,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/TWS_2022_405.jpg",
             "label": "Boat",
-            "linkDest": ""
+            "linkDest": "shopify:\/\/collections\/boat"
           }
         },
         "dac62742-03d3-4093-86b2-455335088373": {
@@ -39,7 +40,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/TWS_2022_Web_218.jpg",
             "label": "Play",
-            "linkDest": "shopify:\/\/collections\/swim-toys"
+            "linkDest": "shopify:\/\/collections\/fun-in-the-sun"
           }
         }
       },
@@ -99,13 +100,13 @@
         "text": "Find exclusive Wharf branded merchandise for your littles!",
         "buttonLabel": "Shop the Kids collection",
         "buttonDest": "",
-        "productImage": "shopify:\/\/shop_images\/Rainbow_ToddlerT_Butter_Front.png",
         "mainImage": "shopify:\/\/shop_images\/TWS_2022_Web_71.jpg",
         "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
       }
     },
     "bg_image_center_cta": {
       "type": "bg-image-cta",
+      "disabled": true,
       "settings": {
         "position": "right",
         "heading": "Gifts for Dad",
@@ -115,22 +116,43 @@
         "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_170_edited.jpg"
       }
     },
-    "category_products": {
-      "type": "featured-products",
-      "settings": {
-        "customHeading": "Drinkware",
-        "collection": "home"
-      }
-    },
     "bg_image_right_cta": {
       "type": "bg-image-cta",
       "settings": {
         "position": "right",
-        "heading": "About",
-        "text": "Per viverra dignissim sapien nec himenaeos quisque fringilla faucibus, congue elit litora magna dis primis.",
+        "heading": "See you Here!",
+        "text": "When you’re ready to get away from the everyday, The Wharf is your destination for scenic adventure and one-of-a-kind entertainment.",
         "buttonLabel": "Visit Us",
         "buttonDest": "https:\/\/alwharf.com",
         "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_73.jpg"
+      }
+    },
+    "category_products": {
+      "type": "featured-products",
+      "settings": {
+        "customHeading": "Amphitheater Collection",
+        "collection": "amphitheater-collection"
+      }
+    },
+    "167441288914b1f8a6": {
+      "type": "apps",
+      "disabled": true,
+      "blocks": {
+        "66714f5d-15d5-482c-8a2b-a7f60219671c": {
+          "type": "shopify:\/\/apps\/social-media-feeds\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "settings": {
+            "tagembed_widget": "83133",
+            "tagembed_widget_position": "center",
+            "tagembed_widget_height": "500",
+            "tagembed_widget_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "66714f5d-15d5-482c-8a2b-a7f60219671c"
+      ],
+      "settings": {
+        "include_margins": true
       }
     }
   },
@@ -142,7 +164,8 @@
     "sale_cta",
     "floating_cta",
     "bg_image_center_cta",
+    "bg_image_right_cta",
     "category_products",
-    "bg_image_right_cta"
+    "167441288914b1f8a6"
   ]
 }
