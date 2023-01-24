@@ -344,7 +344,7 @@ input.color-selector:checked + label, input.color-selector:checked + * label{
 
 input.color-selector::before{
   content:"";
-  background-color: var(--color-selector-bg);
+  background: center / cover no-repeat var(--color-selector-bg);
   height: 26px;
   width: 26px;
   border-radius: 50%;
@@ -3954,6 +3954,10 @@ video {
   width: calc(100% + 84px);
 }
 
+#app .w-\[2px\]{
+  width: 2px;
+}
+
 #app .w-\[720px\]{
   width: 720px;
 }
@@ -3980,10 +3984,6 @@ video {
 
 #app .w-\[180px\]{
   width: 180px;
-}
-
-#app .w-\[2px\]{
-  width: 2px;
 }
 
 #app .w-\[656px\]{
@@ -4030,6 +4030,10 @@ video {
   max-width: 1440px;
 }
 
+#app .max-w-\[600px\]{
+  max-width: 600px;
+}
+
 #app .max-w-\[635px\]{
   max-width: 635px;
 }
@@ -4052,10 +4056,6 @@ video {
 
 #app .max-w-\[1020px\]{
   max-width: 1020px;
-}
-
-#app .max-w-\[600px\]{
-  max-width: 600px;
 }
 
 #app .flex-1{
@@ -5054,6 +5054,14 @@ video {
   color: var(--secondary-400);
 }
 
+#app .hover\:text-secondary-500:hover{
+  color: var(--secondary-500);
+}
+
+#app .hover\:text-primary-700:hover{
+  color: var(--primary-700);
+}
+
 #app .hover\:text-black-400:hover{
   --tw-text-opacity: 1;
   color: rgb(157 157 157 / var(--tw-text-opacity));
@@ -5071,14 +5079,6 @@ video {
 
 #app .hover\:text-primary-600:hover{
   color: var(--primary-600);
-}
-
-#app .hover\:text-secondary-500:hover{
-  color: var(--secondary-500);
-}
-
-#app .hover\:text-primary-700:hover{
-  color: var(--primary-700);
 }
 
 #app .disabled\:invisible:disabled{
@@ -5234,16 +5234,16 @@ video {
     justify-content: space-between;
   }
 
-  #app .md\:gap-s6{
-    gap: 24px;
+  #app .md\:gap-s8{
+    gap: 40px;
   }
 
   #app .md\:gap-s10{
     gap: 64px;
   }
 
-  #app .md\:gap-s8{
-    gap: 40px;
+  #app .md\:gap-s6{
+    gap: 24px;
   }
 
   #app .md\:gap-y-s8{
@@ -5384,16 +5384,16 @@ video {
     gap: 24px;
   }
 
-  #app .lg\:gap-s9{
-    gap: 48px;
-  }
-
   #app .lg\:gap-s14{
     gap: 160px;
   }
 
   #app .lg\:gap-s10{
     gap: 64px;
+  }
+
+  #app .lg\:gap-s9{
+    gap: 48px;
   }
 
   #app .lg\:p-s13{
@@ -5430,14 +5430,14 @@ video {
     padding-bottom: 80px;
   }
 
-  #app .lg\:py-s13{
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-
   #app .lg\:px-36{
     padding-left: 36px;
     padding-right: 36px;
+  }
+
+  #app .lg\:py-s13{
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 
   #app .lg\:pr-s8{
@@ -5560,14 +5560,6 @@ video {
   #app .to-md\:px-s7{
     padding-left: 32px;
     padding-right: 32px;
-  }
-
-  #app .to-md\:pt-\[calc\(\(100\%\+64px\)\*1\.3\+20px\)\]{
-    padding-top: calc((100% + 64px) * 1.3 + 20px);
-  }
-
-  #app .to-md\:pt-\[calc\(100\%\+84px\)\]{
-    padding-top: calc(100% + 84px);
   }
 
   #app .to-md\:text-center{
