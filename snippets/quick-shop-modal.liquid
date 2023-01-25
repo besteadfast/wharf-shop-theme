@@ -1,13 +1,14 @@
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 {% assign currentVariant = product.selected_or_first_available_variant %}
+{% assign currentVariantImage = currentVariant.featured_image %}
 {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
 <modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
             {% assign variantImagesSkipped = 0 %}
             {% for image in product.images %}
-                {% if variant_images contains image.src %}
+                {% if variant_images contains image.src and currentVariantImage.src != image.src %}
                     {% assign variantImagesSkipped = variantImagesSkipped | plus: 1 %}
                 {% else %}
                     <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 | minus: variantImagesSkipped }});" data-index="{{ forloop.index0 | minus: variantImagesSkipped }}" width="300" height="450" loading="lazy" />
