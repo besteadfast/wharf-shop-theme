@@ -3,16 +3,18 @@
 {% assign currentVariant = product.selected_or_first_available_variant %}
 {% assign currentVariantImage = currentVariant.featured_image %}
 {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+{%- assign nonVariantImages = product.images | where: 'attached_to_variant?', false | map: 'src' -%}
 <modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
-            {% assign variantImagesSkipped = 0 %}
-            {% for image in product.images %}
-                {% if variant_images contains image.src and currentVariantImage.src != image.src %}
-                    {% assign variantImagesSkipped = variantImagesSkipped | plus: 1 %}
-                {% else %}
-                    <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 | minus: variantImagesSkipped }});" data-index="{{ forloop.index0 | minus: variantImagesSkipped }}" width="300" height="450" loading="lazy" />
-                {% endif %}
+            {% assign carouselIndex = 0 %}
+            {% if currentVariantImage %}
+                <img src="{{ currentVariantImage | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * 0);" data-index="0" width="300" height="450" loading="lazy" />
+                {% assign carouselIndex = carouselIndex | plus: 1 %}
+            {% endif %}
+            {% for image in nonVariantImages %}
+                <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ carouselIndex }});" data-index="{{ carouselIndex }}" width="300" height="450" loading="lazy" />
+                {% assign carouselIndex = carouselIndex | plus: 1 %}
             {% endfor %}
             <button class="absolute left-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden carousel-control" data-action="prev">
                 {% render "24-left", class: "text-black-400" %}
