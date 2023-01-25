@@ -9,7 +9,7 @@
         <div class="flex-1 relative overflow-hidden carousel">
             {% assign carouselIndex = 0 %}
             {% if currentVariantImage %}
-                <img src="{{ currentVariantImage | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * 0);" data-index="0" width="300" height="450" loading="lazy" />
+                <img src="{{ currentVariantImage | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img" style="left:calc(100% * 0);" data-index="0" width="300" height="450" loading="lazy" />
                 {% assign carouselIndex = carouselIndex | plus: 1 %}
             {% endif %}
             {% for image in nonVariantImages %}
