@@ -5,11 +5,13 @@
 <modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
     <div class="p-[44px] w-[656px] h-[538px] flex gap-s7 bg-black-50 relative" role="dialog">
         <div class="flex-1 relative overflow-hidden carousel">
-
+            {% assign variantImagesSkipped = 0 %}
             {% for image in product.images %}
-                {% unless variant_images contains image.src %}
-                <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 }});" data-index="{{ forloop.index0 }}" width="300" height="450" loading="lazy" />
-                {% endunless %}
+                {% if variant_images contains image.src %}
+                    {% assign variantImagesSkipped = variantImagesSkipped | plus: 1 %}
+                {% else %}
+                    <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ forloop.index0 | minus: variantImagesSkipped }});" data-index="{{ forloop.index0 | minus: variantImagesSkipped }}" width="300" height="450" loading="lazy" />
+                {% endif %}
             {% endfor %}
             <button class="absolute left-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden carousel-control" data-action="prev">
                 {% render "24-left", class: "text-black-400" %}
