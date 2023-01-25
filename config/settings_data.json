@@ -163,7 +163,7 @@
         "type": "banner",
         "settings": {
           "bannerText": "<strong>Spend $100 or more + receive free stickers!<\/strong>",
-          "linkText": "Help + FAQs",
+          "linkText": "Contact Us!",
           "linkDest": "shopify:\/\/pages\/contact"
         }
       },
