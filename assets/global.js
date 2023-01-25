@@ -847,9 +847,11 @@ class VariantSelects extends HTMLElement {
   }
 
   updateVariantInput() {
-    const productForms = document.querySelectorAll(`#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`);
+    const productForms = document.querySelectorAll(`#product-form-${this.dataset.section}, #product-form-${this.dataset.section}-${this.dataset.product}, #product-form-installment-${this.dataset.section}`);
+    console.log(productForms)
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
+      console.log(input)
       input.value = this.currentVariant.id;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
@@ -941,7 +943,6 @@ toggleAddButton(disable = true, text) {
     if(this.dataset.productPage){return};
     const product = document.querySelector(`#product-${this.dataset.product}`);
     const variantImage = this.currentVariant.featured_image ? this.currentVariant.featured_image.src : null;
-    console.log(variantImage)
     //replace product images with variant images
     if(!this.dataset.productPage){
           if (variantImage) {
