@@ -42,13 +42,14 @@
                         {% for option in product.options_with_values %}
                             {% if option.name == "Size" %}
                                 {% for optionValue in option.values %}
+                                    {% assign abbreviatable = "small,medium,large" | split: "," %}
                                     <input type="radio" name="size-{{ product.id }}-{{ section.id }}" value="{{ optionValue | escape }}" id="size-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}" class="absolute size-selector " {% if forloop.first %}checked{% endif %}/>
                                     <label class="form-control faux-p-sm py-s3 px-s4 border-1" for="size-radio-{{ product.id }}-{{ section.id }}-{{ forloop.index }}">
-                                        {% assign firstLetter = optionValue | slice: 0 %}
-                                        {% if firstLetter == "X" %}
-                                            {{ optionValue }}
+                                        {% assign lowercaseValue = optionValue | downcase %}
+                                        {% if abbreviatable contains lowercaseValue %}
+                                            {{ optionValue | slice: 0 | upcase }}
                                         {% else %}
-                                            {{ optionValue | slice: 0 }}
+                                            {{ optionValue | upcase }}
                                         {% endif %}
                                     </label>
                                 {% endfor %}
