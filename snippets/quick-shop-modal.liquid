@@ -1,3 +1,5 @@
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
 {% assign currentVariant = product.selected_or_first_available_variant %}
 {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
 <modal-dialog id="ProductModal-{{ product.id }}" class="to-md:hidden" data-for="product-{{ product.id }}">
