@@ -5,9 +5,9 @@
 <script>
     const jsVariantImages = [];
     {% for image in variant_images %}
-        const img = new Image()
-        img.src = '{{ image }}'
-        jsVariantImages.append(img)
+        const img{{ forloop.index0 }} = new Image()
+        img{{ forloop.index0 }}.src = '{{ image | image_url }}'
+        jsVariantImages.push(img{{ forloop.index0 }})
     {% endfor %}
 </script>
 <section id="MainProduct-{{ section.id }}" class="w-full px-72 bg-black-50" data-section="{{ section.id }}">

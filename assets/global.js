@@ -843,8 +843,8 @@ class VariantSelects extends HTMLElement {
         currentVariantImage.src = this.currentVariant.featured_image.src;
     }
     else{
-        const variantImageNode = images.childNodes[0].cloneNode()
-        variantImageNode.classList.add('.variant-image')
+        const variantImageNode = images.firstElementChild.cloneNode()
+        variantImageNode.classList.add('variant-image')
         variantImageNode.id = variantImageNode.id.replace('0', 'variant')
         variantImageNode.src = this.currentVariant.featured_image.src;
         images.insertBefore(variantImageNode, images.firstChild)
