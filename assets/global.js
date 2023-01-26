@@ -832,7 +832,7 @@ class VariantSelects extends HTMLElement {
     const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`)
     console.log('here')
     //if no variant image exists, remove any existing variant images, then return
-    if (!this.currentVariant.featured_media) {
+    if (!this.currentVariant.featured_image) {
         if(currentVariantImage){
             images.removeChild(currentVariantImage)
         }
@@ -840,13 +840,13 @@ class VariantSelects extends HTMLElement {
     }
 
     if(currentVariantImage){
-        currentVariantImage.src = this.currentVariant.featured_media.src;
+        currentVariantImage.src = this.currentVariant.featured_image.src;
     }
     else{
         const variantImageNode = images.childNodes[0].cloneNode()
         variantImageNode.classList.add('.variant-image')
         variantImageNode.id = variantImageNode.id.replace('0', 'variant')
-        variantImageNode.src = this.currentVariant.featured_media.src;
+        variantImageNode.src = this.currentVariant.featured_image.src;
         images.insertBefore(variantImageNode, images.firstChild)
     }
 
