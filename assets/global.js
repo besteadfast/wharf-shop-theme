@@ -828,8 +828,27 @@ class VariantSelects extends HTMLElement {
   }
 
   updateMedia() {
-    if (!this.currentVariant) return;
-    if (!this.currentVariant.featured_media) return;
+    const images = document.querySelector(`#images-${this.dataset.section}`)
+    const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`)
+    console.log('here')
+    //if no variant image exists, remove any existing variant images, then return
+    if (!this.currentVariant.featured_media) {
+        if(currentVariantImage){
+            images.removeChild(currentVariantImage)
+        }
+        return
+    }
+
+    if(currentVariantImage){
+        currentVariantImage.src = this.currentVariant.featured_media.src;
+    }
+    else{
+        const variantImageNode = images.childNodes[0].cloneNode()
+        variantImageNode.classList.add('.variant-image')
+        variantImageNode.id = variantImageNode.id.replace('0', 'variant')
+        variantImageNode.src = this.currentVariant.featured_media.src;
+        images.insertBefore(variantImageNode, images.firstChild)
+    }
 
     //get featured media for variant (if it exists) and insert into first gallery item
     //otherwise remove featured media gallery item (if it exists)
@@ -848,10 +867,8 @@ class VariantSelects extends HTMLElement {
 
   updateVariantInput() {
     const productForms = document.querySelectorAll(`#product-form-${this.dataset.section}, #product-form-${this.dataset.section}-${this.dataset.product}, #product-form-installment-${this.dataset.section}`);
-    console.log(productForms)
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
-      console.log(input)
       input.value = this.currentVariant.id;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
@@ -890,9 +907,9 @@ class VariantSelects extends HTMLElement {
             if (priceSource && priceDestination) priceDestination.innerHTML = priceSource.innerHTML;
 
             //rerender images
-            const imagesDestination = document.getElementById(`images-${this.dataset.section}`);
-            const imagesSource = html.getElementById(`images-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-            if (imagesSource && imagesDestination) imagesDestination.innerHTML = imagesSource.innerHTML;
+            // const imagesDestination = document.getElementById(`images-${this.dataset.section}`);
+            // const imagesSource = html.getElementById(`images-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
+            // if (imagesSource && imagesDestination) imagesDestination.innerHTML = imagesSource.innerHTML;
 
             //rerender add to cart/notify when available
             const addButtonDestination = document.getElementById(`addButton-${this.dataset.section}`);
