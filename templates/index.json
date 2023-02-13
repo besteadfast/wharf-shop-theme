@@ -99,7 +99,7 @@
         "heading": "Kids Collection",
         "text": "Find exclusive Wharf branded merchandise for your littles!",
         "buttonLabel": "Shop the Styles",
-        "buttonDest": "",
+        "buttonDest": "shopify:\/\/collections\/kids",
         "mainImage": "shopify:\/\/shop_images\/TWS_2022_Web_71.jpg",
         "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
       }
@@ -139,7 +139,7 @@
       "disabled": true,
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
-          "type": "shopify:\/\/apps\/social-media-feeds\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "type": "shopify:\/\/apps\/social-media-feeds-instagram\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
           "settings": {
             "tagembed_widget": "83133",
             "tagembed_widget_position": "center",
