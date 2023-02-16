@@ -23,7 +23,7 @@
 
 .bg-image-cta:not(.middle) .bg-image{
     @apply
-    to-md:h-[500px]
+    to-md:h-[300px]
     relative md:absolute;
 }
 
