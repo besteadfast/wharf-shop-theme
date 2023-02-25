@@ -162,7 +162,7 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "<strong>Use code SHOPTHEWHARF for 10% off!<\/strong>",
+          "bannerText": "<strong>Spend $150 or more for Free Shipping!<\/strong>",
           "linkText": "Contact Us",
           "linkDest": "shopify:\/\/pages\/contact"
         }
@@ -305,21 +305,7 @@
     },
     "content_for_index": [
 
-    ],
-    "blocks": {
-      "12622292715052272319": {
-        "type": "shopify:\/\/apps\/magical-product-fees\/blocks\/magical-mandatory-fees\/8c765569-e503-4260-ade8-582a0959d5a2",
-        "disabled": false,
-        "settings": {
-        }
-      },
-      "16256948136948485038": {
-        "type": "shopify:\/\/apps\/upcharge-surcharges\/blocks\/app-embed-block\/3660e544-1847-4d53-9b3b-f0cb50c2d9f7",
-        "disabled": false,
-        "settings": {
-        }
-      }
-    }
+    ]
   },
   "presets": {
     "Default": {
