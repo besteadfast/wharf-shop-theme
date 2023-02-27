@@ -829,16 +829,19 @@ class VariantSelects extends HTMLElement {
 
   updateMedia() {
     const images = document.querySelector(`#images-${this.dataset.section}`)
+    const mobileImages = document.querySelector(`#mobile-images-${this.dataset.section} .carousel`)
     const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`)
-    console.log('here')
+    const mobileCurrentVariantImage = document.querySelector(`#mobile-images-${this.dataset.section} .variant-image`)
     //if no variant image exists, remove any existing variant images, then return
     if (!this.currentVariant.featured_image) {
         if(currentVariantImage){
             images.removeChild(currentVariantImage)
+            mobileImages.removeChild(mobileCurrentVariantImage)
         }
         return
     }
 
+    //desktop
     if(currentVariantImage){
         currentVariantImage.src = this.currentVariant.featured_image.src;
     }
@@ -848,6 +851,18 @@ class VariantSelects extends HTMLElement {
         variantImageNode.id = variantImageNode.id.replace('0', 'variant')
         variantImageNode.src = this.currentVariant.featured_image.src;
         images.insertBefore(variantImageNode, images.firstChild)
+    }
+
+    //mobile
+    if(mobileCurrentVariantImage){
+        mobileCurrentVariantImage.src = this.currentVariant.featured_image.src;
+    }
+    else{
+        const variantImageNode = mobileImages.querySelector(".carousel-img:first-of-type").cloneNode()
+        variantImageNode.classList.add('variant-image')
+        variantImageNode.id = variantImageNode.id.replace('0', 'variant')
+        variantImageNode.src = this.currentVariant.featured_image.src;
+        mobileImages.insertBefore(variantImageNode, mobileImages.querySelector(".carousel-img:first-of-type"))
     }
 
     //get featured media for variant (if it exists) and insert into first gallery item
@@ -1030,7 +1045,7 @@ class VariantRadios extends VariantSelects {
   updateOptions() {
     const fieldsets = Array.from(this.querySelectorAll('fieldset'));
     this.options = fieldsets.map((fieldset) => {
-      return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+      return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked)?.value;
     });
   }
 }
