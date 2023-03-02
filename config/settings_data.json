@@ -280,6 +280,12 @@
           "555a8331-f6b8-4c6b-af38-b7673b1fc788"
         ],
         "settings": {
+          "mobileFeature1Title": "Women",
+          "mobileFeature1Link": "shopify:\/\/collections\/womens",
+          "mobileFeature1Img": "shopify:\/\/shop_images\/TWS_2022_Web_419.jpg",
+          "mobileFeature2Title": "Kids",
+          "mobileFeature2Link": "shopify:\/\/collections\/kids",
+          "mobileFeature2Img": "shopify:\/\/shop_images\/TWS_2022_Web_41.jpg"
         }
       },
       "sale-cta": {
