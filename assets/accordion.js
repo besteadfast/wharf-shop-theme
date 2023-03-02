@@ -8,11 +8,9 @@ const accordions = Array.from(accordionElts).map((accordion) => {
 })
 let accordionItems = document.querySelectorAll(".accordion__trigger");
 let currOpenId = null;
-console.log(accordions)
 accordions.forEach( function( accordion){
     accordion.accordionItems.forEach( function (element, id) {
         element.addEventListener("click", function() {
-            console.log("here")
             //if other acc is open, close it
             if(accordion.currOpenId && accordion.currOpenId !== this.id){
                 let open = document.querySelector("#" + accordion.currOpenId)

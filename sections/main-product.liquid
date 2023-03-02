@@ -28,12 +28,12 @@
         <div style="padding-top:100%; width:100%;"></div>
         {% assign carouselIndex = 0 %}
         {% if product.selected_or_first_available_variant.image %}
-          <img id="Thumbnail-{{ section.id }}-0" class="carousel-img variant-image absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * 0);" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" data-index="0">
+          <img id="Thumbnail-{{ section.id }}-variant" class="carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * 0);" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" data-index="0">
           {% assign carouselIndex = carouselIndex | plus: 1 %}
         {% endif %}
         {%- for media in product.media -%}
           {% unless variant_images contains media.src %}
-            <img id="Thumbnail-{{ section.id }}-{{ carouselIndex }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" loading="lazy" class="carousel-img absolute top-0 transition-left w-full aspect-square" style="left:calc(100% * {{ carouselIndex }} + 12px * {{ carouselIndex }});" data-index="{{ carouselIndex }}">
+            <img id="Thumbnail-{{ section.id }}-{{ carouselIndex }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" loading="lazy" class="carousel-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * {{ carouselIndex }} + 12px * {{ carouselIndex }});" data-index="{{ carouselIndex }}">
             {% assign carouselIndex = carouselIndex | plus: 1 %}
           {% endunless %}
         {% endfor %}

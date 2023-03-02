@@ -830,13 +830,20 @@ class VariantSelects extends HTMLElement {
   updateMedia() {
     const images = document.querySelector(`#images-${this.dataset.section}`)
     const mobileImages = document.querySelector(`#mobile-images-${this.dataset.section} .carousel`)
+    const modalImages = document.querySelector(`#ProductModal-${this.dataset.product} .carousel`)
     const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`)
-    const mobileCurrentVariantImage = document.querySelector(`#mobile-images-${this.dataset.section} .variant-image`)
+    const mobileCurrentVariantImage = document.querySelector(`#mobile-images-${this.dataset.section} img.variant-img`)
+    const modalCurrentVariantImage = document.querySelector(`#ProductModal-${this.dataset.product} img.variant-img`)
     //if no variant image exists, remove any existing variant images, then return
     if (!this.currentVariant.featured_image) {
         if(currentVariantImage){
             images.removeChild(currentVariantImage)
+        }
+        if(mobileCurrentVariantImage){
             mobileImages.removeChild(mobileCurrentVariantImage)
+        }
+        if(modalCurrentVariantImage){
+            modalImages.removeChild(modalCurrentVariantImage)
         }
         return
     }
@@ -845,11 +852,12 @@ class VariantSelects extends HTMLElement {
     if(currentVariantImage){
         currentVariantImage.src = this.currentVariant.featured_image.src;
     }
-    else{
-        const variantImageNode = images.firstElementChild.cloneNode()
-        variantImageNode.classList.add('variant-image')
-        variantImageNode.id = variantImageNode.id.replace('0', 'variant')
+    else if (images){
+        const variantImageNode = document.createElement('img')
+        variantImageNode.className = "variant-image row-span-2 col-span-2 w-full h-full"
+        variantImageNode.id = `Thumbnail-${this.dataset.section}-variant`
         variantImageNode.src = this.currentVariant.featured_image.src;
+        variantImageNode.alt = this.currentVariant.featured_image.alt
         images.insertBefore(variantImageNode, images.firstChild)
     }
 
@@ -857,12 +865,28 @@ class VariantSelects extends HTMLElement {
     if(mobileCurrentVariantImage){
         mobileCurrentVariantImage.src = this.currentVariant.featured_image.src;
     }
-    else{
-        const variantImageNode = mobileImages.querySelector(".carousel-img:first-of-type").cloneNode()
-        variantImageNode.classList.add('variant-image')
-        variantImageNode.id = variantImageNode.id.replace('0', 'variant')
+    else if (mobileImages){
+        const variantImageNode = document.createElement('img')
+        variantImageNode.className = "carousel-img variant-image absolute top-0 transition-left w-full aspect-square object-cover"
+        variantImageNode.id = `Thumbnail-${this.dataset.section}-variant`
+        variantImageNode.style = "left:calc(100% * 0);"
+        variantImageNode.dataset.index = "0"
         variantImageNode.src = this.currentVariant.featured_image.src;
+        variantImageNode.alt = this.currentVariant.featured_image.alt
         mobileImages.insertBefore(variantImageNode, mobileImages.querySelector(".carousel-img:first-of-type"))
+    }
+    //modal
+    if(modalCurrentVariantImage){
+        modalCurrentVariantImage.src = this.currentVariant.featured_image.src;
+    }
+    else if (modalImages){
+        const variantImageNode = document.createElement('img')
+        variantImageNode.className = "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img"
+        variantImageNode.style = "left:calc(100% * 0);"
+        variantImageNode.dataset.index = "0"
+        variantImageNode.src = this.currentVariant.featured_image.src;
+        variantImageNode.alt = this.currentVariant.featured_image.alt
+        modalImages.insertBefore(variantImageNode, modalImages.querySelector(".carousel-img:first-of-type"))
     }
 
     //get featured media for variant (if it exists) and insert into first gallery item
@@ -930,7 +954,6 @@ class VariantSelects extends HTMLElement {
             const addButtonDestination = document.getElementById(`addButton-${this.dataset.section}`);
             const addButtonSource = html.getElementById(`addButton-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
             if (addButtonSource && addButtonDestination) addButtonDestination.innerHTML = addButtonSource.innerHTML;
-            console.log(addButtonDestination)
 
             const price = document.getElementById(`price-${this.dataset.section}`);
 
@@ -972,24 +995,31 @@ toggleAddButton(disable = true, text) {
   }
 
   updateCarousel() {
-    if(this.dataset.productPage){return};
     const product = document.querySelector(`#product-${this.dataset.product}`);
+    const productID = product ? product.id : null;
     const variantImage = this.currentVariant.featured_image ? this.currentVariant.featured_image.src : null;
     //replace product images with variant images
-    if(!this.dataset.productPage){
-          if (variantImage) {
+    if(true){
+          if (variantImage && product) {
             product.querySelector(".main-img").src = variantImage;
           }
-          const modal = document.querySelector(`modal-dialog[data-for='${product.id}']`);
-          const carousel = modal.querySelector(".carousel");
+          const carousel = document.querySelector(`modal-dialog[data-for='${productID}'] .carousel, #mobile-images-${this.dataset.section} .carousel`);
           const images = carousel.querySelectorAll("img");
           //if variant has image and carousel doesn't yet
           if ( variantImage && !carousel.querySelector(".variant-img") ) {
             //shift all current elements
-            const newFirstImg = carousel.firstElementChild.cloneNode(true);
-            newFirstImg.src = variantImage;
-            newFirstImg.classList.add("variant-img");
-            carousel.insertBefore(newFirstImg, carousel.firstChild);
+            const variantImageNode = document.createElement('img')
+            if (this.dataset.productPage){
+              variantImageNode.className = "carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover";
+            }
+            else{
+              variantImageNode.className = "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img";
+            }
+            variantImageNode.style = "left:calc(100% * 0);"
+            variantImageNode.dataset.index = "0"
+            variantImageNode.src = this.currentVariant.featured_image.src;
+            variantImageNode.alt = this.currentVariant.featured_image.alt
+            carousel.insertBefore(variantImageNode, carousel.querySelector(".carousel-img:first-of-type"))
           }
           //if variant has image and carousel has image
           else if (variantImage) {
@@ -1020,17 +1050,26 @@ toggleAddButton(disable = true, text) {
           const imageCount = carousel.querySelectorAll("img").length;
           carousel.dataset.total = imageCount;
           carousel.dataset.curr = 0;
+          const pageNumber = document.querySelector('p.page-number')
+          if(pageNumber){
+            pageNumber.innerHTML = `1/${carousel.dataset.total}`
+          }
 
           //reset next/prev
-          carousel.querySelectorAll("button.carousel-control").forEach((btn) => {
-            switch (btn.dataset.action) {
-              case "prev":
-                btn.disabled = carousel.dataset.curr == 0;
-                break;
-              case "next":
-                btn.disabled = carousel.dataset.curr >= carousel.dataset.total - 1;
-            }
-          });
+          document
+            .querySelectorAll(
+              `modal-dialog[data-for='${productID}'] button.carousel-control, #mobile-images-${this.dataset.section} button.carousel-control`
+            )
+            .forEach((btn) => {
+              switch (btn.dataset.action) {
+                case "prev":
+                  btn.disabled = carousel.dataset.curr == 0;
+                  break;
+                case "next":
+                  btn.disabled =
+                    carousel.dataset.curr >= carousel.dataset.total - 1;
+              }
+            });
     }
   }
 }
@@ -1160,7 +1199,6 @@ searchElts.forEach( (searchInput) => {
 const searchSubmit = document.querySelector("button.search-submit")
 if(searchSubmit){
     searchSubmit.addEventListener("click", (e) => {
-        console.log(e.currentTarget)
     const searchInput = e.currentTarget.parentElement.querySelector("input.search-input");
     window.location.href = `/search?q=${searchInput.value}&type=product`;
     });

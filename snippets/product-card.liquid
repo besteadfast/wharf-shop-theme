@@ -35,7 +35,7 @@
     {% comment %}
       <p class="mt-s5 text-black-400 uppercase">Brand/Collection</p>
     {% endcomment %}
-    {% if product.compare_at_price %}
+    {% if product.compare_at_price and product.compare_at_price > product.price %}
       <p class="mt-s5">
         <span class="mt-s5 line-through text-black-400">${{ product.compare_at_price_max | money_without_currency }}</span>
         <span class="text-red-500">${{ product.price | money_without_currency }}</span>

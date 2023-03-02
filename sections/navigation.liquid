@@ -73,11 +73,17 @@
       </ul>
       <button class="btn btn--outlined w-max mx-auto mt-s12 shrink-0 lg:hidden">All Products</button>
       <div class="flex gap-s5 px-s5 mt-s8 lg:hidden">
-        <div class="flex-1 flex items-end p-s2 h-[240px] bg-black-50">
-          <button class="btn w-full z-auto ">Women</button>
+        <div class="relative flex-1 flex items-end p-s2 h-[240px] bg-black-50">
+          {% if section.settings.mobileFeature1Img %}  
+            <img src="{{ section.setttings.mobileFeature1Img.src }}" alt="{{ section.setttings.mobileFeature1Img.alt }}" class="object-cover w-full h-full absolute top-0 left-0">
+          {% endif %}
+          <a class="btn w-full z-auto " href="{{ section.settings.mobileFeature1Link }}">{{ section.settings.mobileFeature1Title }}</a>
         </div>
-        <div class="flex-1 flex items-end p-s2 h-[240px] bg-black-50">
-          <button class="btn w-full z-auto ">Kids</button>
+        <div class="relative flex-1 flex items-end p-s2 h-[240px] bg-black-50">
+          {% if section.settings.mobileFeature1Img %}  
+            <img src="{{ section.setttings.mobileFeature2Img.src }}" alt="{{ section.setttings.mobileFeature2Img.alt }}" class="object-cover w-full h-full absolute top-0 left-0">
+          {% endif %}
+          <a class="btn w-full z-auto " href="{{ section.settings.mobileFeature2Link }}">{{ section.settings.mobileFeature2Title }}</a>
         </div>
       </div>
       <div class="w-full flex justify-between px-s5 py-s7 mt-s10 bg-white lg:hidden">
@@ -220,6 +226,38 @@
             "label": "Featured Image"
           }
         ]
+      }
+    ],
+    "settings": [
+      {
+        "id": "mobileFeature1Title",
+        "label": "Mobile Feature 1 Label",
+        "type": "text",
+        "default": "Women"
+      },
+      {
+        "id": "mobileFeature1Link",
+        "label": "Mobile Feature 1 Link Url",
+        "type": "url"
+      },
+      {
+        "id": "mobileFeature1Img",
+        "label": "Mobile Feature 1 Image",
+        "type": "image_picker"
+      },
+      {
+        "id": "mobileFeature2Title",
+        "label": "Mobile Feature 2 Label",
+        "type": "text",
+        "default": "Kids"
+      }, {
+        "id": "mobileFeature2Link",
+        "label": "Mobile Feature 2 Link Url",
+        "type": "url"
+      }, {
+        "id": "mobileFeature2Img",
+        "label": "Mobile Feature 2 Image",
+        "type": "image_picker"
       }
     ]
   }

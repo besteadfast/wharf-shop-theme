@@ -83,7 +83,6 @@ class CartItems extends HTMLElement {
         this.getSectionsToRender().forEach((section => {
           const elementToReplace =
             document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-          console.log(elementToReplace)
           elementToReplace.innerHTML =
             this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
         }));
@@ -102,7 +101,6 @@ class CartItems extends HTMLElement {
         this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
         //errors.textContent = window.cartStrings.error;
-        console.log(e)
         this.disableLoading();
       });
   }

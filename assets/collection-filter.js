@@ -241,7 +241,6 @@ function renderFilteredCollection(grid) {
             }
             //if variant doesn't have image and carousel has image
             else if ( carousel.querySelector(".variant-img") ){
-                console.log('here')
                 carousel.querySelector(".variant-img").remove()
                 images.forEach((img) => {
                   img.dataset.index = Number(img.dataset.index) + 1;
@@ -251,7 +250,6 @@ function renderFilteredCollection(grid) {
             const updatedImages = carousel.querySelectorAll("img");
             //update image positions
             updatedImages.forEach((img, index) => {
-                console.log(img)
                 img.dataset.index = index;
                 img.style.left = `calc(${100 * (parseInt(img.dataset.index))}% + ${12 * (parseInt(index))}px`;
             });
@@ -265,7 +263,6 @@ function renderFilteredCollection(grid) {
 
             //reset next/prev
             carousel.querySelectorAll("button.carousel-control").forEach((btn) => {
-                console.log(btn)
                 switch (btn.dataset.action) {
                     case "prev":
                         btn.disabled = (carousel.dataset.curr == 0);

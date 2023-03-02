@@ -128,7 +128,6 @@ customElements.define('cart-drawer-items', CartDrawerItems);
 
 const calcFreeShippingProgress = (cartJSON) => {
     const cart = JSON.parse(cartJSON);
-    console.log(document.querySelector("#cart-icon-bubble div span"));
     document.querySelector("#cart-icon-bubble div span").innerHTML = cart.item_count
 }
 
