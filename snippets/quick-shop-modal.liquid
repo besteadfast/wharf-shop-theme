@@ -9,17 +9,19 @@
         <div class="flex-1 relative overflow-hidden carousel">
             {% assign carouselIndex = 0 %}
             {% if currentVariantImage %}
-                <img src="{{ currentVariantImage | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img" style="left:calc(100% * 0);" data-index="0" width="300" height="450" loading="lazy" />
+                <img src="{{ currentVariantImage | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img" style="left:calc(100% * 0);" data-index="0" width="300" height="450" loading="lazy" data-base-index="{{ currentVariantImage.position }}" />
                 {% assign carouselIndex = carouselIndex | plus: 1 %}
             {% endif %}
-            {% for image in nonVariantImages %}
-                <img src="{{ image | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ carouselIndex }});" data-index="{{ carouselIndex }}" width="300" height="450" loading="lazy" />
+            {% for media in product.media %}
+            {% unless currentVariantImage == media.src %}
+                <img src="{{ media | image_url }}" class="w-full h-full object-cover absolute top-0 transition-left carousel-img" style="left:calc(100% * {{ carouselIndex }});" data-index="{{ carouselIndex }}" width="300" height="450" loading="lazy" data-base-index="{{ media.position }}"/>
                 {% assign carouselIndex = carouselIndex | plus: 1 %}
+            {% endunless %}
             {% endfor %}
-            <button class="absolute left-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden carousel-control" data-action="prev">
+            <button class="absolute left-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden z-10 carousel-control" data-action="prev">
                 {% render "24-left", class: "text-black-400" %}
             </button>
-            <button class="absolute right-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden carousel-control" data-action="next">
+            <button class="absolute right-0 top-1/2 -transform-y-1/2 px-s1 py-s2 bg-black-50 disabled:hidden z-10 carousel-control" data-action="next">
                 {% render "24-right" class: "text-black-400" %}
             </button>
         </div>

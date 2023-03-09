@@ -442,7 +442,6 @@ class ModalDialog extends HTMLElement {
       this.hide.bind(this, false)
     );
     const carousel = this.querySelector(".carousel");
-    const images = this.querySelectorAll(".carousel-img");
     carousel.dataset.total = carousel.querySelectorAll("img").length;
     carousel.dataset.curr = 0;
 
@@ -452,6 +451,7 @@ class ModalDialog extends HTMLElement {
         elt.addEventListener(
             'click',
             () => {
+                const images = this.querySelectorAll(".carousel-img");
                 //shift carousel if not already first/last
                 switch (elt.dataset.action) {
                     case "prev":
@@ -801,13 +801,13 @@ class VariantSelects extends HTMLElement {
     this.toggleAddButton(true, '');
     this.updatePickupAvailability();
     this.removeErrorMessage();
-    this.updateCarousel();
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '');
       this.setUnavailable();
     } else {
       this.updateMedia();
+      this.updateCarousel();
       this.updateURL();
       this.updateVariantInput();
       this.renderProductInfo();
@@ -828,66 +828,94 @@ class VariantSelects extends HTMLElement {
   }
 
   updateMedia() {
-    const images = document.querySelector(`#images-${this.dataset.section}`)
-    const mobileImages = document.querySelector(`#mobile-images-${this.dataset.section} .carousel`)
-    const modalImages = document.querySelector(`#ProductModal-${this.dataset.product} .carousel`)
-    const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`)
-    const mobileCurrentVariantImage = document.querySelector(`#mobile-images-${this.dataset.section} img.variant-img`)
-    const modalCurrentVariantImage = document.querySelector(`#ProductModal-${this.dataset.product} img.variant-img`)
-    //if no variant image exists, remove any existing variant images, then return
-    if (!this.currentVariant.featured_image) {
-        if(currentVariantImage){
-            images.removeChild(currentVariantImage)
-        }
-        if(mobileCurrentVariantImage){
-            mobileImages.removeChild(mobileCurrentVariantImage)
-        }
-        if(modalCurrentVariantImage){
-            modalImages.removeChild(modalCurrentVariantImage)
-        }
-        return
+    const images = document.querySelector(`#images-${this.dataset.section}`);
+    const mobileImages = document.querySelector(`#mobile-images-${this.dataset.section} .carousel`);
+    const modalImages = document.querySelector(`#ProductModal-${this.dataset.product} .carousel`);
+    const currentVariantImage = document.querySelector(`#images-${this.dataset.section} .variant-image`);
+    const mobileCurrentVariantImage = document.querySelector(`#mobile-images-${this.dataset.section} img.variant-img`);
+    const modalCurrentVariantImage = document.querySelector(`#ProductModal-${this.dataset.product} img.variant-img`);
+
+    if (currentVariantImage) {
+        const oldVarCopy = currentVariantImage.cloneNode();
+        oldVarCopy.classList.remove("row-span-2", "col-span-2", "variant-image");
+        oldVarCopy.classList.remove("row-span-1", "col-span-1");
+        images.removeChild(currentVariantImage);
+        images.insertBefore(oldVarCopy, images.querySelector(`img[data-base-index="${Number(currentVariantImage.dataset.baseIndex) + 1}"]`));
     }
 
-    //desktop
-    if(currentVariantImage){
-        currentVariantImage.src = this.currentVariant.featured_image.src;
-    }
-    else if (images){
-        const variantImageNode = document.createElement('img')
-        variantImageNode.className = "variant-image row-span-2 col-span-2 w-full h-full"
-        variantImageNode.id = `Thumbnail-${this.dataset.section}-variant`
-        variantImageNode.src = this.currentVariant.featured_image.src;
-        variantImageNode.alt = this.currentVariant.featured_image.alt
-        images.insertBefore(variantImageNode, images.firstChild)
+    if (images && this.currentVariant.featured_image){
+        const newVarCopy = images.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`).cloneNode()
+        images.removeChild(images.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`));
+        newVarCopy.classList.add("row-span-2", "col-span-2", "variant-image");
+        newVarCopy.classList.remove("row-span-1", "col-span-1");
+        images.insertBefore(newVarCopy, images.firstChild)
     }
 
     //mobile
-    if(mobileCurrentVariantImage){
-        mobileCurrentVariantImage.src = this.currentVariant.featured_image.src;
+    if (mobileCurrentVariantImage) {
+        const oldVarCopy = mobileCurrentVariantImage.cloneNode();
+        oldVarCopy.classList.remove("variant-img");
+        mobileImages.removeChild(mobileCurrentVariantImage);
+        mobileImages.insertBefore(oldVarCopy, mobileImages.querySelector(`img[data-base-index="${Number(mobileCurrentVariantImage.dataset.baseIndex) + 1}"]`));
     }
-    else if (mobileImages){
-        const variantImageNode = document.createElement('img')
-        variantImageNode.className = "carousel-img variant-image absolute top-0 transition-left w-full aspect-square object-cover"
-        variantImageNode.id = `Thumbnail-${this.dataset.section}-variant`
-        variantImageNode.style = "left:calc(100% * 0);"
-        variantImageNode.dataset.index = "0"
-        variantImageNode.src = this.currentVariant.featured_image.src;
-        variantImageNode.alt = this.currentVariant.featured_image.alt
-        mobileImages.insertBefore(variantImageNode, mobileImages.querySelector(".carousel-img:first-of-type"))
+
+    if(mobileImages && this.currentVariant.featured_image){
+        const newVarCopy = mobileImages.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`).cloneNode()
+        mobileImages.removeChild(mobileImages.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`));
+        newVarCopy.classList.add("variant-img");
+        newVarCopy.style = "left:calc(100% * 0);";
+        newVarCopy.alt = this.currentVariant.featured_image.alt;
+        mobileImages.insertBefore(newVarCopy, mobileImages.querySelector('.carousel-img:first-of-type'));
     }
+
+
+    //carousel
+    if (modalCurrentVariantImage) {
+        const oldVarCopy = modalCurrentVariantImage.cloneNode();
+        oldVarCopy.classList.remove("variant-img");
+        modalImages.removeChild(modalCurrentVariantImage);
+        modalImages.insertBefore(oldVarCopy, modalImages.querySelector(`img[data-base-index="${Number(modalCurrentVariantImage.dataset.baseIndex) + 1}"]`));
+    }
+
+    if(modalImages && this.currentVariant.featured_image){
+        const newVarCopy = modalImages.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`).cloneNode()
+        modalImages.removeChild(modalImages.querySelector(`img[data-base-index="${this.currentVariant.featured_image.position}"]`));
+        newVarCopy.classList.add("variant-img");
+        newVarCopy.style = "left:calc(100% * 0);";
+        newVarCopy.alt = this.currentVariant.featured_image.alt;
+        modalImages.insertBefore(newVarCopy, modalImages.querySelector('.carousel-img:first-of-type'));
+    }
+    //   mobileCurrentVariantImage.src = this.currentVariant.featured_image.src;
+    // } else if (mobileImages) {
+    //   const variantImageNode = document.createElement("img");
+    //   variantImageNode.className =
+    //     "carousel-img variant-image absolute top-0 transition-left w-full aspect-square object-cover";
+    //   variantImageNode.id = `Thumbnail-${this.dataset.section}-variant`;
+    //   variantImageNode.style = "left:calc(100% * 0);";
+    //   variantImageNode.dataset.index = "0";
+    //   variantImageNode.src = this.currentVariant.featured_image.src;
+    //   variantImageNode.alt = this.currentVariant.featured_image.alt;
+    //   mobileImages.insertBefore(
+    //     variantImageNode,
+    //     mobileImages.querySelector(".carousel-img:first-of-type")
+    //   );
+    //}
     //modal
-    if(modalCurrentVariantImage){
-        modalCurrentVariantImage.src = this.currentVariant.featured_image.src;
-    }
-    else if (modalImages){
-        const variantImageNode = document.createElement('img')
-        variantImageNode.className = "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img"
-        variantImageNode.style = "left:calc(100% * 0);"
-        variantImageNode.dataset.index = "0"
-        variantImageNode.src = this.currentVariant.featured_image.src;
-        variantImageNode.alt = this.currentVariant.featured_image.alt
-        modalImages.insertBefore(variantImageNode, modalImages.querySelector(".carousel-img:first-of-type"))
-    }
+    // if (modalCurrentVariantImage) {
+    //   modalCurrentVariantImage.src = this.currentVariant.featured_image.src;
+    // } else if (modalImages) {
+    //   const variantImageNode = document.createElement("img");
+    //   variantImageNode.className =
+    //     "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img";
+    //   variantImageNode.style = "left:calc(100% * 0);";
+    //   variantImageNode.dataset.index = "0";
+    //   variantImageNode.src = this.currentVariant.featured_image.src;
+    //   variantImageNode.alt = this.currentVariant.featured_image.alt;
+    //   modalImages.insertBefore(
+    //     variantImageNode,
+    //     modalImages.querySelector(".carousel-img:first-of-type")
+    //   );
+    // }
 
     //get featured media for variant (if it exists) and insert into first gallery item
     //otherwise remove featured media gallery item (if it exists)
@@ -1005,45 +1033,43 @@ toggleAddButton(disable = true, text) {
           }
           const carousel = document.querySelector(`modal-dialog[data-for='${productID}'] .carousel, #mobile-images-${this.dataset.section} .carousel`);
           const images = carousel.querySelectorAll("img");
-          //if variant has image and carousel doesn't yet
-          if ( variantImage && !carousel.querySelector(".variant-img") ) {
-            //shift all current elements
-            const variantImageNode = document.createElement('img')
-            if (this.dataset.productPage){
-              variantImageNode.className = "carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover";
-            }
-            else{
-              variantImageNode.className = "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img";
-            }
-            variantImageNode.style = "left:calc(100% * 0);"
-            variantImageNode.dataset.index = "0"
-            variantImageNode.src = this.currentVariant.featured_image.src;
-            variantImageNode.alt = this.currentVariant.featured_image.alt
-            carousel.insertBefore(variantImageNode, carousel.querySelector(".carousel-img:first-of-type"))
-          }
-          //if variant has image and carousel has image
-          else if (variantImage) {
-            //check if different
-            if ( !( carousel.querySelector(".variant-img").src == variantImage) ) {
-              //swap new one in
-              carousel.querySelector(".variant-img").src = variantImage
-            }
-          }
-          //if variant doesn't have image and carousel has image
-          else if (carousel.querySelector(".variant-img")) {
-            carousel.querySelector(".variant-img").remove();
-            images.forEach((img) => {
-              img.dataset.index = Number(img.dataset.index) + 1;
-              img.style.left = `calc(${img.style.left} + 100% + 12px)`;
-            });
-          }
+        //   //if variant has image and carousel doesn't yet
+        //   if ( variantImage && !carousel.querySelector(".variant-img") ) {
+        //     //shift all current elements
+        //     const variantImageNode = document.createElement('img')
+        //     if (this.dataset.productPage){
+        //       variantImageNode.className = "carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover";
+        //     }
+        //     else{
+        //       variantImageNode.className = "w-full h-full object-cover absolute top-0 transition-left carousel-img variant-img";
+        //     }
+        //     variantImageNode.style = "left:calc(100% * 0);"
+        //     variantImageNode.dataset.index = "0"
+        //     variantImageNode.src = this.currentVariant.featured_image.src;
+        //     variantImageNode.alt = this.currentVariant.featured_image.alt
+        //     carousel.insertBefore(variantImageNode, carousel.querySelector(".carousel-img:first-of-type"))
+        //   }
+        //   //if variant has image and carousel has image
+        //   else if (variantImage) {
+        //     //check if different
+        //     if ( !( carousel.querySelector(".variant-img").src == variantImage) ) {
+        //       //swap new one in
+        //       carousel.querySelector(".variant-img").src = variantImage
+        //     }
+        //   }
+        //   //if variant doesn't have image and carousel has image
+        //   else if (carousel.querySelector(".variant-img")) {
+        //     carousel.querySelector(".variant-img").remove();
+        //     images.forEach((img) => {
+        //       img.dataset.index = Number(img.dataset.index) + 1;
+        //       img.style.left = `calc(${img.style.left} + 100% + 12px)`;
+        //     });
+        //   }
           const updatedImages = carousel.querySelectorAll("img");
           //update image positions
           updatedImages.forEach((img, index) => {
             img.dataset.index = index;
-            img.style.left = `calc(${100 * parseInt(img.dataset.index)}% + ${
-              12 * parseInt(index)
-            }px`;
+            img.style.left = `calc(${100 * parseInt(img.dataset.index)}% + ${12 * parseInt(index)}px`;
           });
 
           //set total

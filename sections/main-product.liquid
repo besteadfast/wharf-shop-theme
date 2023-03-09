@@ -14,12 +14,14 @@
   {% render 'breadcrumb' %}
   <div class="relative product flex to-md:flex-col items-start gap-s10 lg:px-36 pb-s12 md:pb-s13 max-w-content-lg mx-auto">
     <div id="images-{{ section.id }}" class="images flex-1 grid grid-cols-2 gap-s3 to-md:hidden">
-      {% if product.selected_or_first_available_variant.image %}
-        <img id="Thumbnail-{{ section.id }}-variant" class="variant-image row-span-2 col-span-2 w-full h-full" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}">
+      {% assign currVariant = product.selected_or_first_available_variant %}
+      {% if currVariant.image %}
+        {% assign variantBaseIndex = 0 %}
+        <img id="Thumbnail-{{ section.id }}-variant" class="variant-image row-span-2 col-span-2 w-full h-full" src="{{ currVariant.image | image_url }}" alt="{{ currVariant.image.alt | escape }}" data-base-index="{{ currVariant.image.position }}">
       {% endif %}
       {%- for media in product.media -%}
-        {% unless variant_images contains media.src %}
-          <img id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" class="row-span-1 col-span-1 w-full h-full object-cover">
+        {% unless currVariant.image == media.src %}
+          <img id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}" src="{{ media | image_url }}" alt="{{ media.alt | escape }}" class="row-span-1 col-span-1 w-full h-full object-cover" data-base-index="{{ media.position }}">
         {% endunless %}
       {% endfor %}
     </div>
@@ -28,12 +30,12 @@
         <div style="padding-top:100%; width:100%;"></div>
         {% assign carouselIndex = 0 %}
         {% if product.selected_or_first_available_variant.image %}
-          <img id="Thumbnail-{{ section.id }}-variant" class="carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * 0);" src="{{ product.selected_or_first_available_variant.image | image_url: width: 700 }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" data-index="0">
+          <img id="Thumbnail-{{ section.id }}-variant" class="carousel-img variant-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * 0);" src="{{ product.selected_or_first_available_variant.image | image_url }}" alt="{{ product.selected_or_first_available_variant.image.alt | escape }}" data-index="0" data-base-index="{{ product.selected_or_first_available_variant.image.position }}">
           {% assign carouselIndex = carouselIndex | plus: 1 %}
         {% endif %}
         {%- for media in product.media -%}
-          {% unless variant_images contains media.src %}
-            <img id="Thumbnail-{{ section.id }}-{{ carouselIndex }}" src="{{ media | image_url: width: 700 }}" alt="{{ media.alt | escape }}" loading="lazy" class="carousel-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * {{ carouselIndex }} + 12px * {{ carouselIndex }});" data-index="{{ carouselIndex }}">
+          {% unless product.selected_or_first_available_variant.image == media.src %}
+            <img id="Thumbnail-{{ section.id }}-{{ carouselIndex }}" src="{{ media | image_url }}" alt="{{ media.alt | escape }}" loading="lazy" class="carousel-img absolute top-0 transition-left w-full aspect-square object-cover" style="left:calc(100% * {{ carouselIndex }} + 12px * {{ carouselIndex }});" data-index="{{ carouselIndex }}" data-base-index="{{ media.position }}">
             {% assign carouselIndex = carouselIndex | plus: 1 %}
           {% endunless %}
         {% endfor %}
