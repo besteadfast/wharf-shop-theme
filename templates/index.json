@@ -88,9 +88,9 @@
       "settings": {
         "heading": "",
         "headingImage": "shopify:\/\/shop_images\/TheWharfStore_Horizontal_White_ccf8ab72-e777-4590-9fbd-25224c5e010d.png",
-        "text": "Jackets are out. Swimsuits are in. Let the fun begin!",
-        "buttonLabel": "Shop Winter Sale",
-        "buttonDest": "shopify:\/\/collections\/sale"
+        "text": "Our favorite season is here! The Greatest Show in Sportfishing is just around the corner. Shop our 2022 Blue Marlin Grand Championship Apparel.",
+        "buttonLabel": "Shop BMGC Sale",
+        "buttonDest": "shopify:\/\/collections\/tournament-collection-sale"
       }
     },
     "floating_cta": {
@@ -139,7 +139,7 @@
       "disabled": true,
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
-          "type": "shopify:\/\/apps\/social-media-feeds-instagram\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "type": "shopify:\/\/apps\/tagembed-social-media-review\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
           "settings": {
             "tagembed_widget": "83133",
             "tagembed_widget_position": "center",
