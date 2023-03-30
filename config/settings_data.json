@@ -162,7 +162,7 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "<strong>Spend $150 or more for Free Shipping!<\/strong>",
+          "bannerText": "<strong>Order online + receive a free gift with your order!<\/strong>",
           "linkText": "Contact Us",
           "linkDest": "shopify:\/\/pages\/contact"
         }
