@@ -92,49 +92,51 @@
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
         <div id="addButton-{{ section.id }}">
-        {% if product.selected_or_first_available_variant.available %}
-        <product-form class="">
-          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
-            <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--lg btn--dark capitalize tracking-0 w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
-              {% if product.selected_or_first_available_variant.available == false %}
-              disabled
-              {% endif %}>
-              <span>
-                {%- if product.selected_or_first_available_variant.available -%}
-                  Add to Cart
-                {%- else -%}
-                  Sold Out
-                {%- endif -%}
-              </span>
-              <span class="sold-out-message hidden">
-                Sold Out
-              </span>
-              <div class="loading-overlay__spinner hidden">
-                <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-              </svg>
-            </div>
-          </button>
-          <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $150+</p>
-        {%- endform -%}
-      </product-form>
-      {% else %}
-        <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
-        <form id="email_signup" action="https://manage.kmail-lists.com/subscriptions/subscribe?a=WUN3cr&g=UAW7nW" method="POST" class="mt-s3 w-full  py-0 flex">
-          <input type="hidden" name="g" value="UAW7nW">
-          <input type="email" value="" name="email" id="k_id_email" placeholder="Enter your email" class="py-s2 outline-none btn--borderless faux-p flex-1 mr-s3"/>
-          <button type="submit" id="notifySignup" class="btn  capitalize tracking-0 w-max">Notify Me</button>
-        </form>
-
-      {% endif %}
-    <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          {% if product.selected_or_first_available_variant.available %}
+            <product-form class="">
+              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--lg btn--dark capitalize tracking-0 w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                  {% endif %}>
+                  <span>
+                    {%- if product.selected_or_first_available_variant.available -%}
+                      Add to Cart
+                    {%- else -%}
+                      Sold Out
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">
+                    Sold Out
+                  </span>
+                  <div class="loading-overlay__spinner hidden">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </button>
+              <p class="text-center mt-s4 faux-p-sm text-black-700">Free US Shipping $150+</p>
+            {%- endform -%}
+          </product-form>
+        {% else %}
+          <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
+          <form id="email_signup" action="https://manage.kmail-lists.com/subscriptions/subscribe?a=WUN3cr&g=UAW7nW" method="POST" class="mt-s3 w-full  py-0 flex">
+            <input type="hidden" name="g" value="UAW7nW">
+            <input type="email" value="" name="email" id="k_id_email" placeholder="Enter your email" class="py-s2 outline-none btn--borderless faux-p flex-1 mr-s3"/>
+            <button type="submit" id="notifySignup" class="btn  capitalize tracking-0 w-max">Notify Me</button>
+          </form>
+  
+        {% endif %}
+        <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
       </div>
+      
       {% if product.description.size > 0 %}
-      <div class="mt-s10">
-        <p class="faux-p-sm text-black-800">{{ product.description }}</p>
-      </div>
-    {% endif %}
+        <div class="mt-s10">
+          <p class="faux-p-sm text-black-800">{{ product.description }}</p>
+        </div>
+      {% endif %}
+      
       {% assign accordionCount = section.blocks | size %}
       {% if accordionCount > 0 %}
         <div class="faq__accordion mt-s10">
@@ -163,6 +165,7 @@
           </ul>
         </div>
       {% endif %}
+      
       <div class="share flex justify-between items-center py-s7 border-t-[3px] border-black-100">
         <p class="faux-p-sm text-black-700">Share</p>
         <div class="text-black-400 flex gap-s3">
