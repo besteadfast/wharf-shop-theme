@@ -1017,11 +1017,6 @@ toggleAddButton(disable = true, text) {
     if (price) price.classList.add('hidden');
   }
 
-  notifySignup(e) {
-    e.preventDefault();
-    console.log('here', e.target.innerHTML)
-  }
-
   getVariantData() {
     this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
@@ -1255,3 +1250,10 @@ function toTitleCase(string){
     })
     return wordArray.join(" ");
 }
+
+
+function notifySignup(event) {
+  event.preventDefault();
+  console.log('here', event.target.innerHTML)
+}
+
