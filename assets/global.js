@@ -1253,6 +1253,7 @@ function toTitleCase(string){
 
 
 function notifySignup(event) {
+  event.stopPropogation();
   event.preventDefault();
   console.log('here', event.target.innerHTML)
 }
