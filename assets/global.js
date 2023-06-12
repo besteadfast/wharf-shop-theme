@@ -1252,9 +1252,9 @@ function toTitleCase(string){
 }
 
 
-function notifySignup(event) {
+document.querySelector("form#notifyMe").addEventListener("submit", (event) => {
   event.stopPropagation();
   event.preventDefault();
   console.log('here', event.target)
-}
+})
 
