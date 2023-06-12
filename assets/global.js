@@ -1255,6 +1255,6 @@ function toTitleCase(string){
 function notifySignup(event) {
   event.stopPropagation();
   event.preventDefault();
-  console.log('here', event.target.innerHTML)
+  console.log('here', event.target)
 }
 
