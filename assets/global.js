@@ -1252,7 +1252,7 @@ function toTitleCase(string){
 }
 
 
-function notifySignup(event) {
+function async notifySignup(event) {
   event.stopPropagation();
   event.preventDefault();
   const form = event.target
@@ -1262,9 +1262,11 @@ function notifySignup(event) {
   inputs.forEach((input) => {
      data.append(input.name, input.value);
   })
-  fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {
+  const response = await fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {
     method: "POST",
     mode: "no-cors",
     body: data
   })
+
+  console.log(response)
 }
