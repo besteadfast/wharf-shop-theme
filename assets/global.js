@@ -1264,6 +1264,7 @@ function notifySignup(event) {
   })
   fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {
     method: "POST",
+    mode: "no-cors",
     body: data
   })
 }
