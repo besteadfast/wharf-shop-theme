@@ -1262,8 +1262,5 @@ function notifySignup(event) {
   inputs.forEach((input) => {
      data.append(input.name, input.value);
   })
-  console.log(data)
-  // const emailField = form.querySelector("input[type='email']")
-  // const email = emailField ? emailField.value : "";
-  console.log('here', data.get("a"))
+  fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {body: data})
 }
