@@ -1265,5 +1265,5 @@ function notifySignup(event) {
   console.log(data)
   // const emailField = form.querySelector("input[type='email']")
   // const email = emailField ? emailField.value : "";
-  console.log('here', data.getAll())
+  console.log('here', data.get("a"))
 }
