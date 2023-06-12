@@ -1255,5 +1255,15 @@ function toTitleCase(string){
 function notifySignup(event) {
   event.stopPropagation();
   event.preventDefault();
-  console.log('here', event.target)
+  const form = event.target
+  const inputs = form.querySelectorAll("input");
+  const baseUrl = "";
+  const data = new FormData()
+  inputs.forEach((input) => {
+     data.append(input.name, input.value);
+  })
+  console.log(data)
+  // const emailField = form.querySelector("input[type='email']")
+  // const email = emailField ? emailField.value : "";
+  console.log('here', data)
 }
