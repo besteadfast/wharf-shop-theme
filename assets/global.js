@@ -1017,6 +1017,11 @@ toggleAddButton(disable = true, text) {
     if (price) price.classList.add('hidden');
   }
 
+  notifySignup(e) {
+    e.preventDefault();
+    console.log('here', e.target.innerHTML)
+  }
+
   getVariantData() {
     this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
