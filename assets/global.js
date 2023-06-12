@@ -1262,5 +1262,8 @@ function notifySignup(event) {
   inputs.forEach((input) => {
      data.append(input.name, input.value);
   })
-  fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {body: data})
+  fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {
+    method: "POST",
+    body: data
+  })
 }
