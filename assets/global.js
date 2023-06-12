@@ -1252,7 +1252,7 @@ function toTitleCase(string){
 }
 
 
-function async notifySignup(event) {
+async function notifySignup(event) {
   event.stopPropagation();
   event.preventDefault();
   const form = event.target
