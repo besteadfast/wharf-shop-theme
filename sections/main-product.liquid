@@ -96,16 +96,7 @@
             <product-form class="">
               {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
-                        <button
-                            id = "ProductSubmitButton-{{ section_id }}"
-                            type="submit"
-                            name="add"
-                            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-                            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-                              disabled
-                            {% endif %}
-                        >
-                        </button>
+
                 <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--lg btn--dark capitalize tracking-0 w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
                   {% if product.selected_or_first_available_variant.available == false %}
                   disabled
@@ -130,6 +121,16 @@
             {%- endform -%}
           </product-form>
         {% else %}
+            <button
+              id = "ProductSubmitButton-{{ section_id }}"
+              type="submit"
+              name="add"
+              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+              {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+                disabled
+              {% endif %}
+          >
+          </button>
           <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
           <form id="notifySignup" action="" onsubmit="notifySignup(event)" class="mt-s3 w-full  py-0 flex">
             <input type="hidden" name="a" value="WUN3cr" disabled />
