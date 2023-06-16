@@ -124,6 +124,15 @@
 
           <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
           <form id="notifySignup" action="" onsubmit="notifySignup(event)" class="mt-s3 w-full  py-0 flex">
+            {%- liquid
+              assign check_against_inventory = true
+              if product.selected_or_first_available_variant.inventory_management != 'shopify' or  product.selected_or_first_available_variant.inventory_policy == 'continue'
+                assign check_against_inventory = false
+              endif
+              if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+                assign quantity_rule_soldout = true
+              endif
+            -%}
             <input type="hidden" name="a" value="WUN3cr" disabled />
             <input type="hidden" name="variant" value="{{ product.selected_or_first_available_variant.id }}" disabled />
             <input type="hidden" name="platform" value="shopify" disabled />
