@@ -122,8 +122,8 @@
           </product-form>
         {% else %}
 
-          <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
-          <form id="notifySignup" action="" onsubmit="notifySignup(event)" class="mt-s3 w-full  py-0 flex">
+          <p  class="block mt-s7">Get notified when this product is back in stock:</p>
+          <!-- <form id="notifySignup" action="" onsubmit="notifySignup(event)" class="mt-s3 w-full  py-0 flex">
             {%- liquid
               assign check_against_inventory = true
               if product.selected_or_first_available_variant.inventory_management != 'shopify' or  product.selected_or_first_available_variant.inventory_policy == 'continue'
@@ -147,8 +147,10 @@
                 disabled
               {% endif %}
             ></button>
-             <a class="klaviyo-bis-trigger" href="#" style="display:block">Notify Me When Available</a>
-          </form>
+          </form> -->
+          <div class="notifySignup">
+            <a class="klaviyo-bis-trigger" href="#" style="display:block">Notify Me When Available</a>
+          </div>
         {% endif %}
       </div>
 
