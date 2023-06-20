@@ -1250,3 +1250,23 @@ function toTitleCase(string){
     })
     return wordArray.join(" ");
 }
+
+
+async function notifySignup(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  const form = event.target
+  const inputs = form.querySelectorAll("input");
+  const baseUrl = "";
+  const data = new FormData()
+  inputs.forEach((input) => {
+     data.append(input.name, input.value);
+  })
+  const response = await fetch("https://a.klaviyo.com/api/v1/catalog/subscribe", {
+    method: "POST",
+    mode: "no-cors",
+    body: data
+  })
+
+  console.log(response)
+}

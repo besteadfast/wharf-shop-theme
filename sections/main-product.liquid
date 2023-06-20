@@ -96,6 +96,7 @@
             <product-form class="">
               {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+
                 <button id="{{ product_form_id }}-submit" type="submit" name="add" class="quick-add__submit btn btn--lg btn--dark capitalize tracking-0 w-full mt-s8" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" aria-live="polite" data-sold-out-message="true"
                   {% if product.selected_or_first_available_variant.available == false %}
                   disabled
@@ -120,23 +121,43 @@
             {%- endform -%}
           </product-form>
         {% else %}
+
           <label for="email" class="block mt-s7">Get notified when this product is back in stock:</label>
-          <form id="email_signup" action="https://manage.kmail-lists.com/subscriptions/subscribe?a=WUN3cr&g=UAW7nW" method="POST" class="mt-s3 w-full  py-0 flex">
-            <input type="hidden" name="g" value="UAW7nW">
+          <form id="notifySignup" action="" onsubmit="notifySignup(event)" class="mt-s3 w-full  py-0 flex">
+            {%- liquid
+              assign check_against_inventory = true
+              if product.selected_or_first_available_variant.inventory_management != 'shopify' or  product.selected_or_first_available_variant.inventory_policy == 'continue'
+                assign check_against_inventory = false
+              endif
+              if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+                assign quantity_rule_soldout = true
+              endif
+            -%}
+<!--             <input type="hidden" name="a" value="WUN3cr" disabled />
+            <input type="hidden" name="variant" value="{{ product.selected_or_first_available_variant.id }}" disabled />
+            <input type="hidden" name="platform" value="shopify" disabled />
             <input type="email" value="" name="email" id="k_id_email" placeholder="Enter your email" class="py-s2 outline-none btn--borderless faux-p flex-1 mr-s3"/>
-            <button type="submit" id="notifySignup" class="btn  capitalize tracking-0 w-max">Notify Me</button>
+            <button type="submit" class="btn capitalize tracking-0 w-max">Notify Me</button> -->
+            <button
+              id = "notifyTrigger"
+              type="submit"
+              name="add"
+              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+              {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+                disabled
+              {% endif %}
+            ></button>
+             <a class="klaviyo-bis-trigger btn !block" href="#" style="display:block">Notify Me <span class="hidden md:inline">When Available</span></a>
           </form>
-  
         {% endif %}
-        <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
       </div>
-      
+
       {% if product.description.size > 0 %}
         <div class="mt-s10">
           <p class="faux-p-sm text-black-800">{{ product.description }}</p>
         </div>
       {% endif %}
-      
+
       {% assign accordionCount = section.blocks | size %}
       {% if accordionCount > 0 %}
         <div class="faq__accordion mt-s10">
@@ -165,7 +186,7 @@
           </ul>
         </div>
       {% endif %}
-      
+
       <div class="share flex justify-between items-center py-s7 border-t-[3px] border-black-100">
         <p class="faux-p-sm text-black-700">Share</p>
         <div class="text-black-400 flex gap-s3">
