@@ -13,7 +13,7 @@
       "type": "featured-products",
       "settings": {
         "customHeading": "Top Tees",
-        "collection": "tournament-collection-sale"
+        "collection": "fun-in-the-sun"
       }
     },
     "three_pane_callout": {
@@ -139,7 +139,7 @@
       "disabled": true,
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
-          "type": "shopify:\/\/apps\/youtube-google-reviews-te\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "type": "shopify:\/\/apps\/google-reviews-youtube-te\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
           "settings": {
             "tagembed_widget": "83133",
             "tagembed_widget_position": "center",
