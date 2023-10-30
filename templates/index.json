@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Fall Sales",
+        "customHeading": "Fall Deals",
         "collection": "halloween-sale"
       }
     },
