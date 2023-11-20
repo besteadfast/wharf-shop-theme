@@ -219,7 +219,7 @@
             "type": "feature-column",
             "settings": {
               "menu": "featured",
-              "label": "Billfish Collection",
+              "label": "Feel The Flames",
               "linkDest": "shopify:\/\/collections\/billfish-collection",
               "featuredImage": "shopify:\/\/shop_images\/img_0673.jpg"
             }
