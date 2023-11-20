@@ -259,7 +259,7 @@
             "type": "feature-column",
             "settings": {
               "menu": "objects",
-              "label": "Brumate Collection",
+              "label": "Silipint Products",
               "linkDest": "shopify:\/\/collections\/silipint-drinkware",
               "featuredImage": "shopify:\/\/shop_images\/WharfStoreSilipint_shopifycrop-17.jpg"
             }
