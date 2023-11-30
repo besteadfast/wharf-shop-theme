@@ -162,7 +162,7 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "<strong>Free Shipping on Black Friday!<\/strong>",
+          "bannerText": "<strong>Follow Us on Socials @ShopTheWharf<\/strong>",
           "linkText": "Contact Us",
           "linkDest": "shopify:\/\/pages\/contact"
         }
