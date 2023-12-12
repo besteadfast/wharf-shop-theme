@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Fall Deals",
-        "collection": "halloween-sale"
+        "customHeading": "Limited Edition Christmas Tees",
+        "collection": "merry-little-wharf"
       }
     },
     "three_pane_callout": {
