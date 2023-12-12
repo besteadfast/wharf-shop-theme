@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Limited Edition Christmas Tees",
+        "customHeading": "Christmas Picks",
         "collection": "merry-little-wharf"
       }
     },
