@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Christmas Picks",
-        "collection": "merry-little-wharf"
+        "customHeading": "Best Sellers",
+        "collection": "best-sellers"
       }
     },
     "three_pane_callout": {
