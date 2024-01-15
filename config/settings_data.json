@@ -217,6 +217,7 @@
           },
           "0b1e1db1-e814-4d65-a544-8b1d201a1965": {
             "type": "feature-column",
+            "disabled": true,
             "settings": {
               "menu": "featured",
               "label": "Feel The Flames",
@@ -252,7 +253,7 @@
             "type": "link-list",
             "settings": {
               "menu": "objects",
-              "linkList": "swim"
+              "linkList": ""
             }
           },
           "555a8331-f6b8-4c6b-af38-b7673b1fc788": {
