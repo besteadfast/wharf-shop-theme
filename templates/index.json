@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Best Sellers",
+        "customHeading": "Top Picks for Winter",
         "collection": "best-sellers"
       }
     },
