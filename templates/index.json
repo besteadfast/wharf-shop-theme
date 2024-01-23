@@ -3,10 +3,10 @@
     "hero": {
       "type": "home-hero",
       "settings": {
-        "heading": "Life Happens Here",
+        "heading": "",
         "buttonLabel": "Shop Best Sellers",
         "buttonUrl": "shopify:\/\/collections\/best-sellers",
-        "bgImage": "shopify:\/\/shop_images\/Untitled_design.png"
+        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_73_9931d3b1-94f1-4b2c-a68e-40569bd025cb.jpg"
       }
     },
     "new_products": {
