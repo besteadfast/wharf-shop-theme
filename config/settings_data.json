@@ -217,7 +217,6 @@
           },
           "0b1e1db1-e814-4d65-a544-8b1d201a1965": {
             "type": "feature-column",
-            "disabled": true,
             "settings": {
               "menu": "featured",
               "label": "Feel The Flames",
