@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Top Picks for Winter",
-        "collection": "winter"
+        "customHeading": "Valentine's Day  Gift Guide",
+        "collection": "valentines"
       }
     },
     "three_pane_callout": {
