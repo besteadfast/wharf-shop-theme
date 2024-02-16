@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Valentine's Day  Gift Guide",
-        "collection": "valentines"
+        "customHeading": "Best Sellers",
+        "collection": "best-sellers"
       }
     },
     "three_pane_callout": {
