@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Shop our Children's Book!",
+        "customHeading": "March Best Sellers",
         "collection": "book"
       }
     },
