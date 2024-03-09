@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Best Sellers",
-        "collection": "best-sellers"
+        "customHeading": "Shop our Children's Book!",
+        "collection": "book"
       }
     },
     "three_pane_callout": {
