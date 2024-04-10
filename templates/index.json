@@ -12,8 +12,8 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Boat Show Collection",
-        "collection": "2024-wbs-boat-show"
+        "customHeading": "Spring Favorites",
+        "collection": "book"
       }
     },
     "three_pane_callout": {
