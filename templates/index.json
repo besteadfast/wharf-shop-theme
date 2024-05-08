@@ -61,9 +61,9 @@
         "82e517ab-1e4f-4461-91e8-bc546a014a9b": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TWS_2022_Web_316_edited.jpg",
+            "image": "shopify:\/\/shop_images\/I85A7324.jpg",
             "linkLabel": "Shop Adult",
-            "linkDest": "shopify:\/\/collections\/womens"
+            "linkDest": "shopify:\/\/collections\/mens-tops"
           }
         },
         "fb33c416-427a-4e74-b9a3-4bd4125fa1dd": {
@@ -125,7 +125,7 @@
         "text": "We vacation all year here at The Wharf! Capture that feeling and take it home with you with our curated line of goods + clothing. The official lifestyle brand for The Wharf, Orange Beach.",
         "buttonLabel": "Shop the Brand",
         "buttonDest": "shopify:\/\/collections\/apparel",
-        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_438.jpg"
+        "bgImage": "shopify:\/\/shop_images\/I85A7546.jpg"
       }
     },
     "category_products": {
