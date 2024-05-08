@@ -12,7 +12,7 @@
     "new_products": {
       "type": "featured-products",
       "settings": {
-        "customHeading": "Spring Favorites",
+        "customHeading": "Summer Essentials",
         "collection": "book"
       }
     },
