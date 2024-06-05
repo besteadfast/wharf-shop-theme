@@ -6,7 +6,7 @@
         "heading": "",
         "buttonLabel": "Life Happens Here",
         "buttonUrl": "shopify:\/\/collections\/mens-tops",
-        "bgImage": "shopify:\/\/shop_images\/I85A7686.jpg"
+        "bgImage": "shopify:\/\/shop_images\/I85A9435.jpg"
       }
     },
     "new_products": {
@@ -139,7 +139,7 @@
       "type": "apps",
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
-          "type": "shopify:\/\/apps\/amazon-reviews-importer-te\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "type": "shopify:\/\/apps\/tagembed-social-post-review\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
           "settings": {
             "tagembed_widget": "83133",
             "tagembed_widget_position": "center",
