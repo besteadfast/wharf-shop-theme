@@ -1,21 +1,21 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "home-hero",
       "settings": {
         "heading": "",
-        "buttonLabel": "Shop The Brand",
-        "buttonUrl": "shopify:\/\/collections\/mens-tops",
-        "bgImage": "shopify:\/\/shop_images\/I85A9435.jpg"
+        "buttonLabel": "",
+        "buttonUrl": "",
+        "bgImage": "shopify://shop_images/cybersail-slider.jpg"
       }
     },
     "new_products": {
@@ -31,25 +31,25 @@
         "649dac3a-726f-41c9-810c-511864ea510f": {
           "type": "pane",
           "settings": {
-            "image": "shopify:\/\/shop_images\/img_0673.jpg",
+            "image": "shopify://shop_images/img_0673.jpg",
             "label": "BMGC",
-            "linkDest": "shopify:\/\/collections\/billfish-collection"
+            "linkDest": "shopify://collections/billfish-collection"
           }
         },
         "dac62742-03d3-4093-86b2-455335088373": {
           "type": "pane",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TWS_2022_Web_114.jpg",
+            "image": "shopify://shop_images/TWS_2022_Web_114.jpg",
             "label": "Swim",
-            "linkDest": "shopify:\/\/collections\/swim"
+            "linkDest": "shopify://collections/swim"
           }
         },
         "20035cd3-43fe-4fd4-a4d4-e35ccc638858": {
           "type": "pane",
           "settings": {
-            "image": "shopify:\/\/shop_images\/TWS_2022_Web_218.jpg",
+            "image": "shopify://shop_images/TWS_2022_Web_218.jpg",
             "label": "Play",
-            "linkDest": "shopify:\/\/collections\/fun-in-the-sun"
+            "linkDest": "shopify://collections/fun-in-the-sun"
           }
         }
       },
@@ -70,17 +70,17 @@
         "82e517ab-1e4f-4461-91e8-bc546a014a9b": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/I85A7324.jpg",
+            "image": "shopify://shop_images/I85A7324.jpg",
             "linkLabel": "Shop Adult",
-            "linkDest": "shopify:\/\/collections\/mens-tops"
+            "linkDest": "shopify://collections/mens-tops"
           }
         },
         "fb33c416-427a-4e74-b9a3-4bd4125fa1dd": {
           "type": "category",
           "settings": {
-            "image": "shopify:\/\/shop_images\/DSC00203.jpg",
+            "image": "shopify://shop_images/DSC00203.jpg",
             "linkLabel": "Shop Youth",
-            "linkDest": "shopify:\/\/collections\/kids-tops"
+            "linkDest": "shopify://collections/kids-tops"
           }
         }
       },
@@ -97,10 +97,10 @@
       "type": "sale-cta",
       "settings": {
         "heading": "",
-        "headingImage": "shopify:\/\/shop_images\/2020_BMGC-HorizontalLogo-White.png",
+        "headingImage": "shopify://shop_images/2020_BMGC-HorizontalLogo-White.png",
         "text": "Take a piece of The Greatest Show in Sportfishing home with you! Shop our Exclusive Blue Marlin Grand Championship Apparel.",
         "buttonLabel": "View Here",
-        "buttonDest": "shopify:\/\/collections\/billfish-collection"
+        "buttonDest": "shopify://collections/billfish-collection"
       }
     },
     "floating_cta": {
@@ -109,9 +109,9 @@
         "heading": "Kids Collection",
         "text": "Find exclusive Wharf branded merchandise for your littles!",
         "buttonLabel": "Shop the Styles",
-        "buttonDest": "shopify:\/\/collections\/kids",
-        "mainImage": "shopify:\/\/shop_images\/TWS_2022_Web_71.jpg",
-        "backgroundTexture": "shopify:\/\/shop_images\/feature-water-texture.png"
+        "buttonDest": "shopify://collections/kids",
+        "mainImage": "shopify://shop_images/TWS_2022_Web_71.jpg",
+        "backgroundTexture": "shopify://shop_images/feature-water-texture.png"
       }
     },
     "bg_image_center_cta": {
@@ -122,8 +122,8 @@
         "heading": "Gifts for Dad",
         "text": "",
         "buttonLabel": "Shop Mens",
-        "buttonDest": "shopify:\/\/collections\/mens",
-        "bgImage": "shopify:\/\/shop_images\/TWS_2022_Web_170_edited.jpg"
+        "buttonDest": "shopify://collections/mens",
+        "bgImage": "shopify://shop_images/TWS_2022_Web_170_edited.jpg"
       }
     },
     "bg_image_right_cta": {
@@ -133,8 +133,8 @@
         "heading": "See you Here!",
         "text": "We vacation all year here at The Wharf! Capture that feeling and take it home with you with our curated line of goods + clothing. The official lifestyle brand for The Wharf, Orange Beach.",
         "buttonLabel": "Shop the Brand",
-        "buttonDest": "shopify:\/\/collections\/apparel",
-        "bgImage": "shopify:\/\/shop_images\/I85A7546.jpg"
+        "buttonDest": "shopify://collections/apparel",
+        "bgImage": "shopify://shop_images/I85A7546.jpg"
       }
     },
     "category_products": {
@@ -148,7 +148,7 @@
       "type": "apps",
       "blocks": {
         "66714f5d-15d5-482c-8a2b-a7f60219671c": {
-          "type": "shopify:\/\/apps\/tagembed-social-post-review\/blocks\/app-block\/16930ea9-fb6e-46ac-90fd-526ff0431478",
+          "type": "shopify://apps/tagembed-social-post-review/blocks/app-block/16930ea9-fb6e-46ac-90fd-526ff0431478",
           "settings": {
             "tagembed_widget": "83133",
             "tagembed_widget_position": "center",
