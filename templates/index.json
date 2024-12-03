@@ -13,9 +13,9 @@
       "type": "home-hero",
       "settings": {
         "heading": "",
-        "buttonLabel": "",
-        "buttonUrl": "",
-        "bgImage": "shopify://shop_images/cybersail-slider.jpg"
+        "buttonLabel": "Shop Now",
+        "buttonUrl": "shopify://collections/apparel",
+        "bgImage": "shopify://shop_images/2800x1600-crop-hoodie-group-slider_a08ec2fc-046a-4524-b524-db0830be7604.jpg"
       }
     },
     "new_products": {
