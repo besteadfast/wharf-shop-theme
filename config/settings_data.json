@@ -169,7 +169,7 @@
       "banner": {
         "type": "banner",
         "settings": {
-          "bannerText": "<strong>Free Shipping w/ promo code CYBERSAIL</strong>",
+          "bannerText": "Follow Us on Socials! @ShopTheWharf",
           "linkText": "Contact Us",
           "linkDest": "shopify://pages/contact"
         }
